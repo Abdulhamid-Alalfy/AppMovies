@@ -1,0 +1,91 @@
+@{
+    ViewData["Title"] = "الحساب مغلق";
+    Layout = "_LayoutAdmin";
+}
+
+@section Styles {
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fb 0%, #eef3ff 100%);
+        }
+
+        .locked-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .locked-card {
+            width: 100%;
+            max-width: 520px;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+            padding: 36px 32px;
+            text-align: center;
+        }
+
+        .locked-icon {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            margin: 0 auto 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffeaea;
+            color: #d32f2f;
+            font-size: 2rem;
+        }
+
+        .locked-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .locked-message {
+            color: #6b7280;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .locked-btn {
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 999px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .locked-btn:hover {
+            background: #1d4ed8;
+            color: #fff;
+        }
+    </style>
+}
+
+<div class="locked-wrapper">
+    <div class="locked-card">
+        <div class="locked-icon">
+            <i class="fas fa-lock"></i>
+        </div>
+        <h2 class="locked-title">تم إغلاق حسابك</h2>
+        <p class="locked-message">
+            تم إغلاق حسابك من قبل الإدارة. يرجى التواصل مع الدعم أو الإدارة لاستعادة الوصول إلى النظام.
+        </p>
+        <a asp-action="Login" class="locked-btn">
+            <i class="fas fa-arrow-left"></i>
+            العودة إلى تسجيل الدخول
+        </a>
+    </div>
+</div>

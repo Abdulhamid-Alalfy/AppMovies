@@ -1,0 +1,268 @@
+@model IEnumerable<infrastructure.ViewModel.MovieViewModel>
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "إدارة الأفلام | Cinema Pro";
+    Layout = "_LayoutAdmin";
+}
+
+@section Styles {
+    <!-- DevExpress Styles -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.5/css/dx.material.blue.dark.compact.css">
+
+    <style>
+        .dashboard-container {
+            padding: 20px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-panel {
+            background: rgba(13, 27, 42, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+        }
+
+        .header-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-section h2 i {
+            color: #2196F3;
+        }
+
+        /* Movie Poster Styling */
+        .movie-poster-preview {
+            width: 50px;
+            height: 70px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Actor Badges */
+        .actor-tag {
+            background: rgba(33, 150, 243, 0.15);
+            color: #90caf9;
+            padding: 2px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            margin: 2px;
+            display: inline-block;
+            border: 1px solid rgba(33, 150, 243, 0.2);
+        }
+
+        /* Grid UI Tweaks */
+        #moviesGrid {
+            background: transparent !important;
+        }
+
+        .dx-datagrid {
+            background-color: transparent !important;
+            color: #fff !important;
+        }
+
+        .dx-datagrid-headers {
+            background-color: rgba(255, 255, 255, 0.03) !important;
+        }
+
+        .dx-datagrid-headers .dx-datagrid-text-content {
+            color: #2196F3 !important;
+            font-weight: 700 !important;
+        }
+
+        .dx-datagrid-rowsview .dx-row:hover {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        /* Action Buttons */
+        .action-container {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none !important;
+        }
+
+        .btn-edit { background: rgba(255, 193, 7, 0.1); color: #ffc107; }
+        .btn-edit:hover { background: #ffc107; color: #000; }
+
+        .btn-delete { background: rgba(244, 67, 54, 0.1); color: #f44336; }
+        .btn-delete:hover { background: #f44336; color: #fff; }
+
+        .btn-quality { background: rgba(76, 175, 80, 0.1); color: #4caf50; }
+        .btn-quality:hover { background: #4caf50; color: #fff; }
+    </style>
+}
+
+<div class="dashboard-container">
+    <div class="glass-panel">
+        <div class="header-section">
+            <h2><i class="fas fa-film"></i> إدارة مكتبة الأفلام</h2>
+            <div id="btnAddNewMovie"></div>
+        </div>
+
+        <div id="moviesGrid"></div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function() {
+            var moviesData = @Html.Raw(JsonConvert.SerializeObject(Model));
+
+            $("#btnAddNewMovie").dxButton({
+                text: "إضافة فيلم جديد",
+                icon: "plus",
+                type: "default",
+                stylingMode: "contained",
+                onClick: function() {
+                    window.location.href = '@Url.Action("Create")';
+                }
+            });
+
+            $("#moviesGrid").dxDataGrid({
+                dataSource: moviesData,
+                keyExpr: "Id",
+                rtlEnabled: true,
+                showBorders: false,
+                columnAutoWidth: true,
+                wordWrapEnabled: true,
+                searchPanel: {
+                    visible: true,
+                    width: 280,
+                    placeholder: "بحث عن فيلم..."
+                },
+                paging: { pageSize: 10 },
+                pager: {
+                    showPageSizeSelector: true,
+                    allowedPageSizes: [10, 20, 50],
+                    showInfo: true
+                },
+                columns: [
+                    {
+                        dataField: "Poster",
+                        caption: "البوستر",
+                        width: 100,
+                        allowFiltering: false,
+                        allowSorting: false,
+                        cellTemplate: function(container, options) {
+                            $('<img class="movie-poster-preview">')
+                                .attr('src', options.value ? options.value.replace('~/', '/') : '/images/placeholder.jpg')
+                                .appendTo(container);
+                        }
+                    },
+                    {
+                        dataField: "Title",
+                        caption: "عنوان الفيلم",
+                        dataType: "string",
+                        sortOrder: "asc",
+                        width: 200
+                    },
+                    {
+                        dataField: "ProducerName",
+                        caption: "المنتج",
+                        width: 150
+                    },
+                    {
+                        dataField: "Actors",
+                        caption: "الممثلون المشاركون",
+                        allowSorting: false,
+                        cellTemplate: function(container, options) {
+                            if (options.value && options.value.length > 0) {
+                                var $tags = $('<div/>');
+                                options.value.forEach(function(actor) {
+                                    $('<span class="actor-tag">')
+                                        .text(actor.Name)
+                                        .appendTo($tags);
+                                });
+                                $tags.appendTo(container);
+                            } else {
+                                $('<span class="text-muted small">لا يوجد ممثلون</span>').appendTo(container);
+                            }
+                        }
+                    },
+                    {
+                        caption: "الإجراءات",
+                        width: 160,
+                        alignment: "center",
+                        cellTemplate: function(container, options) {
+                            var $actions = $('<div class="action-container">');
+                            
+                            // Edit
+                            $('<a class="action-btn btn-edit" title="تعديل">')
+                                .append($('<i class="fas fa-edit"></i>'))
+                                .attr('href', '@Url.Action("Edit")/' + options.data.Id)
+                                .appendTo($actions);
+
+                            // Quality
+                            $('<a class="action-btn btn-quality" title="الجودة">')
+                                .append($('<i class="fas fa-video"></i>'))
+                                .attr('href', '@Url.Action("AddQuality", "Quality")?movieId=' + options.data.Id)
+                                .appendTo($actions);
+
+                            // Delete
+                            $('<div class="action-btn btn-delete" title="حذف">')
+                                .append($('<i class="fas fa-trash-alt"></i>'))
+                                .on('click', function() {
+                                    confirmDelete(options.data.Id, options.data.Title);
+                                })
+                                .appendTo($actions);
+
+                            $actions.appendTo(container);
+                        }
+                    }
+                ]
+            });
+
+            function confirmDelete(id, title) {
+                var result = DevExpress.ui.dialog.confirm(
+                    "هل أنت متأكد من حذف فيلم '" + title + "' نهائياً؟",
+                    "تأكيد الحذف"
+                );
+                
+                result.done(function(dialogResult) {
+                    if (dialogResult) {
+                        var $form = $('<form method="post" action="@Url.Action("Delete")/' + id + '">');
+                        $form.append($('@Html.AntiForgeryToken()'));
+                        $(document.body).append($form);
+                        $form.submit();
+                    }
+                });
+            }
+        });
+    </script>
+}

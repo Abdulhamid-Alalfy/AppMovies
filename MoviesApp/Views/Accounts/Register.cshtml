@@ -1,0 +1,88 @@
+@using infrastructure.ViewModel
+@model UserRegisterViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineSignUp | Movie Community</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="~/Admin/css/User/Register.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Icons/login.png" />
+</head>
+<body>
+    <div class="container animate__animated animate__fadeInUp">
+        <div class="header">
+            <h1>🎬 انضم إلينا!</h1>
+            <p>أنشئ حسابك الخاص لتكتشف سحر السينما</p>
+        </div>
+
+        <form asp-action="Register" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group" style="text-align: center;">
+                <img id="imgPreview" src="#" alt="Preview" style="max-width: 150px; border-radius: 50%; display: none; margin: 10px auto; border: 3px solid var(--primary);" />
+            </div>
+
+            <div class="form-group">
+                <label for="FullName">الاسم بالكامل</label>
+                <input type="text" id="FullName" asp-for="FullName" placeholder="الاسم هنا...">
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Email">البريد الإلكتروني</label>
+                <input type="email" id="Email" asp-for="Email" placeholder="example@mail.com">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Password">كلمة المرور</label>
+                <input type="password" id="Password" asp-for="Password" placeholder="••••••••">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="ConfirmPassword">تأكيد كلمة المرور</label>
+                <input type="password" id="ConfirmPassword" asp-for="ConfirmPassword" placeholder="••••••••">
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="ImageFile">الصورة الشخصية</label>
+                <input type="file" id="ImageUser" onchange="previewImage(this)" asp-for="ImageFile">
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="submit-btn">ابدأ الآن ←</button>
+        </form>
+
+        <div class="back-link">
+            <a asp-action="Login">لديك حساب بالفعل؟ سجل دخولك من هنا</a>
+        </div>
+    </div>
+
+    <script>
+        function previewImage(input) {
+            var preview = document.getElementById('imgPreview');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,265 @@
+@model IEnumerable<infrastructure.ViewModel.ProducerVM>
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "إدارة المنتجين | Cinema Pro";
+    Layout = "_LayoutAdmin";
+}
+
+@section Styles {
+    <!-- DevExpress Styles (Compact Dark Material) -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.5/css/dx.material.blue.dark.compact.css">
+
+    <style>
+        .dashboard-card {
+            background: rgba(13, 27, 42, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .page-header h2 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .page-header h2 i {
+            color: #2196F3;
+        }
+
+        /* Grid Styling */
+        #producersGrid {
+            background: transparent !important;
+        }
+
+        .dx-datagrid {
+            background-color: transparent !important;
+            color: #fff !important;
+        }
+
+        .dx-datagrid-headers {
+            background-color: rgba(255, 255, 255, 0.03) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .dx-datagrid-headers .dx-datagrid-text-content {
+            color: #2196F3 !important;
+            font-weight: 700 !important;
+            text-transform: uppercase;
+        }
+
+        .dx-datagrid-rowsview .dx-row {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+        }
+
+        .dx-datagrid-rowsview .dx-row:hover {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        .producer-img-container {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(33, 150, 243, 0.3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .producer-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .action-cell {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .grid-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-edit-grid {
+            background: rgba(33, 150, 243, 0.1);
+            color: #2196F3;
+        }
+
+        .btn-edit-grid:hover {
+            background: #2196F3;
+            color: #fff;
+        }
+
+        .btn-delete-grid {
+            background: rgba(244, 67, 54, 0.1);
+            color: #f44336;
+        }
+
+        .btn-delete-grid:hover {
+            background: #f44336;
+            color: #fff;
+        }
+
+        .dx-searchbox.dx-texteditor.dx-editor-outlined {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-radius: 10px !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+    </style>
+}
+
+<div class="dashboard-card">
+    <div class="page-header">
+        <h2><i class="fas fa-clapperboard"></i> إدارة المنتجين</h2>
+        <div id="btnAddProducer"></div>
+    </div>
+
+    <div id="producersGrid"></div>
+</div>
+
+@section Scripts {
+    <!-- dx.all.js is in _LayoutAdmin -->
+    <script>
+        $(function() {
+            var producersData = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var producerError = @Html.Raw(JsonConvert.SerializeObject(TempData["ProducerError"]));
+
+            if (producerError) {
+                DevExpress.ui.notify(producerError, "error", 5000);
+            }
+
+            $("#btnAddProducer").dxButton({
+                text: "منتج جديد",
+                icon: "plus",
+                type: "default",
+                stylingMode: "contained",
+                onClick: function() {
+                    window.location.href = '@Url.Action("Create")';
+                }
+            });
+
+            $("#producersGrid").dxDataGrid({
+                dataSource: producersData,
+                keyExpr: "Id",
+                rtlEnabled: true,
+                showBorders: false,
+                columnAutoWidth: true,
+                searchPanel: {
+                    visible: true,
+                    width: 250,
+                    placeholder: "بحث عن منتج..."
+                },
+                paging: {
+                    pageSize: 10
+                },
+                pager: {
+                    showPageSizeSelector: true,
+                    allowedPageSizes: [10, 20, 50],
+                    showInfo: true
+                },
+                columns: [
+                    {
+                        dataField: "Image",
+                        caption: "الصورة",
+                        width: 90,
+                        allowFiltering: false,
+                        allowSorting: false,
+                        cellTemplate: function(container, options) {
+                            $('<div class="producer-img-container">')
+                                .append($('<img>').attr('src', options.value || '/images/default-avatar.png'))
+                                .appendTo(container);
+                        }
+                    },
+                    {
+                        dataField: "Name",
+                        caption: "اسم المنتج",
+                        dataType: "string",
+                        sortOrder: "asc"
+                    },
+                    {
+                        dataField: "Bio",
+                        caption: "السيرة الذاتية",
+                        dataType: "string",
+                        cellTemplate: function(container, options) {
+                            $('<div style="white-space: normal; max-height: 50px; overflow: hidden; text-overflow: ellipsis;">')
+                                .text(options.value)
+                                .appendTo(container);
+                        }
+                    },
+                    {
+                        caption: "الخيارات",
+                        width: 130,
+                        alignment: "center",
+                        cellTemplate: function(container, options) {
+                            var $actions = $('<div class="action-cell">');
+                            
+                            $('<div class="grid-btn btn-edit-grid" title="تعديل">')
+                                .append($('<i class="fas fa-edit"></i>'))
+                                .on('click', function() {
+                                    window.location.href = '@Url.Action("Edit")/' + options.data.Id;
+                                })
+                                .appendTo($actions);
+
+                            $('<div class="grid-btn btn-delete-grid" title="حذف">')
+                                .append($('<i class="fas fa-trash-alt"></i>'))
+                                .on('click', function() {
+                                    confirmDelete(options.data.Id, options.data.Name);
+                                })
+                                .appendTo($actions);
+
+                            $actions.appendTo(container);
+                        }
+                    }
+                ]
+            });
+
+            function confirmDelete(id, name) {
+                var result = DevExpress.ui.dialog.confirm(
+                    "هل أنت متأكد من حذف المنتج '" + name + "'؟",
+                    "تأكيد الحذف"
+                );
+                
+                result.done(function(dialogResult) {
+                    if (dialogResult) {
+                        var $form = $('<form method="post" action="@Url.Action("Delete")/' + id + '">');
+                        $form.append($('<input type="hidden" name="id" value="' + id + '">'));
+                        $form.append($('@Html.AntiForgeryToken()'));
+                        $(document.body).append($form);
+                        $form.submit();
+                    }
+                });
+            }
+        });
+    </script>
+}

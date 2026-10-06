@@ -1,0 +1,1216 @@
+2026-04-26 19:31:17.809 +03:00 [INF] User profile is available. Using 'C:\Users\Ab.abdelsattar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-26 19:31:21.304 +03:00 [WRN] No store type was specified for the decimal property 'MaxLevel' on entity type 'Inventory'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-04-26 19:31:21.308 +03:00 [WRN] No store type was specified for the decimal property 'MinLevel' on entity type 'Inventory'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-04-26 19:31:21.311 +03:00 [WRN] No store type was specified for the decimal property 'Quantity' on entity type 'Inventory'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-04-26 19:31:21.314 +03:00 [WRN] No store type was specified for the decimal property 'UnitCost' on entity type 'Inventory'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-04-26 19:31:36.943 +03:00 [ERR] An error occurred using the connection to database 'MoviesAlalfy1' on server 'ALALFY\SQLEXPRESS'.
+2026-04-26 19:31:40.712 +03:00 [ERR] An exception occurred while iterating over the results of a query for context type 'infrastructure.Data.DB'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:-1,State:0,Class:20
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:-1,State:0,Class:20
+2026-04-26 19:31:41.352 +03:00 [ERR] An error occurred seeding the DB.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Identity.RoleManager`1.RoleExistsAsync(String roleName)
+   at Domin.Model.Sedding.Initialize(IServiceProvider serviceProvider) in E:\AppMovies-main\AppMovies-main\Domin\Model\Seeding.cs:line 21
+   at Program.<Main>$(String[] args) in E:\AppMovies-main\AppMovies-main\MoviesApp\Program.cs:line 106
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:-1,State:0,Class:20
+2026-04-26 19:31:41.877 +03:00 [INF] Now listening on: https://localhost:7284
+2026-04-26 19:31:41.879 +03:00 [INF] Now listening on: http://localhost:5250
+2026-04-26 19:31:43.426 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-26 19:31:43.428 +03:00 [INF] Hosting environment: Development
+2026-04-26 19:31:43.429 +03:00 [INF] Content root path: E:\AppMovies-main\AppMovies-main\MoviesApp
+2026-04-26 19:31:54.452 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/ - null null
+2026-04-26 19:31:56.822 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User)
+2026-04-26 19:31:56.843 +03:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2026-04-26 19:31:56.854 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/ - 302 0 null 2412.2001ms
+2026-04-26 19:31:56.863 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin/Accounts/Login?ReturnUrl=%2F - null null
+2026-04-26 19:31:56.877 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-04-26 19:31:56.905 +03:00 [INF] Route matched with {area = "Admin", action = "Login", controller = "Accounts"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-04-26 19:31:56.938 +03:00 [INF] Executing ViewResult, running view Login.
+2026-04-26 19:31:57.095 +03:00 [INF] Executed ViewResult - view Login executed in 165.1884ms.
+2026-04-26 19:31:57.102 +03:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp) in 192.989ms
+2026-04-26 19:31:57.105 +03:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-04-26 19:31:57.111 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin/Accounts/Login?ReturnUrl=%2F - 200 null text/html; charset=utf-8 248.6919ms
+2026-04-26 19:31:57.128 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:31:57.169 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 41.6298ms
+2026-04-26 19:31:57.170 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-04-26 19:31:57.322 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 152.4412ms
+2026-04-26 19:31:58.344 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Images/login-bg.png - null null
+2026-04-26 19:31:59.760 +03:00 [INF] Sending file. Request path: '/Images/login-bg.png'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\Images\login-bg.png'
+2026-04-26 19:31:59.786 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Images/login-bg.png - 200 726347 image/png 1441.8766ms
+2026-04-26 19:31:59.820 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/favicon.ico - null null
+2026-04-26 19:31:59.877 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/favicon.ico - 404 0 null 56.9601ms
+2026-04-26 19:31:59.911 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7284/favicon.ico, Response status code: 404
+2026-04-26 19:32:00.103 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/Admin - application/x-www-form-urlencoded 242
+2026-04-26 19:32:00.128 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-04-26 19:32:00.163 +03:00 [INF] Route matched with {area = "Admin", action = "Login", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(infrastructure.ViewModel.LoginView) on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-04-26 19:32:19.090 +03:00 [ERR] An error occurred using the connection to database 'MoviesAlalfy1' on server 'ALALFY\SQLEXPRESS'.
+2026-04-26 19:32:19.096 +03:00 [ERR] An exception occurred while iterating over the results of a query for context type 'infrastructure.Data.DB'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:-1,State:0,Class:20
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:-1,State:0,Class:20
+2026-04-26 19:33:44.002 +03:00 [INF] User profile is available. Using 'C:\Users\Ab.abdelsattar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-26 19:33:45.303 +03:00 [WRN] No store type was specified for the decimal property 'MaxLevel' on entity type 'Inventory'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-04-26 19:33:45.306 +03:00 [WRN] No store type was specified for the decimal property 'MinLevel' on entity type 'Inventory'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-04-26 19:33:45.309 +03:00 [WRN] No store type was specified for the decimal property 'Quantity' on entity type 'Inventory'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-04-26 19:33:45.312 +03:00 [WRN] No store type was specified for the decimal property 'UnitCost' on entity type 'Inventory'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-04-26 19:33:47.106 +03:00 [INF] Executed DbCommand (175ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-04-26 19:33:47.304 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-04-26 19:33:47.537 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2026-04-26 19:33:48.153 +03:00 [INF] Now listening on: https://localhost:7284
+2026-04-26 19:33:48.155 +03:00 [INF] Now listening on: http://localhost:5250
+2026-04-26 19:33:48.287 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-26 19:33:48.296 +03:00 [INF] Hosting environment: Development
+2026-04-26 19:33:48.298 +03:00 [INF] Content root path: E:\AppMovies-main\AppMovies-main\MoviesApp
+2026-04-26 19:33:48.970 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/ - null null
+2026-04-26 19:33:49.439 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User)
+2026-04-26 19:33:49.465 +03:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2026-04-26 19:33:49.476 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/ - 302 0 null 523.3622ms
+2026-04-26 19:33:49.484 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin/Accounts/Login?ReturnUrl=%2F - null null
+2026-04-26 19:33:49.500 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-04-26 19:33:49.523 +03:00 [INF] Route matched with {area = "Admin", action = "Login", controller = "Accounts"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-04-26 19:33:49.552 +03:00 [INF] Executing ViewResult, running view Login.
+2026-04-26 19:33:49.741 +03:00 [INF] Executed ViewResult - view Login executed in 193.0253ms.
+2026-04-26 19:33:49.752 +03:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp) in 223.2543ms
+2026-04-26 19:33:49.755 +03:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-04-26 19:33:49.765 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin/Accounts/Login?ReturnUrl=%2F - 200 null text/html; charset=utf-8 280.8085ms
+2026-04-26 19:33:49.823 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:33:49.836 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-04-26 19:33:49.867 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 43.7435ms
+2026-04-26 19:33:49.932 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 95.5468ms
+2026-04-26 19:33:50.676 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/favicon.ico - null null
+2026-04-26 19:33:50.785 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/favicon.ico - 404 0 null 109.0151ms
+2026-04-26 19:33:50.813 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7284/favicon.ico, Response status code: 404
+2026-04-26 19:33:53.561 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/Admin - application/x-www-form-urlencoded 242
+2026-04-26 19:33:53.582 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-04-26 19:33:53.644 +03:00 [INF] Route matched with {area = "Admin", action = "Login", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(infrastructure.ViewModel.LoginView) on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-04-26 19:33:53.801 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2026-04-26 19:33:54.103 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2026-04-26 19:33:54.180 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-04-26 19:33:54.198 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-04-26 19:33:54.219 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2026-04-26 19:33:54.232 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-04-26 19:33:54.244 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2026-04-26 19:33:54.254 +03:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2026-04-26 19:33:54.271 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-04-26 19:33:54.281 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-04-26 19:33:54.294 +03:00 [INF] Executing RedirectResult, redirecting to /Admin/Accounts/Index.
+2026-04-26 19:33:54.296 +03:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp) in 648.5841ms
+2026-04-26 19:33:54.299 +03:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-04-26 19:33:54.305 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7284/Admin - 302 0 null 744.3268ms
+2026-04-26 19:33:54.305 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin/Accounts/Index - null null
+2026-04-26 19:33:54.334 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Index (MoviesApp)'
+2026-04-26 19:33:54.342 +03:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-04-26 19:33:54.393 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+2026-04-26 19:33:54.401 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-04-26 19:33:54.413 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-04-26 19:33:54.421 +03:00 [INF] Executing ViewResult, running view Index.
+2026-04-26 19:33:54.553 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:33:54.823 +03:00 [INF] Executed ViewResult - view Index executed in 403.0588ms.
+2026-04-26 19:33:54.830 +03:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.AccountsController.Index (MoviesApp) in 484.2541ms
+2026-04-26 19:33:54.837 +03:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Index (MoviesApp)'
+2026-04-26 19:33:54.846 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/lib/jquery/dist/jquery.min.js - null null
+2026-04-26 19:33:54.846 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/lib/bootstrap/dist/css/bootstrap.rtl.min.css - null null
+2026-04-26 19:33:54.848 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Images/5b65452a-4321-453f-8004-768dd19244f4_Screenshot (257).png - null null
+2026-04-26 19:33:54.865 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/lib/bootstrap/dist/js/bootstrap.bundle.min.js - null null
+2026-04-26 19:33:54.851 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin/Accounts/Index - 200 null text/html; charset=utf-8 545.2601ms
+2026-04-26 19:33:54.870 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:33:54.928 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-04-26 19:33:54.951 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 81.5126ms
+2026-04-26 19:33:54.985 +03:00 [INF] Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\lib\jquery\dist\jquery.min.js'
+2026-04-26 19:33:54.985 +03:00 [INF] Sending file. Request path: '/Images/5b65452a-4321-453f-8004-768dd19244f4_Screenshot (257).png'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\Images\5b65452a-4321-453f-8004-768dd19244f4_Screenshot (257).png'
+2026-04-26 19:33:55.006 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/lib/jquery/dist/jquery.min.js - 200 87533 text/javascript 159.8713ms
+2026-04-26 19:33:55.007 +03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+2026-04-26 19:33:55.013 +03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.rtl.min.css'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css'
+2026-04-26 19:33:55.013 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Images/5b65452a-4321-453f-8004-768dd19244f4_Screenshot (257).png - 200 155077 image/png 166.4338ms
+2026-04-26 19:33:55.023 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/lib/bootstrap/dist/js/bootstrap.bundle.min.js - 200 80721 text/javascript 157.5081ms
+2026-04-26 19:33:55.026 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 128.6729ms
+2026-04-26 19:33:55.029 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/lib/bootstrap/dist/css/bootstrap.rtl.min.css - 200 232911 text/css 182.5285ms
+2026-04-26 19:33:55.896 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/images/default-avatar.png - null null
+2026-04-26 19:33:55.921 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/images/default-avatar.png - 404 0 null 25.168ms
+2026-04-26 19:33:55.938 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7284/images/default-avatar.png, Response status code: 404
+2026-04-26 19:34:03.615 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/ - null null
+2026-04-26 19:34:03.641 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.MovieController.Index (MoviesApp)'
+2026-04-26 19:34:03.648 +03:00 [INF] Route matched with {action = "Index", controller = "Movie", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String) on controller MoviesApp.Controllers.MovieController (MoviesApp).
+2026-04-26 19:34:03.844 +03:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-26 19:34:03.941 +03:00 [INF] Executed DbCommand (37ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year], [p].[Id], [p].[Bio], [p].[Image], [p].[Name], [g].[Id], [g].[Description], [g].[Icon], [g].[Name], [g].[NameAr], [m0].[Id], [m0].[Bitrate], [m0].[Codec], [m0].[CreatedAt], [m0].[FileSize], [m0].[IsAvailable], [m0].[MovieId], [m0].[QualityType], [m0].[VideoUrl], [m0].[ViewCount], [s].[ActorId], [s].[MovieId], [s].[Id], [s].[Bio], [s].[Image], [s].[Name]
+FROM [Movies] AS [m]
+INNER JOIN [Producers] AS [p] ON [m].[ProducerId] = [p].[Id]
+INNER JOIN [Genres] AS [g] ON [m].[GenreId] = [g].[Id]
+LEFT JOIN [MovieQualities] AS [m0] ON [m].[Id] = [m0].[MovieId]
+LEFT JOIN (
+    SELECT [a].[ActorId], [a].[MovieId], [a0].[Id], [a0].[Bio], [a0].[Image], [a0].[Name]
+    FROM [ActorMovies] AS [a]
+    INNER JOIN [Actors] AS [a0] ON [a].[ActorId] = [a0].[Id]
+) AS [s] ON [m].[Id] = [s].[MovieId]
+ORDER BY [m].[Id], [p].[Id], [g].[Id], [m0].[Id], [s].[ActorId], [s].[MovieId]
+2026-04-26 19:34:04.170 +03:00 [INF] Executing ViewResult, running view Index.
+2026-04-26 19:34:04.337 +03:00 [INF] Executed DbCommand (30ms) [Parameters=[@__userId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Notifications] AS [n]
+WHERE ([n].[IsForAllUsers] = CAST(1 AS bit) OR [n].[UserId] = @__userId_0) AND [n].[IsRead] = CAST(0 AS bit)
+2026-04-26 19:34:04.381 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:34:04.480 +03:00 [INF] Executed ViewResult - view Index executed in 313.0181ms.
+2026-04-26 19:34:04.483 +03:00 [INF] Executed action MoviesApp.Controllers.MovieController.Index (MoviesApp) in 830.4222ms
+2026-04-26 19:34:04.485 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.MovieController.Index (MoviesApp)'
+2026-04-26 19:34:04.488 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/ - 200 null text/html; charset=utf-8 873.1254ms
+2026-04-26 19:34:04.494 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Web/css/site.css - null null
+2026-04-26 19:34:04.495 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Web/css/Moives.css - null null
+2026-04-26 19:34:04.532 +03:00 [INF] Sending file. Request path: '/Web/css/site.css'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\Web\css\site.css'
+2026-04-26 19:34:04.535 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Web/css/site.css - 200 31147 text/css 40.7413ms
+2026-04-26 19:34:04.539 +03:00 [INF] Sending file. Request path: '/Web/css/Moives.css'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\Web\css\Moives.css'
+2026-04-26 19:34:04.548 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Web/css/Moives.css - 200 6403 text/css 52.8265ms
+2026-04-26 19:34:04.627 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Images/88b1d827-ae7d-432f-a4eb-2964efa8eb24_robert162574544.jpg - null null
+2026-04-26 19:34:04.627 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Images/1b753338-bb05-41bc-9a32-97ed353656e4_Screenshot (254).png - null null
+2026-04-26 19:34:04.628 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Web/js/notifications.js?v=BPCdeke-CnCRbj5tnhWKrel3Wt4ZupB1W0ECBSqe7ck - null null
+2026-04-26 19:34:04.628 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/js/signalr.js - null null
+2026-04-26 19:34:04.629 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Web/js/site.js - null null
+2026-04-26 19:34:04.630 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:34:04.630 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-04-26 19:34:04.641 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Web/images/hero-bg.png - null null
+2026-04-26 19:34:04.703 +03:00 [INF] Sending file. Request path: '/Images/88b1d827-ae7d-432f-a4eb-2964efa8eb24_robert162574544.jpg'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\Images\88b1d827-ae7d-432f-a4eb-2964efa8eb24_robert162574544.jpg'
+2026-04-26 19:34:04.701 +03:00 [INF] Sending file. Request path: '/Web/js/notifications.js'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\Web\js\notifications.js'
+2026-04-26 19:34:04.716 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 86.5876ms
+2026-04-26 19:34:04.714 +03:00 [INF] Sending file. Request path: '/Images/1b753338-bb05-41bc-9a32-97ed353656e4_Screenshot (254).png'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\Images\1b753338-bb05-41bc-9a32-97ed353656e4_Screenshot (254).png'
+2026-04-26 19:34:04.744 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Images/88b1d827-ae7d-432f-a4eb-2964efa8eb24_robert162574544.jpg - 200 18751 image/jpeg 117.5325ms
+2026-04-26 19:34:04.744 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 114.2097ms
+2026-04-26 19:34:04.747 +03:00 [INF] Sending file. Request path: '/Web/js/site.js'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\Web\js\site.js'
+2026-04-26 19:34:04.747 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Web/js/notifications.js?v=BPCdeke-CnCRbj5tnhWKrel3Wt4ZupB1W0ECBSqe7ck - 200 7954 text/javascript 118.2281ms
+2026-04-26 19:34:04.752 +03:00 [INF] Sending file. Request path: '/js/signalr.js'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\js\signalr.js'
+2026-04-26 19:34:04.758 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Images/1b753338-bb05-41bc-9a32-97ed353656e4_Screenshot (254).png - 200 95080 image/png 130.9479ms
+2026-04-26 19:34:04.775 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Web/js/site.js - 200 6569 text/javascript 146.3359ms
+2026-04-26 19:34:04.784 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/js/signalr.js - 200 159289 text/javascript 155.2043ms
+2026-04-26 19:34:04.787 +03:00 [INF] Sending file. Request path: '/Web/images/hero-bg.png'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\Web\images\hero-bg.png'
+2026-04-26 19:34:04.811 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Web/images/hero-bg.png - 200 619832 image/png 170.5214ms
+2026-04-26 19:34:04.987 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/notificationHub/negotiate?negotiateVersion=1 - null 0
+2026-04-26 19:34:04.988 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Notification/GetNotificationCount - null null
+2026-04-26 19:34:05.009 +03:00 [INF] Executing endpoint '/notificationHub/negotiate'
+2026-04-26 19:34:05.015 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.NotificationController.GetNotificationCount (MoviesApp)'
+2026-04-26 19:34:05.025 +03:00 [INF] Route matched with {action = "GetNotificationCount", controller = "Notification", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetNotificationCount() on controller MoviesApp.Controllers.NotificationController (MoviesApp).
+2026-04-26 19:34:05.033 +03:00 [INF] Executed endpoint '/notificationHub/negotiate'
+2026-04-26 19:34:05.037 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7284/notificationHub/negotiate?negotiateVersion=1 - 200 316 application/json 50.0091ms
+2026-04-26 19:34:05.038 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Notifications] AS [n]
+WHERE ([n].[IsForAllUsers] = CAST(1 AS bit) OR [n].[UserId] = @__userId_0) AND [n].[IsRead] = CAST(0 AS bit)
+2026-04-26 19:34:05.045 +03:00 [INF] Request starting HTTP/2 CONNECT https://localhost:7284/notificationHub?id=z0SyZoi5JkH3Bt46V5Wg8w - null null
+2026-04-26 19:34:05.072 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`1[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-26 19:34:05.077 +03:00 [INF] Executing endpoint '/notificationHub'
+2026-04-26 19:34:05.091 +03:00 [INF] Executed action MoviesApp.Controllers.NotificationController.GetNotificationCount (MoviesApp) in 61.6547ms
+2026-04-26 19:34:05.098 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.NotificationController.GetNotificationCount (MoviesApp)'
+2026-04-26 19:34:05.100 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Notification/GetNotificationCount - 200 null application/json; charset=utf-8 112.5864ms
+2026-04-26 19:34:13.871 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/admin - null null
+2026-04-26 19:34:13.880 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-04-26 19:34:13.884 +03:00 [INF] Route matched with {area = "Admin", action = "Login", controller = "Accounts"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-04-26 19:34:13.887 +03:00 [INF] Executing ViewResult, running view Login.
+2026-04-26 19:34:13.893 +03:00 [INF] Executed ViewResult - view Login executed in 5.9684ms.
+2026-04-26 19:34:13.895 +03:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp) in 8.7206ms
+2026-04-26 19:34:13.898 +03:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-04-26 19:34:13.906 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:34:13.907 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/admin - 200 null text/html; charset=utf-8 33.92ms
+2026-04-26 19:34:13.907 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-04-26 19:34:13.918 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 11.4225ms
+2026-04-26 19:34:13.933 +03:00 [INF] Executed endpoint '/notificationHub'
+2026-04-26 19:34:13.950 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 43.9296ms
+2026-04-26 19:34:13.953 +03:00 [INF] Request finished HTTP/2 CONNECT https://localhost:7284/notificationHub?id=z0SyZoi5JkH3Bt46V5Wg8w - 200 null null 8908.0425ms
+2026-04-26 19:34:15.922 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/Admin - application/x-www-form-urlencoded 285
+2026-04-26 19:34:15.934 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-04-26 19:34:15.936 +03:00 [INF] Route matched with {area = "Admin", action = "Login", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(infrastructure.ViewModel.LoginView) on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-04-26 19:34:15.946 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2026-04-26 19:34:16.102 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2026-04-26 19:34:16.114 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-04-26 19:34:16.120 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-04-26 19:34:16.133 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2026-04-26 19:34:16.143 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-04-26 19:34:16.151 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2026-04-26 19:34:16.161 +03:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2026-04-26 19:34:16.166 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-04-26 19:34:16.175 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-04-26 19:34:16.180 +03:00 [INF] Executing RedirectResult, redirecting to /Admin/Accounts/Index.
+2026-04-26 19:34:16.182 +03:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp) in 241.3932ms
+2026-04-26 19:34:16.184 +03:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-04-26 19:34:16.186 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7284/Admin - 302 0 null 263.4905ms
+2026-04-26 19:34:16.191 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin/Accounts/Index - null null
+2026-04-26 19:34:16.199 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Index (MoviesApp)'
+2026-04-26 19:34:16.201 +03:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-04-26 19:34:16.208 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+2026-04-26 19:34:16.214 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-04-26 19:34:16.219 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-04-26 19:34:16.223 +03:00 [INF] Executing ViewResult, running view Index.
+2026-04-26 19:34:16.229 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:34:16.234 +03:00 [INF] Executed ViewResult - view Index executed in 11.2716ms.
+2026-04-26 19:34:16.237 +03:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.AccountsController.Index (MoviesApp) in 32.6291ms
+2026-04-26 19:34:16.241 +03:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Index (MoviesApp)'
+2026-04-26 19:34:16.247 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin/Accounts/Index - 200 null text/html; charset=utf-8 55.3484ms
+2026-04-26 19:34:16.250 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:34:16.250 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-04-26 19:34:16.265 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 15.2282ms
+2026-04-26 19:34:16.287 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 36.4505ms
+2026-04-26 19:34:16.659 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/images/default-avatar.png - null null
+2026-04-26 19:34:16.670 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/images/default-avatar.png - 404 0 null 10.9952ms
+2026-04-26 19:34:16.687 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7284/images/default-avatar.png, Response status code: 404
+2026-04-26 19:34:58.265 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin/Movie/Index - null null
+2026-04-26 19:34:58.285 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.MovieController.Index (MoviesApp)'
+2026-04-26 19:34:58.293 +03:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Movie"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller MoviesApp.Areas.Admin.Controllers.MovieController (MoviesApp).
+2026-04-26 19:34:58.317 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year], [p].[Id], [p].[Bio], [p].[Image], [p].[Name], [g].[Id], [g].[Description], [g].[Icon], [g].[Name], [g].[NameAr], [m0].[Id], [m0].[Bitrate], [m0].[Codec], [m0].[CreatedAt], [m0].[FileSize], [m0].[IsAvailable], [m0].[MovieId], [m0].[QualityType], [m0].[VideoUrl], [m0].[ViewCount], [s].[ActorId], [s].[MovieId], [s].[Id], [s].[Bio], [s].[Image], [s].[Name]
+FROM [Movies] AS [m]
+INNER JOIN [Producers] AS [p] ON [m].[ProducerId] = [p].[Id]
+INNER JOIN [Genres] AS [g] ON [m].[GenreId] = [g].[Id]
+LEFT JOIN [MovieQualities] AS [m0] ON [m].[Id] = [m0].[MovieId]
+LEFT JOIN (
+    SELECT [a].[ActorId], [a].[MovieId], [a0].[Id], [a0].[Bio], [a0].[Image], [a0].[Name]
+    FROM [ActorMovies] AS [a]
+    INNER JOIN [Actors] AS [a0] ON [a].[ActorId] = [a0].[Id]
+) AS [s] ON [m].[Id] = [s].[MovieId]
+ORDER BY [m].[Id], [p].[Id], [g].[Id], [m0].[Id], [s].[ActorId], [s].[MovieId]
+2026-04-26 19:34:58.324 +03:00 [INF] Executing ViewResult, running view Index.
+2026-04-26 19:34:58.337 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:34:58.363 +03:00 [INF] Executed ViewResult - view Index executed in 41.281ms.
+2026-04-26 19:34:58.375 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-04-26 19:34:58.375 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:34:58.376 +03:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.MovieController.Index (MoviesApp) in 80.0515ms
+2026-04-26 19:34:58.392 +03:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.MovieController.Index (MoviesApp)'
+2026-04-26 19:34:58.389 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 13.9389ms
+2026-04-26 19:34:58.415 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin/Movie/Index - 200 null text/html; charset=utf-8 150.1329ms
+2026-04-26 19:34:58.417 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 41.9514ms
+2026-04-26 19:35:22.725 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin/Movie/Create - null null
+2026-04-26 19:35:22.747 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.MovieController.Create (MoviesApp)'
+2026-04-26 19:35:22.760 +03:00 [INF] Route matched with {area = "Admin", action = "Create", controller = "Movie"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller MoviesApp.Areas.Admin.Controllers.MovieController (MoviesApp).
+2026-04-26 19:35:22.831 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Image], [p].[Bio]
+FROM [Producers] AS [p]
+2026-04-26 19:35:22.887 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[Bio], [a].[Image]
+FROM [Actors] AS [a]
+2026-04-26 19:35:22.907 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Id], [g].[Name]
+FROM [Genres] AS [g]
+2026-04-26 19:35:22.914 +03:00 [INF] Executing ViewResult, running view Create.
+2026-04-26 19:35:22.938 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:35:23.013 +03:00 [INF] Executed ViewResult - view Create executed in 99.9944ms.
+2026-04-26 19:35:23.045 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:35:23.046 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-04-26 19:35:23.048 +03:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.MovieController.Create (MoviesApp) in 282.2236ms
+2026-04-26 19:35:23.059 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 13.1565ms
+2026-04-26 19:35:23.088 +03:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.MovieController.Create (MoviesApp)'
+2026-04-26 19:35:23.073 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin/Movie/Create - null null
+2026-04-26 19:35:23.141 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 95.1906ms
+2026-04-26 19:35:23.152 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin/Movie/Create - 200 null text/html; charset=utf-8 426.8516ms
+2026-04-26 19:35:23.158 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.MovieController.Create (MoviesApp)'
+2026-04-26 19:35:23.171 +03:00 [INF] Route matched with {area = "Admin", action = "Create", controller = "Movie"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller MoviesApp.Areas.Admin.Controllers.MovieController (MoviesApp).
+2026-04-26 19:35:23.178 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Image], [p].[Bio]
+FROM [Producers] AS [p]
+2026-04-26 19:35:23.185 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[Bio], [a].[Image]
+FROM [Actors] AS [a]
+2026-04-26 19:35:23.190 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Id], [g].[Name]
+FROM [Genres] AS [g]
+2026-04-26 19:35:23.194 +03:00 [INF] Executing ViewResult, running view Create.
+2026-04-26 19:35:23.203 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:35:23.210 +03:00 [INF] Executed ViewResult - view Create executed in 15.6638ms.
+2026-04-26 19:35:23.212 +03:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.MovieController.Create (MoviesApp) in 38.4307ms
+2026-04-26 19:35:23.215 +03:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.MovieController.Create (MoviesApp)'
+2026-04-26 19:35:23.221 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin/Movie/Create - 200 null text/html; charset=utf-8 148.3137ms
+2026-04-26 19:36:50.874 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/Admin/Movie/Create - multipart/form-data; boundary=----WebKitFormBoundaryE0S5U6ap1TCI35yr 376447
+2026-04-26 19:36:50.895 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.MovieController.Create (MoviesApp)'
+2026-04-26 19:36:50.909 +03:00 [INF] Route matched with {area = "Admin", action = "Create", controller = "Movie"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(infrastructure.ViewModel.CreateMovieViewModel) on controller MoviesApp.Areas.Admin.Controllers.MovieController (MoviesApp).
+2026-04-26 19:36:57.918 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (Size = 20), @p1='?' (Size = 100), @p2='?' (Size = 2000), @p3='?' (Size = 4000), @p4='?' (DbType = Int32), @p5='?' (Size = 50), @p6='?' (Size = 4000), @p7='?' (DbType = Int32), @p8='?' (Size = 4000), @p9='?' (Size = 200), @p10='?' (Size = 4000), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Movies] ([AgeRating], [Country], [Description], [Duration], [GenreId], [Language], [Poster], [ProducerId], [Rating], [Title], [VideoPath], [Year])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2026-04-26 19:36:57.947 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p12='?' (DbType = Int32), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [ActorMovies] ([ActorId], [MovieId])
+VALUES (@p12, @p13);
+2026-04-26 19:37:00.265 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (DbType = Int32), @p5='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [AuditLogs] ([Action], [CreatedAt], [Details], [Entity], [EntityId], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-04-26 19:37:00.349 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = Boolean), @p2='?' (DbType = Boolean), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = Int32), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Notifications] ([CreatedAt], [IsForAllUsers], [IsRead], [Link], [Message], [Title], [Type], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2026-04-26 19:37:00.435 +03:00 [ERR] An exception occurred in the database while saving changes for context type 'infrastructure.Data.DB'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'UserId', table 'MoviesAlalfy1.dbo.Notifications'; column does not allow nulls. INSERT fails.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:8cd8d3b4-7b81-43b1-83b8-c7a24057f257
+Error Number:515,State:2,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'UserId', table 'MoviesAlalfy1.dbo.Notifications'; column does not allow nulls. INSERT fails.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:8cd8d3b4-7b81-43b1-83b8-c7a24057f257
+Error Number:515,State:2,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2026-04-26 19:37:58.879 +03:00 [INF] Executing RedirectResult, redirecting to /Admin/Movie/Index.
+2026-04-26 19:37:58.882 +03:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.MovieController.Create (MoviesApp) in 67970.0322ms
+2026-04-26 19:37:58.884 +03:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.MovieController.Create (MoviesApp)'
+2026-04-26 19:37:58.893 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin/Movie/Index - null null
+2026-04-26 19:37:58.893 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7284/Admin/Movie/Create - 302 0 null 68022.3637ms
+2026-04-26 19:37:58.903 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.MovieController.Index (MoviesApp)'
+2026-04-26 19:37:58.905 +03:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Movie"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller MoviesApp.Areas.Admin.Controllers.MovieController (MoviesApp).
+2026-04-26 19:37:58.921 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year], [p].[Id], [p].[Bio], [p].[Image], [p].[Name], [g].[Id], [g].[Description], [g].[Icon], [g].[Name], [g].[NameAr], [m0].[Id], [m0].[Bitrate], [m0].[Codec], [m0].[CreatedAt], [m0].[FileSize], [m0].[IsAvailable], [m0].[MovieId], [m0].[QualityType], [m0].[VideoUrl], [m0].[ViewCount], [s].[ActorId], [s].[MovieId], [s].[Id], [s].[Bio], [s].[Image], [s].[Name]
+FROM [Movies] AS [m]
+INNER JOIN [Producers] AS [p] ON [m].[ProducerId] = [p].[Id]
+INNER JOIN [Genres] AS [g] ON [m].[GenreId] = [g].[Id]
+LEFT JOIN [MovieQualities] AS [m0] ON [m].[Id] = [m0].[MovieId]
+LEFT JOIN (
+    SELECT [a].[ActorId], [a].[MovieId], [a0].[Id], [a0].[Bio], [a0].[Image], [a0].[Name]
+    FROM [ActorMovies] AS [a]
+    INNER JOIN [Actors] AS [a0] ON [a].[ActorId] = [a0].[Id]
+) AS [s] ON [m].[Id] = [s].[MovieId]
+ORDER BY [m].[Id], [p].[Id], [g].[Id], [m0].[Id], [s].[ActorId], [s].[MovieId]
+2026-04-26 19:37:58.925 +03:00 [INF] Executing ViewResult, running view Index.
+2026-04-26 19:37:58.931 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:37:58.935 +03:00 [INF] Executed ViewResult - view Index executed in 9.4296ms.
+2026-04-26 19:37:58.937 +03:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.MovieController.Index (MoviesApp) in 27.4535ms
+2026-04-26 19:37:58.941 +03:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.MovieController.Index (MoviesApp)'
+2026-04-26 19:37:58.945 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin/Movie/Index - 200 null text/html; charset=utf-8 51.8899ms
+2026-04-26 19:37:58.949 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-04-26 19:37:58.949 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:37:58.960 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 10.7632ms
+2026-04-26 19:37:59.009 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 60.0869ms
+2026-04-26 19:37:59.419 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Images/10e66a50-f335-4089-95a6-404877393360_Screenshot (256).png - null null
+2026-04-26 19:38:29.731 +03:00 [INF] Sending file. Request path: '/Images/10e66a50-f335-4089-95a6-404877393360_Screenshot (256).png'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\Images\10e66a50-f335-4089-95a6-404877393360_Screenshot (256).png'
+2026-04-26 19:38:29.744 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Images/10e66a50-f335-4089-95a6-404877393360_Screenshot (256).png - 200 186864 image/png 30324.7383ms
+2026-04-26 19:38:54.830 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin/Quality/AddQuality?movieId=2 - null null
+2026-04-26 19:38:54.847 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.QualityController.AddQuality (MoviesApp)'
+2026-04-26 19:38:54.862 +03:00 [INF] Route matched with {area = "Admin", action = "AddQuality", controller = "Quality"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddQuality(Int32) on controller MoviesApp.Areas.Admin.Controllers.QualityController (MoviesApp).
+2026-04-26 19:38:54.893 +03:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-26 19:38:54.965 +03:00 [INF] Executed DbCommand (23ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[AgeRating], [s].[Country], [s].[Description], [s].[Duration], [s].[GenreId], [s].[Language], [s].[Poster], [s].[ProducerId], [s].[Rating], [s].[Title], [s].[VideoPath], [s].[Year], [s].[Id0], [s].[Bio], [s].[Image], [s].[Name], [s].[Id1], [s].[Description0], [s].[Icon], [s].[Name0], [s].[NameAr], [s0].[ActorId], [s0].[MovieId], [s0].[Id], [s0].[Bio], [s0].[Image], [s0].[Name], [m0].[Id], [m0].[Bitrate], [m0].[Codec], [m0].[CreatedAt], [m0].[FileSize], [m0].[IsAvailable], [m0].[MovieId], [m0].[QualityType], [m0].[VideoUrl], [m0].[ViewCount]
+FROM (
+    SELECT TOP(1) [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year], [p].[Id] AS [Id0], [p].[Bio], [p].[Image], [p].[Name], [g].[Id] AS [Id1], [g].[Description] AS [Description0], [g].[Icon], [g].[Name] AS [Name0], [g].[NameAr]
+    FROM [Movies] AS [m]
+    INNER JOIN [Producers] AS [p] ON [m].[ProducerId] = [p].[Id]
+    INNER JOIN [Genres] AS [g] ON [m].[GenreId] = [g].[Id]
+    WHERE [m].[Id] = @__id_0
+) AS [s]
+LEFT JOIN (
+    SELECT [a].[ActorId], [a].[MovieId], [a0].[Id], [a0].[Bio], [a0].[Image], [a0].[Name]
+    FROM [ActorMovies] AS [a]
+    INNER JOIN [Actors] AS [a0] ON [a].[ActorId] = [a0].[Id]
+) AS [s0] ON [s].[Id] = [s0].[MovieId]
+LEFT JOIN [MovieQualities] AS [m0] ON [s].[Id] = [m0].[MovieId]
+ORDER BY [s].[Id], [s].[Id0], [s].[Id1], [s0].[ActorId], [s0].[MovieId], [s0].[Id]
+2026-04-26 19:38:54.992 +03:00 [INF] Executing ViewResult, running view AddQuality.
+2026-04-26 19:38:55.092 +03:00 [INF] Executed ViewResult - view AddQuality executed in 100.4246ms.
+2026-04-26 19:38:55.151 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:38:55.151 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin/css/Quality/Add.css - null null
+2026-04-26 19:38:55.156 +03:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.QualityController.AddQuality (MoviesApp) in 289.993ms
+2026-04-26 19:38:55.163 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 11.4268ms
+2026-04-26 19:38:55.152 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-04-26 19:38:55.222 +03:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.QualityController.AddQuality (MoviesApp)'
+2026-04-26 19:38:55.247 +03:00 [INF] Sending file. Request path: '/Admin/css/Quality/Add.css'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\Admin\css\Quality\Add.css'
+2026-04-26 19:38:55.256 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 104.3921ms
+2026-04-26 19:38:55.273 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin/Quality/AddQuality?movieId=2 - 200 null text/html; charset=utf-8 443.3314ms
+2026-04-26 19:38:55.276 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin/css/Quality/Add.css - 200 6036 text/css 124.4518ms
+2026-04-26 19:39:39.612 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/Admin/Quality/AddQuality - multipart/form-data; boundary=----WebKitFormBoundarync4Rb7xuC6RclpJt 6949934
+2026-04-26 19:39:39.659 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.QualityController.AddQuality (MoviesApp)'
+2026-04-26 19:39:39.667 +03:00 [INF] Route matched with {area = "Admin", action = "AddQuality", controller = "Quality"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddQuality(CreateMovieQualityViewModel) on controller MoviesApp.Areas.Admin.Controllers.QualityController (MoviesApp).
+2026-04-26 19:39:39.956 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__model_MovieId_0='?' (DbType = Int32), @__model_QualityType_1='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[Id], [m].[Bitrate], [m].[Codec], [m].[CreatedAt], [m].[FileSize], [m].[IsAvailable], [m].[MovieId], [m].[QualityType], [m].[VideoUrl], [m].[ViewCount]
+FROM [MovieQualities] AS [m]
+WHERE [m].[MovieId] = @__model_MovieId_0 AND [m].[QualityType] = @__model_QualityType_1
+2026-04-26 19:39:46.814 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 10), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int64), @p4='?' (DbType = Boolean), @p5='?' (DbType = Int32), @p6='?' (Size = 50), @p7='?' (Size = 500), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [MovieQualities] ([Bitrate], [Codec], [CreatedAt], [FileSize], [IsAvailable], [MovieId], [QualityType], [VideoUrl], [ViewCount])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2026-04-26 19:39:46.825 +03:00 [INF] Executing RedirectResult, redirecting to /Admin/Quality/ManageQualities/2.
+2026-04-26 19:39:46.828 +03:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.QualityController.AddQuality (MoviesApp) in 7158.1329ms
+2026-04-26 19:39:46.830 +03:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.QualityController.AddQuality (MoviesApp)'
+2026-04-26 19:39:46.834 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7284/Admin/Quality/AddQuality - 302 0 null 7221.8731ms
+2026-04-26 19:39:46.838 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin/Quality/ManageQualities/2 - null null
+2026-04-26 19:39:46.845 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.QualityController.ManageQualities (MoviesApp)'
+2026-04-26 19:39:46.853 +03:00 [INF] Route matched with {area = "Admin", action = "ManageQualities", controller = "Quality"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ManageQualities(Int32) on controller MoviesApp.Areas.Admin.Controllers.QualityController (MoviesApp).
+2026-04-26 19:39:46.871 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[AgeRating], [s].[Country], [s].[Description], [s].[Duration], [s].[GenreId], [s].[Language], [s].[Poster], [s].[ProducerId], [s].[Rating], [s].[Title], [s].[VideoPath], [s].[Year], [s].[Id0], [s].[Bio], [s].[Image], [s].[Name], [s].[Id1], [s].[Description0], [s].[Icon], [s].[Name0], [s].[NameAr], [s0].[ActorId], [s0].[MovieId], [s0].[Id], [s0].[Bio], [s0].[Image], [s0].[Name], [m0].[Id], [m0].[Bitrate], [m0].[Codec], [m0].[CreatedAt], [m0].[FileSize], [m0].[IsAvailable], [m0].[MovieId], [m0].[QualityType], [m0].[VideoUrl], [m0].[ViewCount]
+FROM (
+    SELECT TOP(1) [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year], [p].[Id] AS [Id0], [p].[Bio], [p].[Image], [p].[Name], [g].[Id] AS [Id1], [g].[Description] AS [Description0], [g].[Icon], [g].[Name] AS [Name0], [g].[NameAr]
+    FROM [Movies] AS [m]
+    INNER JOIN [Producers] AS [p] ON [m].[ProducerId] = [p].[Id]
+    INNER JOIN [Genres] AS [g] ON [m].[GenreId] = [g].[Id]
+    WHERE [m].[Id] = @__id_0
+) AS [s]
+LEFT JOIN (
+    SELECT [a].[ActorId], [a].[MovieId], [a0].[Id], [a0].[Bio], [a0].[Image], [a0].[Name]
+    FROM [ActorMovies] AS [a]
+    INNER JOIN [Actors] AS [a0] ON [a].[ActorId] = [a0].[Id]
+) AS [s0] ON [s].[Id] = [s0].[MovieId]
+LEFT JOIN [MovieQualities] AS [m0] ON [s].[Id] = [m0].[MovieId]
+ORDER BY [s].[Id], [s].[Id0], [s].[Id1], [s0].[ActorId], [s0].[MovieId], [s0].[Id]
+2026-04-26 19:39:46.890 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__movieId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[Bitrate], [m].[Codec], [m].[CreatedAt], [m].[FileSize], [m].[IsAvailable], [m].[MovieId], [m].[QualityType], [m].[VideoUrl], [m].[ViewCount]
+FROM [MovieQualities] AS [m]
+WHERE [m].[MovieId] = @__movieId_0
+ORDER BY [m].[QualityType]
+2026-04-26 19:39:46.894 +03:00 [INF] Executing ViewResult, running view ManageQualities.
+2026-04-26 19:39:46.936 +03:00 [INF] Executed ViewResult - view ManageQualities executed in 42.7451ms.
+2026-04-26 19:39:46.939 +03:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.QualityController.ManageQualities (MoviesApp) in 83.486ms
+2026-04-26 19:39:46.941 +03:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.QualityController.ManageQualities (MoviesApp)'
+2026-04-26 19:39:46.955 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:39:46.955 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-04-26 19:39:46.958 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin/Quality/ManageQualities/2 - 200 null text/html; charset=utf-8 120.3498ms
+2026-04-26 19:39:46.964 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 9.5624ms
+2026-04-26 19:39:47.002 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 47.4922ms
+2026-04-26 19:40:11.683 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/videos/d73ddf712269496f8b0f6c999cf9ab5f.mp4 - null null
+2026-04-26 19:40:18.217 +03:00 [INF] Sending file. Request path: '/videos/d73ddf712269496f8b0f6c999cf9ab5f.mp4'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\videos\d73ddf712269496f8b0f6c999cf9ab5f.mp4'
+2026-04-26 19:40:18.219 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/videos/d73ddf712269496f8b0f6c999cf9ab5f.mp4 - 200 6948873 video/mp4 6536.0162ms
+2026-04-26 19:40:23.040 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/videos/d73ddf712269496f8b0f6c999cf9ab5f.mp4 - null null
+2026-04-26 19:40:23.060 +03:00 [INF] Sending ["bytes 0-6948872/6948873"] of file E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\videos\d73ddf712269496f8b0f6c999cf9ab5f.mp4
+2026-04-26 19:40:25.154 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/videos/d73ddf712269496f8b0f6c999cf9ab5f.mp4 - null null
+2026-04-26 19:40:27.282 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/videos/d73ddf712269496f8b0f6c999cf9ab5f.mp4 - 206 6948873 video/mp4 4241.7588ms
+2026-04-26 19:40:27.282 +03:00 [INF] Sending ["bytes 6848512-6948872/6948873"] of file E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\videos\d73ddf712269496f8b0f6c999cf9ab5f.mp4
+2026-04-26 19:40:27.292 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/videos/d73ddf712269496f8b0f6c999cf9ab5f.mp4 - 206 100361 video/mp4 2138.3177ms
+2026-04-26 19:40:27.309 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/videos/d73ddf712269496f8b0f6c999cf9ab5f.mp4 - null null
+2026-04-26 19:40:27.314 +03:00 [INF] Sending ["bytes 278528-6848511/6948873"] of file E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\videos\d73ddf712269496f8b0f6c999cf9ab5f.mp4
+2026-04-26 19:40:29.725 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/videos/d73ddf712269496f8b0f6c999cf9ab5f.mp4 - 206 6569984 video/mp4 2416.0376ms
+2026-04-26 19:40:29.729 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/videos/d73ddf712269496f8b0f6c999cf9ab5f.mp4 - null null
+2026-04-26 19:40:29.801 +03:00 [INF] Sending ["bytes 6948864-6948872/6948873"] of file E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\videos\d73ddf712269496f8b0f6c999cf9ab5f.mp4
+2026-04-26 19:40:29.808 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/videos/d73ddf712269496f8b0f6c999cf9ab5f.mp4 - 206 9 video/mp4 77.27ms
+2026-04-26 19:41:08.880 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/ - null null
+2026-04-26 19:41:08.896 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.MovieController.Index (MoviesApp)'
+2026-04-26 19:41:08.898 +03:00 [INF] Route matched with {action = "Index", controller = "Movie", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String) on controller MoviesApp.Controllers.MovieController (MoviesApp).
+2026-04-26 19:41:08.919 +03:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year], [p].[Id], [p].[Bio], [p].[Image], [p].[Name], [g].[Id], [g].[Description], [g].[Icon], [g].[Name], [g].[NameAr], [m0].[Id], [m0].[Bitrate], [m0].[Codec], [m0].[CreatedAt], [m0].[FileSize], [m0].[IsAvailable], [m0].[MovieId], [m0].[QualityType], [m0].[VideoUrl], [m0].[ViewCount], [s].[ActorId], [s].[MovieId], [s].[Id], [s].[Bio], [s].[Image], [s].[Name]
+FROM [Movies] AS [m]
+INNER JOIN [Producers] AS [p] ON [m].[ProducerId] = [p].[Id]
+INNER JOIN [Genres] AS [g] ON [m].[GenreId] = [g].[Id]
+LEFT JOIN [MovieQualities] AS [m0] ON [m].[Id] = [m0].[MovieId]
+LEFT JOIN (
+    SELECT [a].[ActorId], [a].[MovieId], [a0].[Id], [a0].[Bio], [a0].[Image], [a0].[Name]
+    FROM [ActorMovies] AS [a]
+    INNER JOIN [Actors] AS [a0] ON [a].[ActorId] = [a0].[Id]
+) AS [s] ON [m].[Id] = [s].[MovieId]
+ORDER BY [m].[Id], [p].[Id], [g].[Id], [m0].[Id], [s].[ActorId], [s].[MovieId]
+2026-04-26 19:41:08.923 +03:00 [INF] Executing ViewResult, running view Index.
+2026-04-26 19:41:08.932 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Notifications] AS [n]
+WHERE ([n].[IsForAllUsers] = CAST(1 AS bit) OR [n].[UserId] = @__userId_0) AND [n].[IsRead] = CAST(0 AS bit)
+2026-04-26 19:41:08.938 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:41:08.947 +03:00 [INF] Executed ViewResult - view Index executed in 23.9301ms.
+2026-04-26 19:41:08.967 +03:00 [INF] Executed action MoviesApp.Controllers.MovieController.Index (MoviesApp) in 65.4776ms
+2026-04-26 19:41:08.968 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:41:08.970 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.MovieController.Index (MoviesApp)'
+2026-04-26 19:41:08.978 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-04-26 19:41:09.074 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/ - 200 null text/html; charset=utf-8 194.1244ms
+2026-04-26 19:41:08.976 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Images/10e66a50-f335-4089-95a6-404877393360_Screenshot (256).png - null null
+2026-04-26 19:41:09.026 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 58.1205ms
+2026-04-26 19:41:09.088 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Notification/GetNotificationCount - null null
+2026-04-26 19:41:09.082 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/notificationHub/negotiate?negotiateVersion=1 - null 0
+2026-04-26 19:41:09.109 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 131.7084ms
+2026-04-26 19:41:09.114 +03:00 [INF] The file /Images/10e66a50-f335-4089-95a6-404877393360_Screenshot (256).png was not modified
+2026-04-26 19:41:09.122 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.NotificationController.GetNotificationCount (MoviesApp)'
+2026-04-26 19:41:09.125 +03:00 [INF] Executing endpoint '/notificationHub/negotiate'
+2026-04-26 19:41:09.130 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Images/10e66a50-f335-4089-95a6-404877393360_Screenshot (256).png - 304 null image/png 154.4719ms
+2026-04-26 19:41:09.132 +03:00 [INF] Route matched with {action = "GetNotificationCount", controller = "Notification", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetNotificationCount() on controller MoviesApp.Controllers.NotificationController (MoviesApp).
+2026-04-26 19:41:09.134 +03:00 [INF] Executed endpoint '/notificationHub/negotiate'
+2026-04-26 19:41:09.144 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7284/notificationHub/negotiate?negotiateVersion=1 - 200 316 application/json 61.7128ms
+2026-04-26 19:41:09.145 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Notifications] AS [n]
+WHERE ([n].[IsForAllUsers] = CAST(1 AS bit) OR [n].[UserId] = @__userId_0) AND [n].[IsRead] = CAST(0 AS bit)
+2026-04-26 19:41:09.146 +03:00 [INF] Request starting HTTP/2 CONNECT https://localhost:7284/notificationHub?id=og1ThXtCjWXQC66OEsWpHw - null null
+2026-04-26 19:41:09.152 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`1[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-26 19:41:09.156 +03:00 [INF] Executing endpoint '/notificationHub'
+2026-04-26 19:41:09.160 +03:00 [INF] Executed action MoviesApp.Controllers.NotificationController.GetNotificationCount (MoviesApp) in 19.1231ms
+2026-04-26 19:41:09.163 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.NotificationController.GetNotificationCount (MoviesApp)'
+2026-04-26 19:41:09.164 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Notification/GetNotificationCount - 200 null application/json; charset=utf-8 80.9735ms
+2026-04-26 19:41:13.649 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Movie/Details/2 - null null
+2026-04-26 19:41:13.656 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.MovieController.Details (MoviesApp)'
+2026-04-26 19:41:13.664 +03:00 [INF] Route matched with {action = "Details", controller = "Movie", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Details(System.Nullable`1[System.Int32]) on controller MoviesApp.Controllers.MovieController (MoviesApp).
+2026-04-26 19:41:13.980 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[AgeRating], [s].[Country], [s].[Description], [s].[Duration], [s].[GenreId], [s].[Language], [s].[Poster], [s].[ProducerId], [s].[Rating], [s].[Title], [s].[VideoPath], [s].[Year], [s].[Id0], [s].[Bio], [s].[Image], [s].[Name], [s].[Id1], [s].[Description0], [s].[Icon], [s].[Name0], [s].[NameAr], [s0].[ActorId], [s0].[MovieId], [s0].[Id], [s0].[Bio], [s0].[Image], [s0].[Name], [m0].[Id], [m0].[Bitrate], [m0].[Codec], [m0].[CreatedAt], [m0].[FileSize], [m0].[IsAvailable], [m0].[MovieId], [m0].[QualityType], [m0].[VideoUrl], [m0].[ViewCount]
+FROM (
+    SELECT TOP(1) [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year], [p].[Id] AS [Id0], [p].[Bio], [p].[Image], [p].[Name], [g].[Id] AS [Id1], [g].[Description] AS [Description0], [g].[Icon], [g].[Name] AS [Name0], [g].[NameAr]
+    FROM [Movies] AS [m]
+    INNER JOIN [Producers] AS [p] ON [m].[ProducerId] = [p].[Id]
+    INNER JOIN [Genres] AS [g] ON [m].[GenreId] = [g].[Id]
+    WHERE [m].[Id] = @__id_0
+) AS [s]
+LEFT JOIN (
+    SELECT [a].[ActorId], [a].[MovieId], [a0].[Id], [a0].[Bio], [a0].[Image], [a0].[Name]
+    FROM [ActorMovies] AS [a]
+    INNER JOIN [Actors] AS [a0] ON [a].[ActorId] = [a0].[Id]
+) AS [s0] ON [s].[Id] = [s0].[MovieId]
+LEFT JOIN [MovieQualities] AS [m0] ON [s].[Id] = [m0].[MovieId]
+ORDER BY [s].[Id], [s].[Id0], [s].[Id1], [s0].[ActorId], [s0].[MovieId], [s0].[Id]
+2026-04-26 19:41:13.988 +03:00 [INF] Executing ViewResult, running view Details.
+2026-04-26 19:41:14.013 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Notifications] AS [n]
+WHERE ([n].[IsForAllUsers] = CAST(1 AS bit) OR [n].[UserId] = @__userId_0) AND [n].[IsRead] = CAST(0 AS bit)
+2026-04-26 19:41:14.020 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:41:14.027 +03:00 [INF] Executed ViewResult - view Details executed in 40.8957ms.
+2026-04-26 19:41:14.029 +03:00 [INF] Executed action MoviesApp.Controllers.MovieController.Details (MoviesApp) in 362.3691ms
+2026-04-26 19:41:14.031 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.MovieController.Details (MoviesApp)'
+2026-04-26 19:41:14.034 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Movie/Details/2 - 200 null text/html; charset=utf-8 384.366ms
+2026-04-26 19:41:14.040 +03:00 [INF] Executed endpoint '/notificationHub'
+2026-04-26 19:41:14.040 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Images/0dca0216-860d-40e5-9938-ca8fe6bc6d1d_Screenshot (487).png - null null
+2026-04-26 19:41:14.040 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:41:14.040 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-04-26 19:41:14.046 +03:00 [INF] Request finished HTTP/2 CONNECT https://localhost:7284/notificationHub?id=og1ThXtCjWXQC66OEsWpHw - 200 null null 4899.7305ms
+2026-04-26 19:41:14.054 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 14.084ms
+2026-04-26 19:41:14.067 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 26.5078ms
+2026-04-26 19:41:14.132 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/notificationHub/negotiate?negotiateVersion=1 - null 0
+2026-04-26 19:41:14.134 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Notification/GetNotificationCount - null null
+2026-04-26 19:41:14.144 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/videos/d73ddf712269496f8b0f6c999cf9ab5f.mp4 - null null
+2026-04-26 19:41:14.147 +03:00 [INF] Executing endpoint '/notificationHub/negotiate'
+2026-04-26 19:41:14.151 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.NotificationController.GetNotificationCount (MoviesApp)'
+2026-04-26 19:41:14.154 +03:00 [INF] The file /videos/d73ddf712269496f8b0f6c999cf9ab5f.mp4 was not modified
+2026-04-26 19:41:14.155 +03:00 [INF] Executed endpoint '/notificationHub/negotiate'
+2026-04-26 19:41:14.158 +03:00 [INF] Route matched with {action = "GetNotificationCount", controller = "Notification", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetNotificationCount() on controller MoviesApp.Controllers.NotificationController (MoviesApp).
+2026-04-26 19:41:14.160 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/videos/d73ddf712269496f8b0f6c999cf9ab5f.mp4 - 304 null video/mp4 15.8109ms
+2026-04-26 19:41:14.161 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7284/notificationHub/negotiate?negotiateVersion=1 - 200 316 application/json 28.8452ms
+2026-04-26 19:41:14.164 +03:00 [INF] Request starting HTTP/2 CONNECT https://localhost:7284/notificationHub?id=56cgBRwOQrPlG32tgsPaYA - null null
+2026-04-26 19:41:14.168 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Notifications] AS [n]
+WHERE ([n].[IsForAllUsers] = CAST(1 AS bit) OR [n].[UserId] = @__userId_0) AND [n].[IsRead] = CAST(0 AS bit)
+2026-04-26 19:41:14.185 +03:00 [INF] Executing endpoint '/notificationHub'
+2026-04-26 19:41:14.188 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`1[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-26 19:41:14.200 +03:00 [INF] Executed action MoviesApp.Controllers.NotificationController.GetNotificationCount (MoviesApp) in 36.0308ms
+2026-04-26 19:41:14.204 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/WatchHistory/AddToHistory - application/x-www-form-urlencoded 20
+2026-04-26 19:41:14.208 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.NotificationController.GetNotificationCount (MoviesApp)'
+2026-04-26 19:41:14.214 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.WatchHistoryController.AddToHistory (MoviesApp)'
+2026-04-26 19:41:14.215 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Notification/GetNotificationCount - 200 null application/json; charset=utf-8 81.1399ms
+2026-04-26 19:41:14.225 +03:00 [INF] Route matched with {action = "AddToHistory", controller = "WatchHistory", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddToHistory(Int32, Int32) on controller MoviesApp.Controllers.WatchHistoryController (MoviesApp).
+2026-04-26 19:41:14.248 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:41:14.271 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year]
+FROM [Movies] AS [m]
+WHERE [m].[Id] = @__p_0
+2026-04-26 19:41:14.300 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__movieId_0='?' (DbType = Int32), @__user_Id_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[MovieId], [w].[Progress], [w].[UserId], [w].[WatchedAt], [w].[WatchedDuration]
+FROM [WatchHistory] AS [w]
+WHERE [w].[MovieId] = @__movieId_0 AND [w].[UserId] = @__user_Id_1
+2026-04-26 19:41:14.398 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 450), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Time)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [WatchHistory] ([MovieId], [Progress], [UserId], [WatchedAt], [WatchedDuration])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2026-04-26 19:41:14.417 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__movieId_0='?' (DbType = Int32), @__user_Id_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[MovieId], [w].[Progress], [w].[UserId], [w].[WatchedAt], [w].[WatchedDuration]
+FROM [WatchHistory] AS [w]
+WHERE [w].[MovieId] = @__movieId_0 AND [w].[UserId] = @__user_Id_1
+2026-04-26 19:41:14.433 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType4`2[[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Nullable`1[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-26 19:41:14.454 +03:00 [INF] Executed action MoviesApp.Controllers.WatchHistoryController.AddToHistory (MoviesApp) in 215.4045ms
+2026-04-26 19:41:14.457 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.WatchHistoryController.AddToHistory (MoviesApp)'
+2026-04-26 19:41:14.459 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7284/WatchHistory/AddToHistory - 200 null application/json; charset=utf-8 254.567ms
+2026-04-26 19:41:16.263 +03:00 [INF] Sending file. Request path: '/Images/0dca0216-860d-40e5-9938-ca8fe6bc6d1d_Screenshot (487).png'. Physical path: 'E:\AppMovies-main\AppMovies-main\MoviesApp\wwwroot\Images\0dca0216-860d-40e5-9938-ca8fe6bc6d1d_Screenshot (487).png'
+2026-04-26 19:41:16.267 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Images/0dca0216-860d-40e5-9938-ca8fe6bc6d1d_Screenshot (487).png - 200 371370 image/png 2227.3636ms
+2026-04-26 19:41:16.282 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/favicon.ico - null null
+2026-04-26 19:41:16.319 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/favicon.ico - 404 0 null 37.0396ms
+2026-04-26 19:41:16.331 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7284/favicon.ico, Response status code: 404
+2026-04-26 19:41:20.481 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/WatchHistory/UpdateProgressByMovie - application/x-www-form-urlencoded 20
+2026-04-26 19:41:20.508 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.WatchHistoryController.UpdateProgressByMovie (MoviesApp)'
+2026-04-26 19:41:20.525 +03:00 [INF] Route matched with {action = "UpdateProgressByMovie", controller = "WatchHistory", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateProgressByMovie(Int32, Int32) on controller MoviesApp.Controllers.WatchHistoryController (MoviesApp).
+2026-04-26 19:41:20.765 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:41:20.770 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__movieId_0='?' (DbType = Int32), @__user_Id_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[MovieId], [w].[Progress], [w].[UserId], [w].[WatchedAt], [w].[WatchedDuration]
+FROM [WatchHistory] AS [w]
+WHERE [w].[MovieId] = @__movieId_0 AND [w].[UserId] = @__user_Id_1
+2026-04-26 19:41:20.796 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@p5='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 450), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Time)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [WatchHistory] SET [MovieId] = @p0, [Progress] = @p1, [UserId] = @p2, [WatchedAt] = @p3, [WatchedDuration] = @p4
+OUTPUT 1
+WHERE [Id] = @p5;
+2026-04-26 19:41:20.802 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType3`1[[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-26 19:41:20.806 +03:00 [INF] Executed action MoviesApp.Controllers.WatchHistoryController.UpdateProgressByMovie (MoviesApp) in 262.7455ms
+2026-04-26 19:41:20.811 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.WatchHistoryController.UpdateProgressByMovie (MoviesApp)'
+2026-04-26 19:41:20.813 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7284/WatchHistory/UpdateProgressByMovie - 200 null application/json; charset=utf-8 331.787ms
+2026-04-26 19:41:23.260 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/WatchHistory/UpdateProgressByMovie - application/x-www-form-urlencoded 20
+2026-04-26 19:41:23.269 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.WatchHistoryController.UpdateProgressByMovie (MoviesApp)'
+2026-04-26 19:41:23.272 +03:00 [INF] Route matched with {action = "UpdateProgressByMovie", controller = "WatchHistory", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateProgressByMovie(Int32, Int32) on controller MoviesApp.Controllers.WatchHistoryController (MoviesApp).
+2026-04-26 19:41:23.292 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:41:23.302 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__movieId_0='?' (DbType = Int32), @__user_Id_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[MovieId], [w].[Progress], [w].[UserId], [w].[WatchedAt], [w].[WatchedDuration]
+FROM [WatchHistory] AS [w]
+WHERE [w].[MovieId] = @__movieId_0 AND [w].[UserId] = @__user_Id_1
+2026-04-26 19:41:23.323 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@p5='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 450), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Time)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [WatchHistory] SET [MovieId] = @p0, [Progress] = @p1, [UserId] = @p2, [WatchedAt] = @p3, [WatchedDuration] = @p4
+OUTPUT 1
+WHERE [Id] = @p5;
+2026-04-26 19:41:23.328 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType3`1[[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-26 19:41:23.330 +03:00 [INF] Executed action MoviesApp.Controllers.WatchHistoryController.UpdateProgressByMovie (MoviesApp) in 47.0359ms
+2026-04-26 19:41:23.332 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.WatchHistoryController.UpdateProgressByMovie (MoviesApp)'
+2026-04-26 19:41:23.335 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7284/WatchHistory/UpdateProgressByMovie - 200 null application/json; charset=utf-8 74.2594ms
+2026-04-26 19:41:29.474 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/WatchHistory/UpdateProgressByMovie - application/x-www-form-urlencoded 20
+2026-04-26 19:41:29.481 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.WatchHistoryController.UpdateProgressByMovie (MoviesApp)'
+2026-04-26 19:41:29.483 +03:00 [INF] Route matched with {action = "UpdateProgressByMovie", controller = "WatchHistory", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateProgressByMovie(Int32, Int32) on controller MoviesApp.Controllers.WatchHistoryController (MoviesApp).
+2026-04-26 19:41:29.491 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:41:29.497 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__movieId_0='?' (DbType = Int32), @__user_Id_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[MovieId], [w].[Progress], [w].[UserId], [w].[WatchedAt], [w].[WatchedDuration]
+FROM [WatchHistory] AS [w]
+WHERE [w].[MovieId] = @__movieId_0 AND [w].[UserId] = @__user_Id_1
+2026-04-26 19:41:29.508 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@p5='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 450), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Time)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [WatchHistory] SET [MovieId] = @p0, [Progress] = @p1, [UserId] = @p2, [WatchedAt] = @p3, [WatchedDuration] = @p4
+OUTPUT 1
+WHERE [Id] = @p5;
+2026-04-26 19:41:29.513 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType3`1[[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-26 19:41:29.515 +03:00 [INF] Executed action MoviesApp.Controllers.WatchHistoryController.UpdateProgressByMovie (MoviesApp) in 28.753ms
+2026-04-26 19:41:29.517 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.WatchHistoryController.UpdateProgressByMovie (MoviesApp)'
+2026-04-26 19:41:29.520 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7284/WatchHistory/UpdateProgressByMovie - 200 null application/json; charset=utf-8 45.5239ms
+2026-04-26 19:41:30.130 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/ - null null
+2026-04-26 19:41:30.141 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.MovieController.Index (MoviesApp)'
+2026-04-26 19:41:30.152 +03:00 [INF] Route matched with {action = "Index", controller = "Movie", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String) on controller MoviesApp.Controllers.MovieController (MoviesApp).
+2026-04-26 19:41:30.182 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year], [p].[Id], [p].[Bio], [p].[Image], [p].[Name], [g].[Id], [g].[Description], [g].[Icon], [g].[Name], [g].[NameAr], [m0].[Id], [m0].[Bitrate], [m0].[Codec], [m0].[CreatedAt], [m0].[FileSize], [m0].[IsAvailable], [m0].[MovieId], [m0].[QualityType], [m0].[VideoUrl], [m0].[ViewCount], [s].[ActorId], [s].[MovieId], [s].[Id], [s].[Bio], [s].[Image], [s].[Name]
+FROM [Movies] AS [m]
+INNER JOIN [Producers] AS [p] ON [m].[ProducerId] = [p].[Id]
+INNER JOIN [Genres] AS [g] ON [m].[GenreId] = [g].[Id]
+LEFT JOIN [MovieQualities] AS [m0] ON [m].[Id] = [m0].[MovieId]
+LEFT JOIN (
+    SELECT [a].[ActorId], [a].[MovieId], [a0].[Id], [a0].[Bio], [a0].[Image], [a0].[Name]
+    FROM [ActorMovies] AS [a]
+    INNER JOIN [Actors] AS [a0] ON [a].[ActorId] = [a0].[Id]
+) AS [s] ON [m].[Id] = [s].[MovieId]
+ORDER BY [m].[Id], [p].[Id], [g].[Id], [m0].[Id], [s].[ActorId], [s].[MovieId]
+2026-04-26 19:41:30.190 +03:00 [INF] Executing ViewResult, running view Index.
+2026-04-26 19:41:30.196 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Notifications] AS [n]
+WHERE ([n].[IsForAllUsers] = CAST(1 AS bit) OR [n].[UserId] = @__userId_0) AND [n].[IsRead] = CAST(0 AS bit)
+2026-04-26 19:41:30.206 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:41:30.213 +03:00 [INF] Executed ViewResult - view Index executed in 23.9739ms.
+2026-04-26 19:41:30.217 +03:00 [INF] Executed action MoviesApp.Controllers.MovieController.Index (MoviesApp) in 55.0922ms
+2026-04-26 19:41:30.220 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.MovieController.Index (MoviesApp)'
+2026-04-26 19:41:30.245 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:41:30.248 +03:00 [INF] Executed endpoint '/notificationHub'
+2026-04-26 19:41:30.284 +03:00 [INF] Request finished HTTP/2 CONNECT https://localhost:7284/notificationHub?id=56cgBRwOQrPlG32tgsPaYA - 200 null null 16120.8183ms
+2026-04-26 19:41:30.267 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 22.3474ms
+2026-04-26 19:41:30.258 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/ - 200 null text/html; charset=utf-8 127.8217ms
+2026-04-26 19:41:30.298 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/notificationHub/negotiate?negotiateVersion=1 - null 0
+2026-04-26 19:41:30.380 +03:00 [INF] Executing endpoint '/notificationHub/negotiate'
+2026-04-26 19:41:30.382 +03:00 [INF] Executed endpoint '/notificationHub/negotiate'
+2026-04-26 19:41:30.384 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7284/notificationHub/negotiate?negotiateVersion=1 - 200 316 application/json 85.9885ms
+2026-04-26 19:41:30.387 +03:00 [INF] Request starting HTTP/2 CONNECT https://localhost:7284/notificationHub?id=gibFqUHeLem_F6TCgTtcew - null null
+2026-04-26 19:41:30.399 +03:00 [INF] Executing endpoint '/notificationHub'
+2026-04-26 19:41:36.150 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/WatchHistory/MyWatchHistory - null null
+2026-04-26 19:41:36.160 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.WatchHistoryController.MyWatchHistory (MoviesApp)'
+2026-04-26 19:41:36.166 +03:00 [INF] Route matched with {action = "MyWatchHistory", controller = "WatchHistory", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MyWatchHistory() on controller MoviesApp.Controllers.WatchHistoryController (MoviesApp).
+2026-04-26 19:41:36.178 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:41:36.200 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [w].[Id], [w].[MovieId], [w].[Progress], [w].[UserId], [w].[WatchedAt], [w].[WatchedDuration], [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year]
+FROM [WatchHistory] AS [w]
+INNER JOIN [Movies] AS [m] ON [w].[MovieId] = [m].[Id]
+WHERE [w].[UserId] = @__user_Id_0
+ORDER BY [w].[WatchedAt] DESC
+2026-04-26 19:41:36.207 +03:00 [INF] Executing ViewResult, running view MyWatchHistory.
+2026-04-26 19:41:36.236 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Notifications] AS [n]
+WHERE ([n].[IsForAllUsers] = CAST(1 AS bit) OR [n].[UserId] = @__userId_0) AND [n].[IsRead] = CAST(0 AS bit)
+2026-04-26 19:41:36.244 +03:00 [INF] Executed ViewResult - view MyWatchHistory executed in 38.848ms.
+2026-04-26 19:41:36.249 +03:00 [INF] Executed action MoviesApp.Controllers.WatchHistoryController.MyWatchHistory (MoviesApp) in 79.068ms
+2026-04-26 19:41:36.262 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:41:36.262 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-04-26 19:41:36.263 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.WatchHistoryController.MyWatchHistory (MoviesApp)'
+2026-04-26 19:41:36.268 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 6.4086ms
+2026-04-26 19:41:36.263 +03:00 [INF] Executed endpoint '/notificationHub'
+2026-04-26 19:41:36.265 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Images/10e66a50-f335-4089-95a6-404877393360_Screenshot (256).png - null null
+2026-04-26 19:41:36.279 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/WatchHistory/MyWatchHistory - 200 null text/html; charset=utf-8 128.4933ms
+2026-04-26 19:41:36.285 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.8005ms
+2026-04-26 19:41:36.299 +03:00 [INF] Request finished HTTP/2 CONNECT https://localhost:7284/notificationHub?id=gibFqUHeLem_F6TCgTtcew - 200 null null 5912.0814ms
+2026-04-26 19:41:36.304 +03:00 [INF] The file /Images/10e66a50-f335-4089-95a6-404877393360_Screenshot (256).png was not modified
+2026-04-26 19:41:36.317 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/notificationHub/negotiate?negotiateVersion=1 - null 0
+2026-04-26 19:41:36.318 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Notification/GetNotificationCount - null null
+2026-04-26 19:41:36.335 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Images/10e66a50-f335-4089-95a6-404877393360_Screenshot (256).png - 304 null image/png 70.1014ms
+2026-04-26 19:41:36.346 +03:00 [INF] Executing endpoint '/notificationHub/negotiate'
+2026-04-26 19:41:36.362 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.NotificationController.GetNotificationCount (MoviesApp)'
+2026-04-26 19:41:36.369 +03:00 [INF] Executed endpoint '/notificationHub/negotiate'
+2026-04-26 19:41:36.376 +03:00 [INF] Route matched with {action = "GetNotificationCount", controller = "Notification", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetNotificationCount() on controller MoviesApp.Controllers.NotificationController (MoviesApp).
+2026-04-26 19:41:36.378 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7284/notificationHub/negotiate?negotiateVersion=1 - 200 316 application/json 61.3464ms
+2026-04-26 19:41:36.380 +03:00 [INF] Request starting HTTP/2 CONNECT https://localhost:7284/notificationHub?id=b9EKzP-zZG2y0ElKYMPECw - null null
+2026-04-26 19:41:36.386 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Notifications] AS [n]
+WHERE ([n].[IsForAllUsers] = CAST(1 AS bit) OR [n].[UserId] = @__userId_0) AND [n].[IsRead] = CAST(0 AS bit)
+2026-04-26 19:41:36.395 +03:00 [INF] Executing endpoint '/notificationHub'
+2026-04-26 19:41:36.398 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`1[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-26 19:41:36.403 +03:00 [INF] Executed action MoviesApp.Controllers.NotificationController.GetNotificationCount (MoviesApp) in 21.9602ms
+2026-04-26 19:41:36.408 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.NotificationController.GetNotificationCount (MoviesApp)'
+2026-04-26 19:41:36.410 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Notification/GetNotificationCount - 200 null application/json; charset=utf-8 92.9621ms
+2026-04-26 19:41:41.943 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/WatchHistory/ClearHistory - null null
+2026-04-26 19:41:41.961 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.WatchHistoryController.ClearHistory (MoviesApp)'
+2026-04-26 19:41:41.970 +03:00 [INF] Route matched with {action = "ClearHistory", controller = "WatchHistory", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ClearHistory() on controller MoviesApp.Controllers.WatchHistoryController (MoviesApp).
+2026-04-26 19:41:41.984 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:41:42.002 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [w].[Id], [w].[MovieId], [w].[Progress], [w].[UserId], [w].[WatchedAt], [w].[WatchedDuration]
+FROM [WatchHistory] AS [w]
+WHERE [w].[UserId] = @__user_Id_0
+2026-04-26 19:41:42.015 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [WatchHistory]
+OUTPUT 1
+WHERE [Id] = @p0;
+2026-04-26 19:41:42.025 +03:00 [INF] Executing RedirectResult, redirecting to /WatchHistory/MyWatchHistory.
+2026-04-26 19:41:42.027 +03:00 [INF] Executed action MoviesApp.Controllers.WatchHistoryController.ClearHistory (MoviesApp) in 48.0554ms
+2026-04-26 19:41:42.029 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.WatchHistoryController.ClearHistory (MoviesApp)'
+2026-04-26 19:41:42.030 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/WatchHistory/ClearHistory - 302 0 null 87.671ms
+2026-04-26 19:41:42.034 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/WatchHistory/MyWatchHistory - null null
+2026-04-26 19:41:42.041 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.WatchHistoryController.MyWatchHistory (MoviesApp)'
+2026-04-26 19:41:42.042 +03:00 [INF] Route matched with {action = "MyWatchHistory", controller = "WatchHistory", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MyWatchHistory() on controller MoviesApp.Controllers.WatchHistoryController (MoviesApp).
+2026-04-26 19:41:42.047 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:41:42.053 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [w].[Id], [w].[MovieId], [w].[Progress], [w].[UserId], [w].[WatchedAt], [w].[WatchedDuration], [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year]
+FROM [WatchHistory] AS [w]
+INNER JOIN [Movies] AS [m] ON [w].[MovieId] = [m].[Id]
+WHERE [w].[UserId] = @__user_Id_0
+ORDER BY [w].[WatchedAt] DESC
+2026-04-26 19:41:42.057 +03:00 [INF] Executing ViewResult, running view MyWatchHistory.
+2026-04-26 19:41:42.063 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Notifications] AS [n]
+WHERE ([n].[IsForAllUsers] = CAST(1 AS bit) OR [n].[UserId] = @__userId_0) AND [n].[IsRead] = CAST(0 AS bit)
+2026-04-26 19:41:42.067 +03:00 [INF] Executed ViewResult - view MyWatchHistory executed in 10.151ms.
+2026-04-26 19:41:42.069 +03:00 [INF] Executed action MoviesApp.Controllers.WatchHistoryController.MyWatchHistory (MoviesApp) in 24.4736ms
+2026-04-26 19:41:42.074 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.WatchHistoryController.MyWatchHistory (MoviesApp)'
+2026-04-26 19:41:42.077 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/WatchHistory/MyWatchHistory - 200 null text/html; charset=utf-8 43.3787ms
+2026-04-26 19:41:42.080 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:41:42.080 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-04-26 19:41:42.081 +03:00 [INF] Executed endpoint '/notificationHub'
+2026-04-26 19:41:42.088 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 7.5027ms
+2026-04-26 19:41:42.097 +03:00 [INF] Request finished HTTP/2 CONNECT https://localhost:7284/notificationHub?id=b9EKzP-zZG2y0ElKYMPECw - 200 null null 5716.8532ms
+2026-04-26 19:41:42.104 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.3832ms
+2026-04-26 19:41:42.126 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/notificationHub/negotiate?negotiateVersion=1 - null 0
+2026-04-26 19:41:42.127 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Notification/GetNotificationCount - null null
+2026-04-26 19:41:42.131 +03:00 [INF] Executing endpoint '/notificationHub/negotiate'
+2026-04-26 19:41:42.136 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.NotificationController.GetNotificationCount (MoviesApp)'
+2026-04-26 19:41:42.139 +03:00 [INF] Executed endpoint '/notificationHub/negotiate'
+2026-04-26 19:41:42.141 +03:00 [INF] Route matched with {action = "GetNotificationCount", controller = "Notification", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetNotificationCount() on controller MoviesApp.Controllers.NotificationController (MoviesApp).
+2026-04-26 19:41:42.143 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7284/notificationHub/negotiate?negotiateVersion=1 - 200 316 application/json 17.6867ms
+2026-04-26 19:41:42.146 +03:00 [INF] Request starting HTTP/2 CONNECT https://localhost:7284/notificationHub?id=dq19ia-xyr7YlNrG-o_k6Q - null null
+2026-04-26 19:41:42.151 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Notifications] AS [n]
+WHERE ([n].[IsForAllUsers] = CAST(1 AS bit) OR [n].[UserId] = @__userId_0) AND [n].[IsRead] = CAST(0 AS bit)
+2026-04-26 19:41:42.157 +03:00 [INF] Executing endpoint '/notificationHub'
+2026-04-26 19:41:42.160 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`1[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-26 19:41:42.170 +03:00 [INF] Executed action MoviesApp.Controllers.NotificationController.GetNotificationCount (MoviesApp) in 23.0302ms
+2026-04-26 19:41:42.175 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.NotificationController.GetNotificationCount (MoviesApp)'
+2026-04-26 19:41:42.177 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Notification/GetNotificationCount - 200 null application/json; charset=utf-8 50.1245ms
+2026-04-26 19:41:48.753 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/WatchHistory/MyWatchHistory - null null
+2026-04-26 19:41:48.761 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.WatchHistoryController.MyWatchHistory (MoviesApp)'
+2026-04-26 19:41:48.763 +03:00 [INF] Route matched with {action = "MyWatchHistory", controller = "WatchHistory", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MyWatchHistory() on controller MoviesApp.Controllers.WatchHistoryController (MoviesApp).
+2026-04-26 19:41:48.770 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:41:48.778 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [w].[Id], [w].[MovieId], [w].[Progress], [w].[UserId], [w].[WatchedAt], [w].[WatchedDuration], [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year]
+FROM [WatchHistory] AS [w]
+INNER JOIN [Movies] AS [m] ON [w].[MovieId] = [m].[Id]
+WHERE [w].[UserId] = @__user_Id_0
+ORDER BY [w].[WatchedAt] DESC
+2026-04-26 19:41:48.781 +03:00 [INF] Executing ViewResult, running view MyWatchHistory.
+2026-04-26 19:41:48.787 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Notifications] AS [n]
+WHERE ([n].[IsForAllUsers] = CAST(1 AS bit) OR [n].[UserId] = @__userId_0) AND [n].[IsRead] = CAST(0 AS bit)
+2026-04-26 19:41:48.795 +03:00 [INF] Executed ViewResult - view MyWatchHistory executed in 13.1623ms.
+2026-04-26 19:41:48.797 +03:00 [INF] Executed action MoviesApp.Controllers.WatchHistoryController.MyWatchHistory (MoviesApp) in 30.5626ms
+2026-04-26 19:41:48.799 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.WatchHistoryController.MyWatchHistory (MoviesApp)'
+2026-04-26 19:41:48.801 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/WatchHistory/MyWatchHistory - 200 null text/html; charset=utf-8 47.6995ms
+2026-04-26 19:41:48.808 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:41:48.810 +03:00 [INF] Executed endpoint '/notificationHub'
+2026-04-26 19:41:48.817 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 8.7752ms
+2026-04-26 19:41:48.819 +03:00 [INF] Request finished HTTP/2 CONNECT https://localhost:7284/notificationHub?id=dq19ia-xyr7YlNrG-o_k6Q - 200 null null 6673.5056ms
+2026-04-26 19:41:48.859 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/notificationHub/negotiate?negotiateVersion=1 - null 0
+2026-04-26 19:41:48.868 +03:00 [INF] Executing endpoint '/notificationHub/negotiate'
+2026-04-26 19:41:48.872 +03:00 [INF] Executed endpoint '/notificationHub/negotiate'
+2026-04-26 19:41:48.876 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7284/notificationHub/negotiate?negotiateVersion=1 - 200 316 application/json 16.4337ms
+2026-04-26 19:41:48.878 +03:00 [INF] Request starting HTTP/2 CONNECT https://localhost:7284/notificationHub?id=DGGgB92s_wASl__c2NnsuA - null null
+2026-04-26 19:41:48.890 +03:00 [INF] Executing endpoint '/notificationHub'
+2026-04-26 19:41:49.451 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/ - null null
+2026-04-26 19:41:49.466 +03:00 [INF] Executing endpoint 'MoviesApp.Controllers.MovieController.Index (MoviesApp)'
+2026-04-26 19:41:49.473 +03:00 [INF] Route matched with {action = "Index", controller = "Movie", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String) on controller MoviesApp.Controllers.MovieController (MoviesApp).
+2026-04-26 19:41:49.493 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year], [p].[Id], [p].[Bio], [p].[Image], [p].[Name], [g].[Id], [g].[Description], [g].[Icon], [g].[Name], [g].[NameAr], [m0].[Id], [m0].[Bitrate], [m0].[Codec], [m0].[CreatedAt], [m0].[FileSize], [m0].[IsAvailable], [m0].[MovieId], [m0].[QualityType], [m0].[VideoUrl], [m0].[ViewCount], [s].[ActorId], [s].[MovieId], [s].[Id], [s].[Bio], [s].[Image], [s].[Name]
+FROM [Movies] AS [m]
+INNER JOIN [Producers] AS [p] ON [m].[ProducerId] = [p].[Id]
+INNER JOIN [Genres] AS [g] ON [m].[GenreId] = [g].[Id]
+LEFT JOIN [MovieQualities] AS [m0] ON [m].[Id] = [m0].[MovieId]
+LEFT JOIN (
+    SELECT [a].[ActorId], [a].[MovieId], [a0].[Id], [a0].[Bio], [a0].[Image], [a0].[Name]
+    FROM [ActorMovies] AS [a]
+    INNER JOIN [Actors] AS [a0] ON [a].[ActorId] = [a0].[Id]
+) AS [s] ON [m].[Id] = [s].[MovieId]
+ORDER BY [m].[Id], [p].[Id], [g].[Id], [m0].[Id], [s].[ActorId], [s].[MovieId]
+2026-04-26 19:41:49.497 +03:00 [INF] Executing ViewResult, running view Index.
+2026-04-26 19:41:49.501 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Notifications] AS [n]
+WHERE ([n].[IsForAllUsers] = CAST(1 AS bit) OR [n].[UserId] = @__userId_0) AND [n].[IsRead] = CAST(0 AS bit)
+2026-04-26 19:41:49.508 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-26 19:41:49.512 +03:00 [INF] Executed ViewResult - view Index executed in 15.4745ms.
+2026-04-26 19:41:49.514 +03:00 [INF] Executed action MoviesApp.Controllers.MovieController.Index (MoviesApp) in 38.8877ms
+2026-04-26 19:41:49.516 +03:00 [INF] Executed endpoint 'MoviesApp.Controllers.MovieController.Index (MoviesApp)'
+2026-04-26 19:41:49.518 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/ - 200 null text/html; charset=utf-8 67.1944ms
+2026-04-26 19:41:49.524 +03:00 [INF] Executed endpoint '/notificationHub'
+2026-04-26 19:41:49.528 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:41:49.529 +03:00 [INF] Request finished HTTP/2 CONNECT https://localhost:7284/notificationHub?id=DGGgB92s_wASl__c2NnsuA - 200 null null 651.0675ms
+2026-04-26 19:41:49.533 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 4.8936ms
+2026-04-26 19:41:49.576 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7284/notificationHub/negotiate?negotiateVersion=1 - null 0
+2026-04-26 19:41:49.583 +03:00 [INF] Executing endpoint '/notificationHub/negotiate'
+2026-04-26 19:41:49.585 +03:00 [INF] Executed endpoint '/notificationHub/negotiate'
+2026-04-26 19:41:49.594 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7284/notificationHub/negotiate?negotiateVersion=1 - 200 316 application/json 17.9922ms
+2026-04-26 19:41:49.597 +03:00 [INF] Request starting HTTP/2 CONNECT https://localhost:7284/notificationHub?id=8YBr6oxcBzxm9KWVdGzKcg - null null
+2026-04-26 19:41:49.613 +03:00 [INF] Executing endpoint '/notificationHub'
+2026-04-26 19:41:52.849 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin/Quality/ManageQualities/2 - null null
+2026-04-26 19:41:52.860 +03:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.QualityController.ManageQualities (MoviesApp)'
+2026-04-26 19:41:52.865 +03:00 [INF] Route matched with {area = "Admin", action = "ManageQualities", controller = "Quality"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ManageQualities(Int32) on controller MoviesApp.Areas.Admin.Controllers.QualityController (MoviesApp).
+2026-04-26 19:41:52.889 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[AgeRating], [s].[Country], [s].[Description], [s].[Duration], [s].[GenreId], [s].[Language], [s].[Poster], [s].[ProducerId], [s].[Rating], [s].[Title], [s].[VideoPath], [s].[Year], [s].[Id0], [s].[Bio], [s].[Image], [s].[Name], [s].[Id1], [s].[Description0], [s].[Icon], [s].[Name0], [s].[NameAr], [s0].[ActorId], [s0].[MovieId], [s0].[Id], [s0].[Bio], [s0].[Image], [s0].[Name], [m0].[Id], [m0].[Bitrate], [m0].[Codec], [m0].[CreatedAt], [m0].[FileSize], [m0].[IsAvailable], [m0].[MovieId], [m0].[QualityType], [m0].[VideoUrl], [m0].[ViewCount]
+FROM (
+    SELECT TOP(1) [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year], [p].[Id] AS [Id0], [p].[Bio], [p].[Image], [p].[Name], [g].[Id] AS [Id1], [g].[Description] AS [Description0], [g].[Icon], [g].[Name] AS [Name0], [g].[NameAr]
+    FROM [Movies] AS [m]
+    INNER JOIN [Producers] AS [p] ON [m].[ProducerId] = [p].[Id]
+    INNER JOIN [Genres] AS [g] ON [m].[GenreId] = [g].[Id]
+    WHERE [m].[Id] = @__id_0
+) AS [s]
+LEFT JOIN (
+    SELECT [a].[ActorId], [a].[MovieId], [a0].[Id], [a0].[Bio], [a0].[Image], [a0].[Name]
+    FROM [ActorMovies] AS [a]
+    INNER JOIN [Actors] AS [a0] ON [a].[ActorId] = [a0].[Id]
+) AS [s0] ON [s].[Id] = [s0].[MovieId]
+LEFT JOIN [MovieQualities] AS [m0] ON [s].[Id] = [m0].[MovieId]
+ORDER BY [s].[Id], [s].[Id0], [s].[Id1], [s0].[ActorId], [s0].[MovieId], [s0].[Id]
+2026-04-26 19:41:52.898 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__movieId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[Bitrate], [m].[Codec], [m].[CreatedAt], [m].[FileSize], [m].[IsAvailable], [m].[MovieId], [m].[QualityType], [m].[VideoUrl], [m].[ViewCount]
+FROM [MovieQualities] AS [m]
+WHERE [m].[MovieId] = @__movieId_0
+ORDER BY [m].[QualityType]
+2026-04-26 19:41:52.908 +03:00 [INF] Executing ViewResult, running view ManageQualities.
+2026-04-26 19:41:52.911 +03:00 [INF] Executed ViewResult - view ManageQualities executed in 3.2791ms.
+2026-04-26 19:41:52.917 +03:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.QualityController.ManageQualities (MoviesApp) in 48.8743ms
+2026-04-26 19:41:52.926 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-26 19:41:52.927 +03:00 [INF] Executed endpoint '/notificationHub'
+2026-04-26 19:41:52.932 +03:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.QualityController.ManageQualities (MoviesApp)'
+2026-04-26 19:41:52.937 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 11.3306ms
+2026-04-26 19:41:52.944 +03:00 [INF] Request finished HTTP/2 CONNECT https://localhost:7284/notificationHub?id=8YBr6oxcBzxm9KWVdGzKcg - 200 null null 3346.6289ms
+2026-04-26 19:41:52.946 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin/Quality/ManageQualities/2 - 200 null text/html; charset=utf-8 97.1658ms

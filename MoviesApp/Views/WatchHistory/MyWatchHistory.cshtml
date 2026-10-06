@@ -1,0 +1,674 @@
+@model List<Domin.Model.WatchHistory>
+@{
+    ViewData["Title"] = "سجل المشاهدات";
+    Layout = "_Layout";
+}
+
+@section Style
+{
+    <style>
+        .wh-page {
+            padding: 100px 0 60px;
+            min-height: 100vh;
+        }
+
+        .wh-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── Header ── */
+        .wh-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 36px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+
+        .wh-header-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--primary-red, #d32f2f), var(--dark-red, #b71c1c));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #fff;
+            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(211,47,47,.35);
+        }
+
+        .wh-header-text h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 0 0 4px;
+            color: var(--white, #fff);
+        }
+
+        .wh-header-text p {
+            margin: 0;
+            color: rgba(255,255,255,.5);
+            font-size: .92rem;
+        }
+
+        .wh-header-count {
+            margin-right: auto;
+            background: rgba(211,47,47,.12);
+            border: 1px solid rgba(211,47,47,.25);
+            color: #ef9a9a;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: .85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ── Toolbar ── */
+        .wh-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+
+        .wh-search {
+            position: relative;
+            flex: 1;
+            min-width: 240px;
+        }
+
+        .wh-search input {
+            width: 100%;
+            padding: 12px 42px 12px 16px;
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: .9rem;
+            outline: none;
+            transition: all .25s;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .wh-search input:focus {
+            border-color: var(--primary-red, #d32f2f);
+            background: rgba(211,47,47,.06);
+            box-shadow: 0 0 0 3px rgba(211,47,47,.15);
+        }
+
+        .wh-search input::placeholder { color: rgba(255,255,255,.35); }
+
+        .wh-search i {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,.35);
+            font-size: .85rem;
+            pointer-events: none;
+        }
+
+        .wh-clear-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            background: rgba(220,38,38,.12);
+            border: 1px solid rgba(220,38,38,.25);
+            color: #fca5a5;
+            border-radius: 12px;
+            font-size: .85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all .2s;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .wh-clear-btn:hover {
+            background: rgba(220,38,38,.22);
+            color: #fff;
+            border-color: rgba(220,38,38,.45);
+        }
+
+        /* ── List Layout ── */
+        .wh-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .wh-item {
+            display: flex;
+            gap: 20px;
+            background: rgba(255,255,255,.03);
+            border: 1px solid rgba(255,255,255,.06);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all .3s ease;
+            padding: 16px;
+            align-items: stretch;
+        }
+
+        .wh-item:hover {
+            background: rgba(255,255,255,.06);
+            border-color: rgba(211,47,47,.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,.3);
+            transform: translateX(-4px);
+        }
+
+        .wh-item-poster {
+            width: 120px;
+            min-width: 120px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .wh-item-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 2/3;
+            transition: transform .4s ease;
+        }
+
+        .wh-item:hover .wh-item-poster img {
+            transform: scale(1.05);
+        }
+
+        .wh-item-poster .wh-progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(255,255,255,.15);
+        }
+
+        .wh-item-poster .wh-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #22c55e, #16a34a);
+            transition: width .3s;
+        }
+
+        .wh-item-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
+        }
+
+        .wh-item-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .wh-item-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 10px;
+            font-size: .82rem;
+            color: rgba(255,255,255,.5);
+        }
+
+        .wh-item-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .wh-item-meta i {
+            font-size: .75rem;
+            color: var(--primary-red, #d32f2f);
+        }
+
+        .wh-item-progress {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .wh-progress-track {
+            flex: 1;
+            height: 6px;
+            background: rgba(255,255,255,.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .wh-progress-track-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width .3s;
+        }
+
+        .wh-progress-track-fill.wh-completed {
+            background: linear-gradient(90deg, #22c55e, #16a34a);
+        }
+
+        .wh-progress-track-fill.wh-watching {
+            background: linear-gradient(90deg, var(--primary-red, #d32f2f), var(--dark-red, #b71c1c));
+        }
+
+        .wh-progress-label {
+            font-size: .78rem;
+            font-weight: 700;
+            min-width: 36px;
+            text-align: center;
+        }
+
+        .wh-progress-label.wh-completed { color: #22c55e; }
+        .wh-progress-label.wh-watching { color: var(--primary-red, #d32f2f); }
+
+        .wh-item-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .wh-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: .82rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all .2s;
+            font-family: 'Cairo', sans-serif;
+            border: none;
+            cursor: pointer;
+        }
+
+        .wh-btn-play {
+            background: linear-gradient(135deg, var(--primary-red, #d32f2f), var(--dark-red, #b71c1c));
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(211,47,47,.3);
+        }
+
+        .wh-btn-play:hover {
+            box-shadow: 0 6px 20px rgba(211,47,47,.45);
+            transform: translateY(-1px);
+            color: #fff;
+        }
+
+        .wh-btn-details {
+            background: rgba(255,255,255,.06);
+            color: rgba(255,255,255,.8);
+            border: 1px solid rgba(255,255,255,.12);
+        }
+
+        .wh-btn-details:hover {
+            background: rgba(255,255,255,.12);
+            color: #fff;
+        }
+
+        .wh-btn-remove {
+            background: rgba(220,38,38,.08);
+            color: #fca5a5;
+            border: 1px solid rgba(220,38,38,.18);
+        }
+
+        .wh-btn-remove:hover {
+            background: rgba(220,38,38,.2);
+            color: #fff;
+            border-color: rgba(220,38,38,.4);
+        }
+
+        /* ── Empty State ── */
+        .wh-empty {
+            text-align: center;
+            padding: 80px 24px;
+            background: rgba(255,255,255,.02);
+            border: 2px dashed rgba(255,255,255,.08);
+            border-radius: 24px;
+        }
+
+        .wh-empty-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: rgba(211,47,47,.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            color: var(--primary-red, #d32f2f);
+            margin-bottom: 20px;
+            border: 2px dashed rgba(211,47,47,.2);
+        }
+
+        .wh-empty h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .wh-empty p {
+            color: rgba(255,255,255,.45);
+            max-width: 420px;
+            margin: 0 auto 24px;
+            line-height: 1.8;
+            font-size: .92rem;
+        }
+
+        .wh-browse-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--primary-red, #d32f2f), var(--dark-red, #b71c1c));
+            color: #fff;
+            border-radius: 12px;
+            font-size: .92rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all .25s;
+            box-shadow: 0 4px 16px rgba(211,47,47,.35);
+        }
+
+        .wh-browse-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(211,47,47,.5);
+            color: #fff;
+        }
+
+        /* ── Responsive ── */
+        @@media (max-width: 768px) {
+            .wh-header {
+                flex-wrap: wrap;
+            }
+
+            .wh-header-count {
+                margin-right: 0;
+            }
+
+            .wh-item {
+                flex-direction: column;
+                gap: 14px;
+            }
+
+            .wh-item-poster {
+                width: 100%;
+                min-width: 100%;
+                max-height: 200px;
+            }
+
+            .wh-item-poster img {
+                aspect-ratio: 16/9;
+            }
+
+            .wh-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .wh-search {
+                min-width: 100%;
+            }
+        }
+
+        @@media (max-width: 480px) {
+            .wh-item-actions {
+                flex-direction: column;
+            }
+
+            .wh-btn {
+                justify-content: center;
+            }
+        }
+
+        /* ── Light Mode ── */
+        .light-mode .wh-page { background: var(--dark-blue, #f0f2f5); }
+
+        .light-mode .wh-header-text h1 { color: #1c1e21; }
+
+        .light-mode .wh-header-text p { color: #606770; }
+
+        .light-mode .wh-item {
+            background: #fff;
+            border-color: #e0e0e0;
+        }
+
+        .light-mode .wh-item:hover {
+            background: #f8f9fa;
+            border-color: var(--primary-red, #d32f2f);
+        }
+
+        .light-mode .wh-item-title { color: #1c1e21; }
+
+        .light-mode .wh-item-meta { color: #606770; }
+
+        .light-mode .wh-search input {
+            background: #fff;
+            border-color: #e0e0e0;
+            color: #1c1e21;
+        }
+
+        .light-mode .wh-search input::placeholder { color: #999; }
+
+        .light-mode .wh-btn-details {
+            background: #f0f2f5;
+            color: #1c1e21;
+            border-color: #e0e0e0;
+        }
+
+        .light-mode .wh-empty {
+            background: #fff;
+            border-color: #e0e0e0;
+        }
+
+        .light-mode .wh-empty h2 { color: #1c1e21; }
+
+        .light-mode .wh-empty p { color: #606770; }
+    </style>
+}
+
+<div class="wh-page">
+    <div class="wh-container">
+
+        <div class="wh-header">
+            <div class="wh-header-icon">
+                <i class="fas fa-history"></i>
+            </div>
+            <div class="wh-header-text">
+                <h1>سجل المشاهدات</h1>
+                <p>كل الأفلام اللي شاهدتها في مكان واحد</p>
+            </div>
+            <div class="wh-header-count">
+                <i class="fas fa-film"></i>
+                <span id="total-count">@Model.Count()</span> فيلم
+            </div>
+        </div>
+
+        @if (Model.Any())
+        {
+            <div class="wh-toolbar">
+                <div class="wh-search">
+                    <input type="text"
+                           id="hist-search"
+                           placeholder="ابحث في سجل المشاهدات..."
+                           autocomplete="off" />
+                    <i class="fas fa-search"></i>
+                </div>
+                <a asp-action="ClearHistory" asp-controller="WatchHistory"
+                   class="wh-clear-btn"
+                   onclick="return confirm('هل تريد مسح سجل المشاهدات بالكامل؟')">
+                    <i class="fas fa-trash-alt"></i> مسح السجل
+                </a>
+            </div>
+
+            <div class="wh-list" id="hist-grid">
+                @foreach (var item in Model)
+                {
+                    var progress = item.Progress;
+                    var isCompleted = progress >= 90;
+
+                    <div class="hist-card-item"
+                         data-title="@item.Movie.Title.ToLower()"
+                         data-date="@item.WatchedAt.Ticks">
+
+                        <div class="wh-item">
+                            <div class="wh-item-poster">
+                                <img src="@Url.Content(item.Movie.Poster)"
+                                     alt="@item.Movie.Title"
+                                     loading="lazy" />
+                                <div class="wh-progress-bar">
+                                    <div class="wh-progress-fill" style="width: @progress%"></div>
+                                </div>
+                            </div>
+
+                            <div class="wh-item-body">
+                                <h3 class="wh-item-title" title="@item.Movie.Title">
+                                    @item.Movie.Title
+                                </h3>
+
+                                <div class="wh-item-meta">
+                                    <span><i class="fas fa-calendar-alt"></i> @item.Movie.Year</span>
+                                    <span><i class="fas fa-clock"></i> @item.WatchedAt.ToString("dd/MM/yyyy HH:mm")</span>
+                                    @if (isCompleted)
+                                    {
+                                        <span style="color:#22c55e"><i class="fas fa-check-circle" style="color:#22c55e"></i> مكتمل</span>
+                                    }
+                                    else
+                                    {
+                                        <span style="color:var(--primary-red,#d32f2f)"><i class="fas fa-play-circle"></i> أكمل المشاهدة</span>
+                                    }
+                                </div>
+
+                                <div class="wh-item-progress">
+                                    <div class="wh-progress-track">
+                                        <div class="wh-progress-track-fill @(isCompleted ? "wh-completed" : "wh-watching")"
+                                             style="width: @progress%"></div>
+                                    </div>
+                                    <span class="wh-progress-label @(isCompleted ? "wh-completed" : "wh-watching")">@progress%</span>
+                                </div>
+
+                                <div class="wh-item-actions">
+                                    <a asp-action="Details"
+                                       asp-controller="Movie"
+                                       asp-route-id="@item.MovieId"
+                                       class="wh-btn wh-btn-play">
+                                        <i class="fas fa-play"></i>
+                                        @(isCompleted ? "إعادة المشاهدة" : "متابعة المشاهدة")
+                                    </a>
+                                    <a asp-action="Details"
+                                       asp-controller="Movie"
+                                       asp-route-id="@item.MovieId"
+                                       class="wh-btn wh-btn-details">
+                                        <i class="fas fa-info-circle"></i> التفاصيل
+                                    </a>
+                                    <a asp-action="RemoveFromHistory"
+                                       asp-controller="WatchHistory"
+                                       asp-route-id="@item.Id"
+                                       class="wh-btn wh-btn-remove"
+                                       onclick="return confirm('هل تريد حذف هذا الفيلم من سجل المشاهدات؟')">
+                                        <i class="fas fa-trash-alt"></i> إزالة
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div id="no-results" style="display:none;" class="wh-empty">
+                <div class="wh-empty-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h2>لا توجد نتائج مطابقة</h2>
+                <p>لم يتم العثور على أفلام تطابق بحثك.</p>
+            </div>
+        }
+        else
+        {
+            <div class="wh-empty">
+                <div class="wh-empty-icon">
+                    <i class="fas fa-film"></i>
+                </div>
+                <h2>لا يوجد سجل مشاهدات</h2>
+                <p>
+                    لم تشاهد أي أفلام بعد.
+                    ابدأ باستكشاف مكتبتنا وشاهد أفلامك المفضلة.
+                </p>
+                <a asp-action="Index" asp-controller="Movie" class="wh-browse-btn">
+                    <i class="fas fa-compass"></i> استعرض الأفلام
+                </a>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        (function () {
+            'use strict';
+
+            const grid = document.getElementById('hist-grid');
+            const searchInput = document.getElementById('hist-search');
+            const noResults = document.getElementById('no-results');
+            const totalEl = document.getElementById('total-count');
+
+            if (!grid) return;
+
+            const allItems = () => Array.from(grid.querySelectorAll('.hist-card-item'));
+
+            if (searchInput) {
+                searchInput.addEventListener('input', function () {
+                    const term = this.value.trim().toLowerCase();
+                    let visible = 0;
+
+                    allItems().forEach(item => {
+                        const title = item.dataset.title || '';
+                        if (!term || title.includes(term)) {
+                            item.style.display = '';
+                            visible++;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+
+                    if (totalEl) totalEl.textContent = visible;
+                    if (noResults) noResults.style.display = (visible === 0) ? 'block' : 'none';
+                });
+            }
+
+            const items = document.querySelectorAll('.wh-item');
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.style.opacity = '1';
+                        e.target.style.transform = 'translateX(0)';
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.08 });
+
+            items.forEach((item, i) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(20px)';
+                item.style.transition = `opacity .4s ease ${i * 0.05}s, transform .4s ease ${i * 0.05}s`;
+                io.observe(item);
+            });
+        }());
+    </script>
+}

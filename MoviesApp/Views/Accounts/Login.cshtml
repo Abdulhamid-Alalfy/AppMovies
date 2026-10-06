@@ -1,0 +1,60 @@
+@using infrastructure.ViewModel
+@model LoginViewModel
+@{
+
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLogin | Movie Community</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/Admin/css/User/Login.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Icons/login.png" />
+</head>
+<body>
+    <div class="login-container animate__animated animate__fadeInUp">
+        <h1>🎬 أهلاً بك من جديد!</h1>
+        <h4>سجل دخولك لتستمتع بعالم الأفلام</h4>
+
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Email">البريد الإلكتروني</label>
+                <div class="input-icon">
+                    <i class='bx bx-envelope'></i>
+                </div>
+                <input asp-for="Email" placeholder="example@mail.com">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password">كلمة المرور</label>
+                <div class="input-icon">
+                    <i class='bx bx-lock-alt'></i>
+                </div>
+                <input asp-for="Password" type="password" placeholder="••••••••">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" asp-for="RememberMe">
+                <label class="form-check-label">تذكرني</label>
+            </div>
+
+            <button type="submit" class="btn-primary">تسجيل الدخول ←</button>
+        </form>
+
+        <div class="links">
+            <a asp-action="ForgotPassword">نسيت كلمة المرور؟</a>
+            <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 10px;">ليس لديك حساب؟</p>
+            <a asp-action="Register" style="font-weight: 700; font-size: 1rem;">إنشاء حساب جديد</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,272 @@
+@using infrastructure.ViewModel
+@model UserProfileViewModel
+@{
+    ViewData["Title"] = "الملف الشخصي | Cinema Pro";
+    Layout = "_Layout";
+}
+
+@section Style {
+    <style>
+        .profile-hero {
+            position: relative;
+            padding: 100px 0 60px;
+            background: linear-gradient(to bottom, rgba(10, 10, 15, 0.4), var(--bg-dark));
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .shape-blob {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: var(--accent-blue);
+            filter: blur(80px);
+            border-radius: 50%;
+            animation: move 20s infinite alternate;
+        }
+
+        @@keyframes move {
+            from { transform: translate(-10%, -10%) scale(1); }
+            to { transform: translate(20%, 20%) scale(1.2); }
+        }
+
+        .profile-card-main {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .avatar-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+        }
+
+        .profile-img-lg {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .avatar-glow {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), #9b59b6);
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(10px);
+        }
+
+        .user-details h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0;
+            color: #fff;
+        }
+
+        .user-details p {
+            color: rgba(255, 255, 255, 0.6);
+            margin: 5px 0 0;
+            font-size: 1.1rem;
+        }
+
+        /* Interaction Cards */
+        .interaction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .glass-action-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none !important;
+            color: inherit;
+            min-height: 120px;
+        }
+
+        .glass-action-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            transition: all 0.3s;
+        }
+
+        .glass-action-card:hover .icon-box {
+            background: var(--accent-blue);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(33, 150, 243, 0.4);
+        }
+
+        .card-info h4 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .card-info p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.4;
+        }
+
+        .section-title {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .sign-out-section {
+            margin-top: 50px;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-logout {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #ff4757;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            background: rgba(255, 71, 87, 0.1);
+            transition: all 0.3s;
+        }
+
+        .btn-logout:hover {
+            background: #ff4757;
+            color: #fff;
+            box-shadow: 0 0 25px rgba(255, 71, 87, 0.4);
+        }
+    </style>
+}
+
+<div class="profile-hero">
+    <div class="hero-shapes">
+        <div class="shape-blob"></div>
+    </div>
+    <div class="container text-center">
+        <h2 style="color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 4px; font-size: 0.9rem; margin-bottom: 20px;">حسابي الشخصي</h2>
+    </div>
+</div>
+
+<div class="container pb-5">
+    <div class="profile-card-main">
+        <div class="avatar-section">
+            <div class="avatar-wrapper">
+                <div class="avatar-glow"></div>
+                <img src="@Url.Content(Model.ProfilePictureURL ?? "~/images/default-avatar.png")" alt="@Model.FullName" class="profile-img-lg">
+            </div>
+            <div class="user-details">
+                <h1>@Model.FullName</h1>
+                <p><i class="fas fa-envelope me-2"></i> @Model.Email</p>
+            </div>
+        </div>
+
+        <div class="actions-section">
+            <h3 class="section-title"> actions</h3>
+            <div class="interaction-grid">
+            <!-- Edit Profile -->
+            <a asp-action="UpdateUser" asp-controller="Accounts" asp-route-id="@Model.UserId" class="glass-action-card">
+                <div class="icon-box">
+                    <i class="fas fa-user-edit"></i>
+                </div>
+                <div class="card-info">
+                    <h4>تعديل الحساب</h4>
+                    <p>قم بتحديث معلوماتك الشخصية وصورة ملفك الشخصي</p>
+                </div>
+            </a>
+
+            <!-- Favorites -->
+            <a asp-action="MyFavorites" asp-controller="Favorites" class="glass-action-card">
+                <div class="icon-box">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="card-info">
+                    <h4>أفلامي المفضلة</h4>
+                    <p>استعرض قائمة الأفلام التي قمت بحفظها للمشاهدة لاحقاً</p>
+                </div>
+            </a>
+
+            <!-- Change Password -->
+            <a asp-action="ChgPass" asp-controller="Accounts" class="glass-action-card">
+                <div class="icon-box">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="card-info">
+                    <h4>تغيير كلمة المرور</h4>
+                    <p>حافظ على أمان حسابك من خلال تحديث كلمة السر دورياً</p>
+                </div>
+            </a>
+            </div>
+        </div>
+
+        <div class="sign-out-section">
+            <a asp-action="Logout" asp-area="Admin" asp-controller="Accounts" class="btn-logout">
+                <i class="fas fa-power-off"></i> تسجيل الخروج من النظام
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,273 @@
+@using infrastructure.ViewModel
+@model AdminUpdateUserViewModel
+@{
+    ViewData["Title"] = "تعديل المستخدم | Cinema Pro";
+    Layout = "_LayoutAdmin";
+}
+
+@section Styles {
+    <!-- DevExpress Styles (Compact Dark Material) -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.5/css/dx.material.blue.dark.compact.css">
+
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.6s ease-out;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .header-section h2 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .photo-edit-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #2196F3;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-links {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-links a {
+            color: #2196F3;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
+        }
+
+        .dx-texteditor.dx-editor-outlined {
+            background: rgba(255, 255, 255, 0.03) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            border-radius: 12px !important;
+        }
+
+        .dx-field-item-label-text {
+            color: rgba(255, 255, 255, 0.7) !important;
+            font-weight: 600 !important;
+        }
+    </style>
+}
+
+<div class="glass-card">
+    <div class="header-section">
+        <h2><i class="fas fa-user-gear"></i> تعديل بيانات المستخدم</h2>
+        <p class="text-muted">تحديث المعلومات الأساسية وصلاحيات الوصول</p>
+    </div>
+
+    <div class="photo-edit-section">
+        <img id="photoPreview" src="@Url.Content(Model.PhotoPath ?? "~/images/default-avatar.png")" class="profile-photo" alt="Profile">
+    </div>
+
+    <form id="edit-form-actual" method="post" enctype="multipart/form-data" action="@Url.Action("Edit")">
+        @Html.AntiForgeryToken()
+        <div id="hidden-inputs-container">
+            <input type="hidden" name="UserId" value="@Model.UserId">
+            <input type="hidden" name="PhotoPath" value="@Model.PhotoPath">
+        </div>
+        
+        <div id="edit-form-dx"></div>
+        
+        <input type="file" name="ImageFile" id="imageInput" style="display:none;" accept="image/*">
+        
+        <div style="display:none;">
+            @Html.ValidationSummary(false, "", new { @class = "text-danger", id = "server-validation-summary" })
+        </div>
+    </form>
+
+    <div class="footer-links">
+        <a asp-action="Index">
+            <i class="fas fa-chevron-right"></i> العودة لقائمة المستخدمين
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- DevExpress Scripts (dx.all.js is already in _LayoutAdmin) -->
+    <script>
+        $(function() {
+            // Display server-side errors
+            var summaryErrors = $("#server-validation-summary li");
+            if (summaryErrors.length > 0) {
+                summaryErrors.each(function() {
+                    var errorText = $(this).text();
+                    if (errorText && errorText !== "") {
+                        DevExpress.ui.notify({
+                            message: errorText,
+                            type: "error",
+                            displayTime: 5000,
+                            position: { at: "top center", my: "top center" }
+                        });
+                    }
+                });
+            }
+
+            var rolesData = @Html.Raw(Json.Serialize(Model.Roles));
+            
+            var getProp = function(obj, prop) {
+                if (!obj) return null;
+                return obj[prop] !== undefined ? obj[prop] : obj[prop.charAt(0).toLowerCase() + prop.slice(1)];
+            };
+
+            var allRoleNames = rolesData.map(r => getProp(r, 'RoleName'));
+            var selectedRoleNames = rolesData.filter(r => getProp(r, 'IsSelected')).map(r => getProp(r, 'RoleName'));
+
+            var form = $("#edit-form-dx").dxForm({
+                formData: {
+                    FullName: @Html.Raw(Json.Serialize(Model.FullName)),
+                    Email: @Html.Raw(Json.Serialize(Model.Email)),
+                    SelectedRoles: selectedRoleNames
+                },
+                labelLocation: "top",
+                rtlEnabled: true,
+                items: [{
+                    itemType: "group",
+                    colCount: 2,
+                    items: [{
+                        dataField: "FullName",
+                        label: { text: "الاسم الكامل" },
+                        editorOptions: {
+                            stylingMode: "outlined",
+                            placeholder: "أدخل الاسم الكامل"
+                        },
+                        validationRules: [{ type: "required", message: "الاسم مطلوب" }]
+                    }, {
+                        dataField: "Email",
+                        label: { text: "البريد الإلكتروني" },
+                        editorOptions: {
+                            mode: "email",
+                            stylingMode: "outlined",
+                            placeholder: "john@example.com"
+                        },
+                        validationRules: [{ type: "required", message: "البريد مطلوب" }, { type: "email", message: "تنسيق بريد غير صحيح" }]
+                    }]
+                }, {
+                    dataField: "SelectedRoles",
+                    label: { text: "الصلاحيات (Roles)" },
+                    editorType: "dxTagBox",
+                    editorOptions: {
+                        items: allRoleNames,
+                        value: selectedRoleNames,
+                        placeholder: "اختر الصلاحيات...",
+                        stylingMode: "outlined",
+                        hideSelectedItems: true,
+                        searchEnabled: true
+                    }
+                }, {
+                    itemType: "group",
+                    label: { text: "تغيير الصورة الشخصية" },
+                    items: [{
+                        itemType: "simple",
+                        template: function(data, itemElement) {
+                            $("<div />").dxFileUploader({
+                                selectButtonText: "اختيار صورة جديدة",
+                                labelText: "أو اسحب الصورة هنا",
+                                accept: "image/*",
+                                uploadMode: "useForm",
+                                stylingMode: "outlined",
+                                onValueChanged: function(e) {
+                                    if (e.value && e.value[0]) {
+                                        var reader = new FileReader();
+                                        reader.onload = function(event) {
+                                            $("#photoPreview").attr("src", event.target.result);
+                                        };
+                                        reader.readAsDataURL(e.value[0]);
+                                        
+                                        const dataTransfer = new DataTransfer();
+                                        dataTransfer.items.add(e.value[0]);
+                                        document.getElementById('imageInput').files = dataTransfer.files;
+                                    }
+                                }
+                            }).appendTo(itemElement);
+                        }
+                    }]
+                }, {
+                    itemType: "button",
+                    horizontalAlignment: "center",
+                    buttonOptions: {
+                        text: "حفظ التغييرات",
+                        type: "default",
+                        width: "100%",
+                        stylingMode: "contained",
+                        onClick: function() {
+                            var result = form.validate();
+                            if (result.isValid) {
+                                var formData = form.option("formData");
+                                var $actualForm = $("#edit-form-actual");
+                                var $container = $("#hidden-inputs-container");
+                                
+                                $container.find('input[name="FullName"], input[name="Email"]').remove();
+                                $actualForm.find('input[name^="Roles"]').remove();
+
+                                $("<input>").attr({ type: "hidden", name: "FullName", value: formData.FullName }).appendTo($container);
+                                $("<input>").attr({ type: "hidden", name: "Email", value: formData.Email }).appendTo($container);
+
+                                rolesData.forEach(function(role, index) {
+                                    var rName = getProp(role, 'RoleName');
+                                    var isSelected = formData.SelectedRoles.includes(rName);
+                                    $("<input>").attr({ type: "hidden", name: "Roles[" + index + "].RoleName", value: rName }).appendTo($actualForm);
+                                    $("<input>").attr({ type: "hidden", name: "Roles[" + index + "].IsSelected", value: isSelected }).appendTo($actualForm);
+                                });
+                                
+                                DevExpress.ui.notify({
+                                    message: "جاري حفظ البيانات...",
+                                    type: "info",
+                                    displayTime: 2000,
+                                    position: { at: "top center", my: "top center" }
+                                });
+
+                                setTimeout(() => $actualForm.submit(), 500);
+                            }
+                        }
+                    }
+                }]
+            }).dxForm("instance");
+        });
+    </script>
+}

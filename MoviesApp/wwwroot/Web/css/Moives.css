@@ -1,0 +1,325 @@
+﻿.categories {
+    padding: 3rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+    .section-title::after {
+        content: '';
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(to left, transparent, #e74c3c);
+    }
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.category-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+    .category-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(231, 76, 60, 0.2), transparent);
+        transition: left 0.5s;
+    }
+
+    .category-card:hover::before {
+        left: 100%;
+    }
+
+    .category-card:hover {
+        transform: translateY(-10px);
+        background: rgba(231, 76, 60, 0.1);
+        border-color: #e74c3c;
+        box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+    }
+
+    .category-card i {
+        font-size: 3rem;
+        color: #e74c3c;
+        margin-bottom: 1rem;
+    }
+
+    .category-card h3 {
+        font-size: 1.3rem;
+    }
+
+/* Movies Section */
+.movies-section {
+    padding: 0 5%;
+    max-width: 1400px;
+    margin: 0 auto 4rem;
+}
+
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+.movie-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+    .movie-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        border-color: #e74c3c;
+    }
+
+.movie-poster {
+    width: 100%;
+    height: 320px;
+    position: relative;
+    overflow: hidden;
+}
+
+    .movie-poster img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+    }
+
+.movie-card:hover .movie-poster img {
+    transform: scale(1.1);
+}
+
+.movie-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #e74c3c;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.movie-rating {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 2;
+}
+
+    .movie-rating i {
+        color: #f39c12;
+    }
+
+.movie-info {
+    padding: 1.2rem;
+}
+
+    .movie-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        color: #fff;
+    }
+
+.movie-meta {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.movie-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+    .movie-actions button {
+        flex: 1;
+        padding: 0.7rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s;
+    }
+
+.btn-watch {
+    background: #e74c3c;
+    color: #fff; 
+}
+
+    .btn-watch:hover {
+        background: #c0392b;
+        transform: scale(1.05);
+    }
+
+.btn-info {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+    .btn-info:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+/* Features Section */
+.features {
+    padding: 4rem 5%;
+    background: rgba(0, 0, 0, 0.3);
+    margin: 4rem 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s;
+}
+
+    .feature-card:hover {
+        background: rgba(255, 255, 255, 0.05);
+        transform: translateY(-5px);
+    }
+
+    .feature-card i {
+        font-size: 3.5rem;
+        color: #e74c3c;
+        margin-bottom: 1.5rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .feature-card p {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+    }
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+    .user-profile:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-name {
+    color: #fff;
+    font-weight: 500;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1c1c1c;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    padding: 12px 0;
+    border-radius: 8px;
+    z-index: 1000;
+    right: 0;
+    top: 100%;
+    margin-top: 5px; /* مسافة صغيرة بين الزر والقائمة */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+    .dropdown-content.show {
+        display: block;
+    }
+
+    /* إنشاء جسر مرئي بين الزر والقائمة */
+    .dropdown-content::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        right: 15px;
+        width: 20px;
+        height: 10px;
+        background-color: transparent;
+    }
+
+    .dropdown-content a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+        .dropdown-content a:hover {
+            background-color: rgba(231, 76, 60, 0.2);
+        }
+
+    .dropdown-content hr {
+        border: none;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.2);
+        margin: 8px 0;
+    }

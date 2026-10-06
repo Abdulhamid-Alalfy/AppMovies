@@ -1,0 +1,71 @@
+@using Domin.Model
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> userManager
+@inject SignInManager<AppUser> signInManager
+
+<header>
+    <div class="container">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-film"></i>
+                    Cinema<span>Pro</span>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a asp-action="Index" asp-controller="Movie">الرئيسية</a></li>
+                    <li><a asp-action="Index" asp-controller="Movie">الأفلام</a></li>
+                    <li><a asp-action="Genres" asp-controller="Movie">التصنيفات</a></li>
+                </ul>
+
+                <div class="nav-right">
+                    <button class="sidebar-toggle" id="sidebarToggle">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                    <div class="search-box">
+                        <input type="text" placeholder="ابحث عن أفلام، مسلسلات...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+
+                    <div class="user-actions">
+                        <button class="theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <div class="nav-item">
+                                @await Component.InvokeAsync("Notification")
+                            </div>
+
+                            var user = await userManager.GetUserAsync(User);
+                            <div class="user-dropdown" id="userDropdown">
+                                <span class="user-name">@user.UserName</span>
+                                <div class="dropdown-menu" id="dropdownMenu">
+                                    <a asp-action="Details" asp-controller="Accounts" class="dropdown-item">
+                                        <i class="fas fa-user-circle"></i>
+                                        الملف الشخصي
+                                    </a>
+                                    <form asp-controller="Accounts" asp-action="Logout" method="post" class="dropdown-form">
+                                        <button type="submit" class="dropdown-item logout-btn">
+                                            <i class="fas fa-sign-out-alt"></i>
+                                            تسجيل الخروج
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <a asp-action="Login" asp-controller="Accounts" class="btn">تسجيل الدخول</a>
+                        }
+                    </div>
+
+                    <button class="hamburger" id="hamburger">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>

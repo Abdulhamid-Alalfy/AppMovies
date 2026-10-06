@@ -1,0 +1,135 @@
+@using infrastructure.ViewModel
+@model CreateRoleView
+@{
+    ViewData["Title"] = "تعديل الدور | Cinema Pro";
+    Layout = "_LayoutAdmin";
+}
+
+@section Styles {
+    <!-- DevExpress Styles -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.5/css/dx.material.blue.dark.compact.css">
+
+    <style>
+        .form-card {
+            background: rgba(13, 27, 42, 0.4);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            margin: 40px auto;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 35px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .form-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .form-header i { color: #FFC107; }
+
+        .dx-texteditor.dx-editor-outlined {
+            background: rgba(255, 255, 255, 0.03) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            border-radius: 12px !important;
+        }
+
+        .footer-nav {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-nav a {
+            color: #FFC107;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+}
+
+<div class="form-card">
+    <div class="form-header">
+        <h2><i class="fas fa-edit"></i> تعديل بيانات الدور</h2>
+        <p class="text-muted">قم بتغيير مسمى الدور البرمجي الحالي</p>
+    </div>
+
+    <form id="role-edit-form-actual" method="post" action="@Url.Action("Edit")">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <div id="hidden-inputs"></div>
+        <div id="role-form-dx"></div>
+    </form>
+
+    <div class="footer-nav">
+        <a asp-action="Index">
+            <i class="fas fa-chevron-right"></i> العودة لقائمة الأدوار
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function() {
+            var form = $("#role-form-dx").dxForm({
+                formData: {
+                    Name: `@Html.Raw(Model.Name)`
+                },
+                labelLocation: "top",
+                rtlEnabled: true,
+                items: [{
+                    dataField: "Name",
+                    label: { text: "اسم الدور" },
+                    editorOptions: { 
+                        placeholder: "أدخل المسمى الجديد...", 
+                        stylingMode: "outlined" 
+                    },
+                    validationRules: [{ type: "required", message: "يجب إدخال اسم الدور" }]
+                }, {
+                    itemType: "button",
+                    horizontalAlignment: "center",
+                    buttonOptions: {
+                        text: "حفظ التعديلات",
+                        type: "default",
+                        width: "100%",
+                        stylingMode: "contained",
+                        onClick: function() {
+                            var res = form.validate();
+                            if (res.isValid) {
+                                var data = form.option("formData");
+                                var $actual = $("#role-edit-form-actual");
+                                var $hid = $("#hidden-inputs");
+                                
+                                $hid.empty();
+                                $("<input>").attr({ type: "hidden", name: "Name", value: data.Name }).appendTo($hid);
+
+                                DevExpress.ui.notify("جاري الحفظ...", "info", 2000);
+                                setTimeout(() => $actual.submit(), 500);
+                            }
+                        }
+                    }
+                }]
+            }).dxForm("instance");
+        });
+    </script>
+}

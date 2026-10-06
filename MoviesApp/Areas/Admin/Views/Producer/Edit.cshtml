@@ -1,0 +1,228 @@
+@model infrastructure.ViewModel.EditProducerVM
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "تعديل المنتج | Cinema Pro";
+    Layout = "_LayoutAdmin";
+}
+
+@section Styles {
+    <!-- DevExpress Styles -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.5/css/dx.material.blue.dark.compact.css">
+
+    <style>
+        .form-card {
+            background: rgba(13, 27, 42, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .form-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .form-header h2 i {
+            color: #4CAF50;
+        }
+
+        .preview-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .current-photo {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4CAF50;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.5);
+        }
+
+        .dx-texteditor.dx-editor-outlined {
+            background: rgba(255, 255, 255, 0.03) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            border-radius: 12px !important;
+        }
+
+        .dx-field-item-label-text {
+            color: rgba(255, 255, 255, 0.7) !important;
+            font-weight: 600 !important;
+        }
+
+        .footer-nav {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-nav a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .footer-nav a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+    </style>
+}
+
+<div class="form-card">
+    <div class="form-header">
+        <h2><i class="fas fa-video-slash"></i> تعديل بيانات المنتج</h2>
+        <p class="text-muted">تحديث معلومات المنتج وصورته الرسمية</p>
+    </div>
+
+    <div class="preview-container">
+        <!-- Not easy to show current ImagePath if it's IFormFile, assume there's a way or just show placeholder if null -->
+        <img id="imgPreview" src="@Url.Content(Model.Image ?? "/images/default-avatar.png")" alt="Current Photo" class="current-photo">
+    </div>
+
+    <form id="producer-edit-form-actual" method="post" enctype="multipart/form-data" action="@Url.Action("Edit")">
+        @Html.AntiForgeryToken()
+        <div id="hidden-inputs">
+            <input type="hidden" name="Id" value="@Model.Id" />
+        </div>
+        
+        <div id="producer-edit-form-dx"></div>
+        
+        <!-- Hidden real file input -->
+        <input type="file" name="ImagePath" id="realImageInput" style="display:none;" accept="image/*">
+        
+        <div style="display:none;">
+            @Html.ValidationSummary(false, "", new { @class = "text-danger", id = "validation-summary" })
+        </div>
+    </form>
+
+    <div class="footer-nav">
+        <a asp-action="Index">
+            <i class="fas fa-chevron-right"></i> العودة لقائمة المنتجين
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function() {
+            // Handle validation errors
+            var errors = $("#validation-summary li");
+            if (errors.length > 0) {
+                errors.each(function() {
+                    var txt = $(this).text();
+                    if (txt) DevExpress.ui.notify(txt, "error", 5000);
+                });
+            }
+
+            var form = $("#producer-edit-form-dx").dxForm({
+                formData: {
+                    Name: @Html.Raw(JsonConvert.SerializeObject(Model.Name)),
+                    Bio: @Html.Raw(JsonConvert.SerializeObject(Model.Bio))
+                },
+                labelLocation: "top",
+                rtlEnabled: true,
+                items: [{
+                    dataField: "Name",
+                    label: { text: "اسم المنتج بالكامل" },
+                    editorOptions: {
+                        placeholder: "أدخل اسم المنتج...",
+                        stylingMode: "outlined"
+                    },
+                    validationRules: [{ type: "required", message: "اسم المنتج مطلوب" }]
+                }, {
+                    dataField: "Bio",
+                    label: { text: "السيرة الذاتية" },
+                    editorType: "dxTextArea",
+                    editorOptions: {
+                        height: 150,
+                        placeholder: "اكتب نبذة عن تاريخ المنتج وأعماله...",
+                        stylingMode: "outlined"
+                    },
+                    validationRules: [{ type: "required", message: "السيرة الذاتية مطلوبة" }]
+                }, {
+                    itemType: "group",
+                    label: { text: "تغيير الصورة الرسمية (اختياري)" },
+                    items: [{
+                        itemType: "simple",
+                        template: function(data, itemElement) {
+                            $("<div />").dxFileUploader({
+                                selectButtonText: "اختر صورة جديدة",
+                                labelText: "أو اسحبها هنا",
+                                accept: "image/*",
+                                uploadMode: "useForm",
+                                stylingMode: "outlined",
+                                onValueChanged: function(e) {
+                                    if (e.value && e.value[0]) {
+                                        var reader = new FileReader();
+                                        reader.onload = function(ev) {
+                                            $("#imgPreview").attr("src", ev.target.result);
+                                        };
+                                        reader.readAsDataURL(e.value[0]);
+                                        
+                                        const dt = new DataTransfer();
+                                        dt.items.add(e.value[0]);
+                                        document.getElementById('realImageInput').files = dt.files;
+                                    }
+                                }
+                            }).appendTo(itemElement);
+                        }
+                    }]
+                }, {
+                    itemType: "button",
+                    horizontalAlignment: "center",
+                    buttonOptions: {
+                        text: "حفظ التغييرات",
+                        type: "success",
+                        width: "100%",
+                        stylingMode: "contained",
+                        onClick: function() {
+                            var res = form.validate();
+                            if (res.isValid) {
+                                var data = form.option("formData");
+                                var $actual = $("#producer-edit-form-actual");
+                                var $hid = $("#hidden-inputs");
+                                
+                                $hid.find('input[name="Name"], input[name="Bio"]').remove();
+                                $("<input>").attr({ type: "hidden", name: "Name", value: data.Name }).appendTo($hid);
+                                $("<input>").attr({ type: "hidden", name: "Bio", value: data.Bio }).appendTo($hid);
+                                
+                                DevExpress.ui.notify("جاري حفظ البيانات...", "info", 2000);
+                                setTimeout(() => $actual.submit(), 500);
+                            }
+                        }
+                    }
+                }]
+            }).dxForm("instance");
+        });
+    </script>
+}

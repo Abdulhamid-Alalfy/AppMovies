@@ -1,0 +1,335 @@
+@model infrastructure.ViewModel.CreateGenreVM
+<h1 style="color: red; background: yellow; padding: 20px; z-index: 9999; position: relative;">VERIFICATION: NEW VIEW LOADED</h1>
+@{
+    ViewData["Title"] = "إضافة تصنيف جديد";
+    Layout = "_LayoutAdmin";
+}
+
+@section Styles {
+    <style>
+        :root {
+            --primary-accent: #3b82f6;
+            --secondary-accent: #8b5cf6;
+            --success-glow: rgba(34, 197, 94, 0.4);
+            --bg-card: rgba(13, 27, 42, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- Page Layout --- */
+        .admin-page-header {
+            margin-bottom: 40px;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .text-gradient-admin {
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        /* --- Form Structure --- */
+        .genres-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .glass-panel-admin {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* --- Live Preview Card --- */
+        .preview-card-sticky {
+            position: sticky;
+            top: 100px;
+        }
+
+        .genre-preview-widget {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .preview-icon-box {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .preview-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .preview-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* --- DevExtreme Overrides for Dark Mode --- */
+        .dx-texteditor.dx-editor-outlined {
+            background: rgba(255, 255, 255, 0.03) !important;
+            border-color: var(--glass-border) !important;
+            border-radius: 12px !important;
+            color: #fff !important;
+        }
+
+        .dx-texteditor.dx-state-focused.dx-editor-outlined {
+            border-color: var(--primary-accent) !important;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.2) !important;
+        }
+
+        .dx-field-label {
+            color: var(--text-muted) !important;
+            font-weight: 600 !important;
+            padding-bottom: 8px !important;
+        }
+
+        /* --- Icon Picker Section --- */
+        .icon-grid-picker {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .icon-option {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #fff;
+        }
+
+        .icon-option:hover {
+            background: var(--primary-accent);
+            transform: scale(1.1);
+        }
+
+        .icon-option.active {
+            background: var(--primary-accent);
+            box-shadow: 0 0 15px var(--primary-accent);
+        }
+
+        /* --- Animations --- */
+        @@keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @@keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Responsive --- */
+        @@media (max-width: 992px) {
+            .genres-grid { grid-template-columns: 1fr; }
+            .preview-card-sticky { position: static; margin-bottom: 30px; }
+        }
+    </style>
+}
+
+<div class="admin-page-header">
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <h1 class="text-gradient-admin mb-1">إضافة تصنيف جديد</h1>
+            <p class="text-muted mb-0">قم بتنظيم محتواك من خلال إضافة تصنيفات موسيقية أو سينمائية جديدة</p>
+        </div>
+        <a href="@Url.Action("Index")" class="btn btn-outline-light rounded-pill px-4">
+            <i class="fas fa-arrow-right me-2"></i> العودة للقائمة
+        </a>
+    </div>
+</div>
+
+<div class="genres-grid">
+    <!-- Main Form -->
+    <div class="glass-panel-admin">
+        <form asp-action="Create" id="genreForm" method="post">
+            <div id="formContainer"></div>
+            
+            <div class="mt-5 border-top pt-4">
+                <h5 class="mb-4 d-flex align-items-center gap-2">
+                    <i class="fas fa-icons text-primary"></i> اختر أيقونة للتصنيف
+                </h5>
+                <div id="iconSearch"></div>
+                <div class="icon-grid-picker" id="iconPicker">
+                    <!-- Loaded via JS -->
+                </div>
+            </div>
+
+            <!-- Submit Section -->
+            <div class="mt-5 d-flex justify-content-end gap-3">
+                <button type="button" class="btn btn-link text-muted text-decoration-none" onclick="history.back()">إلغاء</button>
+                <div id="submitBtn"></div>
+            </div>
+
+            <!-- Hidden Fields for ASP.NET Binding -->
+            <input type="hidden" id="hiddenName" name="Name">
+            <input type="hidden" id="hiddenNameAr" name="NameAr">
+            <input type="hidden" id="hiddenDescription" name="Description">
+            <input type="hidden" id="hiddenIcon" name="Icon">
+        </form>
+    </div>
+
+    <!-- Live Preview Sidebar -->
+    <div class="preview-card-sticky">
+        <div class="glass-panel-admin">
+            <h5 class="mb-4 text-center">معاينة العرض المباشر</h5>
+            <div class="genre-preview-widget">
+                <div class="preview-icon-box" id="liveIconPreview">
+                    <i class="fas fa-tags"></i>
+                </div>
+                <div class="preview-name" id="liveNamePreview">اسم التصنيف</div>
+                <div class="preview-desc" id="liveDescPreview">هذا النص يعرض وصفاً مختصراً للتصنيف وكيف سيظهر للمستخدمين في الموقع العام.</div>
+            </div>
+
+            <div class="mt-4 bg-primary bg-opacity-10 p-3 rounded-3">
+                <small class="text-primary d-block mb-1"><i class="fas fa-info-circle me-1"></i> نصيحة إدارية:</small>
+                <p class="small text-muted mb-0">تأكد من اختيار اسم باللغة العربية والإنجليزية لضمان وصول المحتوى لجميع فئات المستخدمين.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function() {
+            // Common Icons List
+            const icons = [
+                'fa-masks-theater', 'fa-film', 'fa-headset', 'fa-heart', 'fa-ghost', 
+                'fa-rocket', 'fa-dragon', 'fa-hand-fist', 'fa-guitar', 'fa-microphone',
+                'fa-music', 'fa-clapperboard', 'fa-camera-retro', 'fa-video', 'fa-bolt',
+                'fa-fire', 'fa-skull', 'fa-smile', 'fa-star', 'fa-crown', 'fa-gem',
+                'fa-bomb', 'fa-biohazard', 'fa-shield-halved', 'fa-theater-masks'
+            ];
+
+            // Initialize Icons Picker
+            const $picker = $('#iconPicker');
+            icons.forEach(ic => {
+                $picker.append(`<div class="icon-option" data-icon="${ic}"><i class="fas ${ic}"></i></div>`);
+            });
+
+            // Form Configuration
+            const form = $("#formContainer").dxForm({
+                formData: {
+                    Name: "@Model?.Name",
+                    NameAr: "@Model?.NameAr",
+                    Description: "@Model?.Description"
+                },
+                labelLocation: "top",
+                items: [{
+                    itemType: "group",
+                    colCount: 2,
+                    items: [{
+                        dataField: "Name",
+                        label: { text: "الاسم بالإنجليزية (English Name)" },
+                        editorType: "dxTextBox",
+                        editorOptions: {
+                            placeholder: "Enter genre name in English...",
+                            onValueChanged: function(e) { 
+                                $('#hiddenName').val(e.value);
+                                $('#liveNamePreview').text(e.value || "اسم التصنيف");
+                            }
+                        },
+                        validationRules: [{ type: "required", message: "English name is required" }]
+                    }, {
+                        dataField: "NameAr",
+                        label: { text: "الاسم بالعربية (Arabic Name)" },
+                        editorType: "dxTextBox",
+                        editorOptions: {
+                            rtlEnabled: true,
+                            placeholder: "أدخل اسم التصنيف بالعربية...",
+                            onValueChanged: function(e) { 
+                                $('#hiddenNameAr').val(e.value);
+                                if(e.value) $('#liveNamePreview').text(e.value);
+                            }
+                        },
+                        validationRules: [{ type: "required", message: "الاسم بالعربي مطلوب" }]
+                    }]
+                }, {
+                    dataField: "Description",
+                    label: { text: "الوصف (Description)" },
+                    editorType: "dxTextArea",
+                    editorOptions: {
+                        height: 120,
+                        placeholder: "اكتب وصفاً مختصراً لهذا التصنيف...",
+                        onValueChanged: function(e) { 
+                            $('#hiddenDescription').val(e.value);
+                            $('#liveDescPreview').text(e.value || "وصف التصنيف سيظهر هنا...");
+                        }
+                    }
+                }]
+            }).dxForm("instance");
+
+            // Icon Picker Logic
+            $('.icon-option').on('click', function() {
+                const iconClass = $(this).data('icon');
+                $('.icon-option').removeClass('active');
+                $(this).addClass('active');
+                
+                $('#hiddenIcon').val(iconClass);
+                $('#liveIconPreview i').attr('class', 'fas ' + iconClass);
+                
+                // Trigger animation
+                $('#liveIconPreview').css('transform', 'scale(1.2)');
+                setTimeout(() => $('#liveIconPreview').css('transform', 'scale(1)'), 200);
+            });
+
+            // Submit Button
+            $("#submitBtn").dxButton({
+                text: "إنشاء التصنيف",
+                type: "default",
+                useSubmitBehavior: false,
+                stylingMode: "contained",
+                template: function(data, container) {
+                    $(`<div class='d-flex align-items-center gap-2'><i class='fas fa-check-circle'></i> <span>${data.text}</span></div>`).appendTo(container);
+                },
+                onClick: function() {
+                    const result = form.validate();
+                    if(result.isValid) {
+                        $('#genreForm').submit();
+                    } else {
+                        DevExpress.ui.notify("يرجى ملء الحقول المطلوبة بشكل صحيح", "error", 2000);
+                    }
+                }
+            });
+
+            // Manual icon entry sync (if any)
+            if("@Model?.Icon") {
+                $(`.icon-option[data-icon="@Model.Icon"]`).click();
+            }
+        });
+    </script>
+}

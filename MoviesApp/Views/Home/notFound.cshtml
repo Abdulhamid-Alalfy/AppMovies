@@ -1,0 +1,489 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔍 الصفحة غير موجودة | 404 Not Found</title>
+
+    <!-- DevExpress Styles (Dark Theme) -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.5/css/dx.material.blue.dark.compact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Tajawal', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background shapes */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .bg-shapes .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bg-shapes .shape:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            background: #f39c12;
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .bg-shapes .shape:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            background: #e74c3c;
+            bottom: -150px;
+            left: -100px;
+            animation-delay: 5s;
+        }
+
+        .bg-shapes .shape:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            background: #3498db;
+            top: 50%;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        @@keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* DevExpress Card Container */
+        .notfound-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @@keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dx-card {
+            background: rgba(30, 40, 50, 0.95);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 100px rgba(52, 152, 219, 0.1);
+        }
+
+        /* Header with 404 Animation */
+        .card-header {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(52, 152, 219, 0.05));
+            padding: 40px;
+            text-align: center;
+            border-bottom: 1px solid rgba(52, 152, 219, 0.2);
+        }
+
+        .error-404 {
+            font-size: 8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #3498db, #f39c12, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 15px;
+            animation: glow 3s ease-in-out infinite;
+            text-shadow: none;
+        }
+
+        @@keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(52, 152, 219, 0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(243, 156, 18, 0.5)); }
+        }
+
+        .icon-wrapper {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+        }
+
+        .icon-container {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(52, 152, 219, 0.4);
+            animation: bounce 2s infinite;
+        }
+
+        @@keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .icon-container i {
+            font-size: 45px;
+            color: white;
+        }
+
+        .card-header h1 {
+            color: #3498db;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+
+        /* Body Content */
+        .card-body {
+            padding: 30px 40px;
+        }
+
+        .error-message {
+            background: rgba(52, 152, 219, 0.1);
+            border-right: 4px solid #3498db;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .error-message h3 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .error-message h3 i {
+            color: #3498db;
+        }
+
+        .error-message p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .error-details {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .error-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .error-item i {
+            color: #f39c12;
+            width: 20px;
+            text-align: center;
+        }
+
+        .error-code-badge {
+            display: inline-block;
+            background: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-family: monospace;
+            font-size: 1rem;
+            margin-top: 15px;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+        }
+
+        /* DevExpress Buttons Container */
+        .dx-button-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        /* Custom DevExpress Button Styles */
+        .dx-button-mode-contained.dx-button-default {
+            background: linear-gradient(135deg, #3498db, #2980b9) !important;
+            border: none !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .dx-button-mode-outlined.dx-button-default {
+            border-color: #3498db !important;
+            color: #3498db !important;
+            border-radius: 12px !important;
+        }
+
+        .dx-button-mode-outlined.dx-button-default:hover {
+            background: rgba(52, 152, 219, 0.1) !important;
+        }
+
+        /* Footer */
+        .card-footer {
+            padding: 20px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .card-footer p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        .card-footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        /* Search Box */
+        .search-box {
+            margin: 20px 0;
+        }
+
+        .dx-texteditor.dx-editor-outlined {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(52, 152, 219, 0.3) !important;
+            border-radius: 12px !important;
+        }
+
+        .dx-texteditor.dx-state-focused.dx-editor-outlined {
+            border-color: #3498db !important;
+        }
+
+        /* Responsive */
+        @@media (max-width: 768px) {
+            .notfound-container {
+                padding: 15px;
+            }
+
+            .card-header {
+                padding: 30px 20px;
+            }
+
+            .error-404 {
+                font-size: 5rem;
+            }
+
+            .card-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .card-body {
+                padding: 25px 20px;
+            }
+
+            .dx-button-container {
+                flex-direction: column;
+            }
+
+            .icon-wrapper,
+            .icon-container {
+                width: 80px;
+                height: 80px;
+            }
+
+            .icon-container i {
+                font-size: 35px;
+            }
+        }
+    </style>
+</head>
+<body class="dx-viewport">
+    <!-- Animated Background -->
+    <div class="bg-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="notfound-container">
+        <div class="dx-card">
+            <!-- Card Header -->
+            <div class="card-header">
+                <div class="error-404">404</div>
+                <div class="icon-wrapper">
+                    <div class="icon-container">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <h1>الصفحة غير موجودة</h1>
+                <p>Page Not Found - الصفحة التي تبحث عنها غير متوفرة</p>
+            </div>
+
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="error-message">
+                    <h3><i class="fas fa-question-circle"></i> ما الذي حدث؟</h3>
+                    <p>يبدو أن الصفحة التي تبحث عنها قد تم نقلها أو حذفها أو لم تكن موجودة. يمكن أن يكون السبب:</p>
+                    <div class="error-details">
+                        <div class="error-item">
+                            <i class="fas fa-link"></i>
+                            <span>رابط خاطئ أو منتهي الصلاحية</span>
+                        </div>
+                        <div class="error-item">
+                            <i class="fas fa-trash-alt"></i>
+                            <span>تم حذف الصفحة نهائياً</span>
+                        </div>
+                        <div class="error-item">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>تم نقل المحتوى لمكان آخر</span>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <span class="error-code-badge">Error 404 - Not Found</span>
+                    </div>
+                </div>
+
+                <!-- Search Box -->
+                <div id="searchBox" class="search-box"></div>
+
+                <!-- DevExpress Buttons -->
+                <div id="buttonsContainer" class="dx-button-container"></div>
+            </div>
+
+            <!-- Card Footer -->
+            <div class="card-footer">
+                <p>
+                    <i class="fas fa-home"></i>
+                    هل تحتاج مساعدة؟ <a href="#">تواصل مع الدعم الفني</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DevExpress Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn3.devexpress.com/jslib/23.2.5/js/dx.all.js"></script>
+
+    <script>
+        $(function() {
+            // Initialize Search Box
+            $("#searchBox").dxTextBox({
+                placeholder: "ابحث عن صفحة...",
+                stylingMode: "outlined",
+                rtlEnabled: true,
+                showClearButton: true,
+                buttons: [{
+                    name: "search",
+                    location: "after",
+                    options: {
+                        icon: "search",
+                        stylingMode: "text",
+                        onClick: function() {
+                            var searchValue = $("#searchBox").dxTextBox("instance").option("value");
+                            if (searchValue) {
+                                window.location.href = '/Home/Search?q=' + encodeURIComponent(searchValue);
+                            }
+                        }
+                    }
+                }],
+                onEnterKey: function(e) {
+                    var searchValue = e.component.option("value");
+                    if (searchValue) {
+                        window.location.href = '/Home/Search?q=' + encodeURIComponent(searchValue);
+                    }
+                }
+            });
+
+            // Initialize DevExpress Buttons
+            $("#buttonsContainer").dxButtonGroup({
+                items: [
+                    {
+                        text: "العودة للرئيسية",
+                        icon: "home",
+                        type: "default",
+                        stylingMode: "contained",
+                        onClick: function() {
+                            window.location.href = '/';
+                        }
+                    },
+                    {
+                        text: "الصفحة السابقة",
+                        icon: "arrowright",
+                        type: "default",
+                        stylingMode: "outlined",
+                        onClick: function() {
+                            window.history.back();
+                        }
+                    }
+                ],
+                keyExpr: "text",
+                stylingMode: "outlined",
+                selectionMode: "none"
+            });
+
+            // Style buttons container
+            $("#buttonsContainer .dx-buttongroup-wrapper").css({
+                "display": "flex",
+                "gap": "15px",
+                "flex-wrap": "wrap",
+                "justify-content": "center"
+            });
+
+            // 404 hover effect
+            const error404 = document.querySelector('.error-404');
+            error404.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            error404.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+@model IEnumerable<infrastructure.ViewModel.MovieViewModel>
+
+@section Style
+{
+    <link href="~/Web/css/Moives.css" rel="stylesheet" />
+}
+
+@await Html.PartialAsync("_Hero")
+
+@await Html.PartialAsync("_SpecialOffers")
+
+<section class="categories" id="movies">
+    <h2 class="section-title">
+        <i class="fas fa-fire"></i>
+        أحدث الأفلام
+    </h2>
+    <div class="movies-grid">
+        @foreach (var movie in Model)
+        {
+            <div class="movie-card">
+                <div class="movie-poster">
+                    <img src="@Url.Content(movie.Poster)" />
+                    <span class="movie-badge">تريند</span>
+                    <div class="movie-rating">
+                        <i class="fas fa-star"></i>
+                        <span>@(string.IsNullOrWhiteSpace(movie.Rating) ? "غير محدد" : movie.Rating)</span>
+                    </div>
+                </div>
+                <div class="movie-info">
+                    <h3>@movie.Title</h3>
+                    <div class="movie-meta">
+                        <span>@(movie.Year?.ToString() ?? "غير محدد")</span>
+                        <span>ساعتين و 40 دقيقة</span>
+                    </div>
+                    <div class="movie-actions">
+                        <a asp-action="Details" asp-controller="Movie" asp-route-id="@movie.Id" class="btn-watch btn btn-danger" style=" text-decoration: none;"><i class="fas fa-play"></i> شاهد الآن</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>

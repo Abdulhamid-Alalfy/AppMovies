@@ -1,0 +1,442 @@
+﻿@model infrastructure.ViewModel.QualitMoviesVM.EditMovieQualityViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعديل الجودة - @Model.MovieTitle</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Header Card -->
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-header bg-warning text-dark py-3">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h1 class="h4 mb-2">
+                                    <i class="fas fa-edit me-2"></i>
+                                    تعديل جودة الفيديو
+                                </h1>
+                                <p class="mb-0">
+                                    <i class="fas fa-film me-1"></i>
+                                    @Model.MovieTitle
+                                </p>
+                            </div>
+                            <div class="col-md-4 text-md-end">
+                                <a asp-action="ManageQualities" asp-route-id="@Model.MovieId" class="btn btn-outline-dark btn-sm">
+                                    <i class="fas fa-arrow-right me-1"></i>
+                                    رجوع
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Form -->
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <form asp-action="EditQuality" method="post" enctype="multipart/form-data" id="editQualityForm">
+                            <input type="hidden" asp-for="Id" />
+                            <input type="hidden" asp-for="MovieId" />
+                            <input type="hidden" asp-for="MovieTitle" />
+                            <input type="hidden" asp-for="ExistingVideoUrl" />
+
+                            <!-- نوع الجودة -->
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <div class="card bg-light border-0">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-primary mb-3">
+                                                <i class="fas fa-video me-2"></i>
+                                                نوع الجودة
+                                            </h5>
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label asp-for="QualityType" class="form-label fw-bold">اختر جودة الفيديو</label>
+                                                    <select asp-for="QualityType" class="form-select form-select-lg">
+                                                        <option value="360p">360p - جودة منخفضة</option>
+                                                        <option value="480p">480p - جودة متوسطة</option>
+                                                        <option value="720p">720p HD - جودة عالية</option>
+                                                        <option value="1080p">1080p Full HD - جودة فائقة</option>
+                                                        <option value="4K">4K Ultra HD - جودة استثنائية</option>
+                                                    </select>
+                                                    <span asp-validation-for="QualityType" class="text-danger small"></span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label fw-bold">معاينة الجودة</label>
+                                                    <div class="d-grid">
+                                                        <span class="badge @GetQualityBadgeClass(Model.QualityType) fs-6 p-3" id="qualityPreview">
+                                                            <i class="@GetQualityIcon(Model.QualityType) me-2"></i>
+                                                            @GetQualityDisplayName(Model.QualityType)
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ملف الفيديو -->
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <div class="card bg-light border-0">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-primary mb-3">
+                                                <i class="fas fa-file-video me-2"></i>
+                                                ملف الفيديو
+                                            </h5>
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label asp-for="VideoFile" class="form-label fw-bold">رفع ملف جديد</label>
+                                                    <input type="file" asp-for="VideoFile" class="form-control" accept="video/*" />
+                                                    <div class="form-text">
+                                                        اتركه فارغاً للحفاظ على الملف الحالي
+                                                    </div>
+                                                    <span asp-validation-for="VideoFile" class="text-danger small"></span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label fw-bold">الملف الحالي</label>
+                                                    <div class="border rounded-3 p-3 bg-white">
+                                                        @if (!string.IsNullOrEmpty(Model.ExistingVideoUrl))
+                                                        {
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <i class="fas fa-video text-success me-2"></i>
+                                                                    <span class="fw-bold">ملف موجود</span>
+                                                                </div>
+                                                                <a href="@Model.ExistingVideoUrl" target="_blank" class="btn btn-outline-primary btn-sm">
+                                                                    <i class="fas fa-eye me-1"></i>
+                                                                    معاينة
+                                                                </a>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="text-muted">
+                                                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                                                لا يوجد ملف حالياً
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- الإعدادات التقنية -->
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <div class="card bg-light border-0">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-primary mb-3">
+                                                <i class="fas fa-cogs me-2"></i>
+                                                الإعدادات التقنية
+                                            </h5>
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label asp-for="Codec" class="form-label fw-bold">نوع الكودك</label>
+                                                    <select asp-for="Codec" class="form-select">
+                                                        <option value="H.264">H.264 (الأكثر توافقاً)</option>
+                                                        <option value="H.265">H.265 (كفاءة أعلى)</option>
+                                                        <option value="VP9">VP9 (جودة عالية)</option>
+                                                        <option value="AV1">AV1 (الأحدث)</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label asp-for="Bitrate" class="form-label fw-bold">معدل البت</label>
+                                                    <select asp-for="Bitrate" class="form-select">
+                                                        <option value="500 kbps">500 kbps (منخفض)</option>
+                                                        <option value="1000 kbps">1000 kbps (متوسط)</option>
+                                                        <option value="2000 kbps">2000 kbps (جيد)</option>
+                                                        <option value="4000 kbps">4000 kbps (عالي)</option>
+                                                        <option value="8000 kbps">8000 kbps (فائق)</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-12">
+                                                    <label asp-for="FileSizeMB" class="form-label fw-bold">الحجم التقريبي</label>
+                                                    <div class="row align-items-center">
+                                                        <div class="col-md-8">
+                                                            <input type="range" asp-for="FileSizeMB" class="form-range" min="1" max="10000" step="1"
+                                                                   oninput="updateFileSizeValue(this.value)">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="text-center">
+                                                                <span id="fileSizeValue" class="badge bg-primary fs-6 p-2">
+                                                                    @Model.FileSizeMB MB
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between mt-1">
+                                                        <small class="text-muted">1 MB</small>
+                                                        <small class="text-muted">10 GB</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- الحالة -->
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <div class="card bg-light border-0">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-primary mb-3">
+                                                <i class="fas fa-toggle-on me-2"></i>
+                                                الحالة
+                                            </h5>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" asp-for="IsAvailable" style="transform: scale(1.5);">
+                                                <label class="form-check-label fw-bold ms-3" asp-for="IsAvailable">
+                                                    @(Model.IsAvailable ? "مفعلة ومتاحة للعرض" : "معطلة وغير متاحة")
+                                                </label>
+                                            </div>
+                                            <div class="form-text">
+                                                عند تعطيل الجودة، لن يتمكن المستخدمون من مشاهدتها
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ملخص التعديلات -->
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <div class="card border-primary">
+                                        <div class="card-header bg-primary text-white">
+                                            <h6 class="mb-0">
+                                                <i class="fas fa-list me-2"></i>
+                                                ملخص التعديلات
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row text-center">
+                                                <div class="col-md-3 mb-3">
+                                                    <div class="border rounded-3 p-3">
+                                                        <div class="text-primary fw-bold" id="summaryQuality">@Model.QualityType</div>
+                                                        <small class="text-muted">الجودة</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-3">
+                                                    <div class="border rounded-3 p-3">
+                                                        <div class="text-primary fw-bold" id="summaryCodec">@Model.Codec</div>
+                                                        <small class="text-muted">الكودك</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-3">
+                                                    <div class="border rounded-3 p-3">
+                                                        <div class="text-primary fw-bold" id="summaryBitrate">@Model.Bitrate</div>
+                                                        <small class="text-muted">معدل البت</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-3">
+                                                    <div class="border rounded-3 p-3">
+                                                        <div class="text-primary fw-bold" id="summarySize">@Model.FileSizeMB MB</div>
+                                                        <small class="text-muted">الحجم</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- أزرار التحكم -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <a asp-action="ManageQualities" asp-route-id="@Model.MovieId" class="btn btn-secondary btn-lg me-md-2">
+                                            <i class="fas fa-times me-2"></i>
+                                            إلغاء
+                                        </a>
+                                        <button type="submit" class="btn btn-success btn-lg">
+                                            <i class="fas fa-save me-2"></i>
+                                            حفظ التعديلات
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- معلومات سريعة -->
+                <div class="row mt-4">
+                    <div class="col-md-4 mb-3">
+                        <div class="card border-0 bg-info text-white">
+                            <div class="card-body text-center py-3">
+                                <i class="fas fa-history fa-2x mb-2"></i>
+                                <h6 class="mb-1">آخر تحديث</h6>
+                                <small>@DateTime.Now.ToString("yyyy/MM/dd")</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card border-0 bg-warning text-dark">
+                            <div class="card-body text-center py-3">
+                                <i class="fas fa-exclamation-triangle fa-2x mb-2"></i>
+                                <h6 class="mb-1">ملاحظة</h6>
+                                <small>التغييرات تؤثر مباشرة</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card border-0 bg-success text-white">
+                            <div class="card-body text-center py-3">
+                                <i class="fas fa-check-circle fa-2x mb-2"></i>
+                                <h6 class="mb-1">الحالة</h6>
+                                <small>@(Model.IsAvailable ? "مفعلة" : "معطلة")</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // تحديث معاينة الحجم
+        function updateFileSizeValue(value) {
+            document.getElementById('fileSizeValue').textContent = value + ' MB';
+            document.getElementById('summarySize').textContent = value + ' MB';
+        }
+
+        // تحديث المعاينة عند تغيير الجودة
+        document.getElementById('QualityType').addEventListener('change', function() {
+            const quality = this.value;
+            const badgeClass = getBadgeClass(quality);
+            const displayName = getDisplayName(quality);
+            const icon = getIcon(quality);
+
+            document.getElementById('qualityPreview').className = `badge ${badgeClass} fs-6 p-3`;
+            document.getElementById('qualityPreview').innerHTML = `<i class="${icon} me-2"></i>${displayName}`;
+            document.getElementById('summaryQuality').textContent = quality;
+        });
+
+        // تحديث المعاينة عند تغيير الكودك
+        document.getElementById('Codec').addEventListener('change', function() {
+            document.getElementById('summaryCodec').textContent = this.value;
+        });
+
+        // تحديث المعاينة عند تغيير معدل البت
+        document.getElementById('Bitrate').addEventListener('change', function() {
+            document.getElementById('summaryBitrate').textContent = this.value;
+        });
+
+        // دوال المساعدة
+        function getBadgeClass(quality) {
+            const classes = {
+                '360p': 'bg-secondary',
+                '480p': 'bg-info',
+                '720p': 'bg-primary',
+                '1080p': 'bg-success',
+                '4K': 'bg-warning text-dark'
+            };
+            return classes[quality] || 'bg-light text-dark';
+        }
+
+        function getDisplayName(quality) {
+            const names = {
+                '360p': '360p - جودة منخفضة',
+                '480p': '480p - جودة متوسطة',
+                '720p': '720p HD - جودة عالية',
+                '1080p': '1080p Full HD - جودة فائقة',
+                '4K': '4K Ultra HD - جودة استثنائية'
+            };
+            return names[quality] || quality;
+        }
+
+        function getIcon(quality) {
+            const icons = {
+                '360p': 'fas fa-mobile-alt',
+                '480p': 'fas fa-tablet-alt',
+                '720p': 'fas fa-desktop',
+                '1080p': 'fas fa-tv',
+                '4K': 'fas fa-film'
+            };
+            return icons[quality] || 'fas fa-video';
+        }
+
+        // تأكيد قبل الإرسال
+        document.getElementById('editQualityForm').addEventListener('submit', function(e) {
+            const videoFile = document.getElementById('VideoFile').files[0];
+            if (videoFile) {
+                const fileSizeMB = videoFile.size / (1024 * 1024);
+                if (fileSizeMB > 5000) { // 5GB limit
+                    if (!confirm('ملف الفيديو كبير الحجم (' + Math.round(fileSizeMB) + ' MB). هل تريد المتابعة؟')) {
+                        e.preventDefault();
+                    }
+                }
+            }
+        });
+
+        // التهيئة الأولية
+        document.addEventListener('DOMContentLoaded', function() {
+            // تحديث القيم الأولية
+            updateFileSizeValue(@Model.FileSizeMB);
+        });
+    </script>
+</body>
+</html>
+
+@functions {
+    private string GetQualityBadgeClass(string quality)
+    {
+        return quality switch
+        {
+            "360p" => "bg-secondary",
+            "480p" => "bg-info",
+            "720p" => "bg-primary",
+            "1080p" => "bg-success",
+            "4K" => "bg-warning text-dark",
+            _ => "bg-light text-dark"
+        };
+    }
+
+    private string GetQualityIcon(string quality)
+    {
+        return quality switch
+        {
+            "360p" => "fas fa-mobile-alt",
+            "480p" => "fas fa-tablet-alt",
+            "720p" => "fas fa-desktop",
+            "1080p" => "fas fa-tv",
+            "4K" => "fas fa-film",
+            _ => "fas fa-video"
+        };
+    }
+
+    private string GetQualityDisplayName(string quality)
+    {
+        return quality switch
+        {
+            "360p" => "360p - جودة منخفضة",
+            "480p" => "480p - جودة متوسطة",
+            "720p" => "720p HD - جودة عالية",
+            "1080p" => "1080p Full HD - جودة فائقة",
+            "4K" => "4K Ultra HD - جودة استثنائية",
+            _ => quality
+        };
+    }
+}

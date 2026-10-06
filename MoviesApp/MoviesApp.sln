@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesApp", "MoviesApp.csproj", "{8B7E71AF-E782-4DA9-B4F3-AC13E1E82877}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domin", "..\Domin\Domin.csproj", "{C1CC6B88-40E8-437F-9145-367FE0DE7C93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "infrastructure", "..\infrastructure\infrastructure.csproj", "{FDDDB6F6-44BB-41C4-807D-8CB10BB9FD4A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B7E71AF-E782-4DA9-B4F3-AC13E1E82877}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B7E71AF-E782-4DA9-B4F3-AC13E1E82877}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B7E71AF-E782-4DA9-B4F3-AC13E1E82877}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B7E71AF-E782-4DA9-B4F3-AC13E1E82877}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1CC6B88-40E8-437F-9145-367FE0DE7C93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1CC6B88-40E8-437F-9145-367FE0DE7C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1CC6B88-40E8-437F-9145-367FE0DE7C93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1CC6B88-40E8-437F-9145-367FE0DE7C93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDDDB6F6-44BB-41C4-807D-8CB10BB9FD4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDDDB6F6-44BB-41C4-807D-8CB10BB9FD4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDDDB6F6-44BB-41C4-807D-8CB10BB9FD4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDDDB6F6-44BB-41C4-807D-8CB10BB9FD4A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

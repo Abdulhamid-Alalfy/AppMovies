@@ -1,0 +1,381 @@
+@using infrastructure.ViewModel
+@model AdminRegisterUserViewModel
+@{
+    ViewData["Title"] = "إنشاء حساب جديد | Premium Cinema";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎬 @ViewData["Title"]</title>
+    
+    <!-- DevExpress Styles (Dark Theme) -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.5/css/dx.material.blue.dark.compact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('@Url.Content("~/Images/login-bg.png")') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .register-wrapper {
+            min-height: 100vh !important;
+            width: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 40px 20px !important;
+            box-sizing: border-box !important;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.65) !important;
+            backdrop-filter: blur(25px) !important;
+            -webkit-backdrop-filter: blur(25px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 24px !important;
+            padding: 40px 35px !important;
+            width: 100% !important;
+            max-width: 600px !important;
+            height: auto !important;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6) !important;
+            animation: slideUp 0.8s ease-out;
+            box-sizing: border-box !important;
+        }
+
+        @@keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .register-header h2 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 8px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .register-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        .photo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .current-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .current-photo:hover {
+            transform: scale(1.05);
+            border-color: #d32f2f;
+        }
+
+        .dx-button-mode-contained.dx-button-default {
+            background: linear-gradient(45deg, #d32f2f, #b71c1c) !important;
+            border: none !important;
+            height: 48px !important;
+            border-radius: 12px !important;
+            font-size: 1rem !important;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3) !important;
+            transition: all 0.3s ease !important;
+            color: #fff !important;
+            font-family: 'Tajawal', sans-serif !important;
+        }
+
+        .dx-button-mode-contained.dx-button-default:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.5) !important;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .back-link a {
+            color: #ff4d4d;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .back-link a:hover {
+            color: #fff;
+        }
+
+        /* Customizing Inputs for Dark Premium Feel */
+        .dx-texteditor.dx-editor-outlined {
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 12px !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .dx-texteditor.dx-state-hover.dx-editor-outlined {
+            border-color: rgba(255, 255, 255, 0.2) !important;
+        }
+
+        .dx-texteditor.dx-state-focused.dx-editor-outlined {
+            border-color: #d32f2f !important;
+            box-shadow: 0 0 10px rgba(211, 47, 47, 0.2) !important;
+            background: rgba(255, 255, 255, 0.06) !important;
+        }
+
+        .dx-texteditor-input {
+            color: #fff !important;
+            font-family: 'Tajawal', sans-serif !important;
+            font-size: 0.95rem !important;
+            padding: 12px 15px !important;
+        }
+
+        .dx-placeholder {
+            color: rgba(255, 255, 255, 0.4) !important;
+            font-family: 'Tajawal', sans-serif !important;
+        }
+
+        .dx-field-item-label-text {
+            color: rgba(255, 255, 255, 0.7) !important;
+            font-weight: 600 !important;
+            font-size: 0.9rem !important;
+            margin-bottom: 8px !important;
+        }
+        
+        .dx-tag-container {
+            border-radius: 12px !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+
+        .dx-tag {
+            background-color: rgba(211, 47, 47, 0.15) !important;
+            color: #ff4d4d !important;
+            border: 1px solid rgba(211, 47, 47, 0.3) !important;
+            border-radius: 6px !important;
+        }
+
+        .dx-tag-button-action {
+            color: #ff4d4d !important;
+        }
+
+        /* Fix Chrome/Safari autofill background and text color in dark mode */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 1000px #0c1524 inset !important;
+            -webkit-text-fill-color: #fff !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+    </style>
+</head>
+<body class="dx-viewport">
+    <div class="register-wrapper">
+        <div class="glass-card">
+            <div class="register-header">
+                <i class="fas fa-user-plus" style="color: #d32f2f; font-size: 2.5rem; margin-bottom: 15px; display: block;"></i>
+                <h2>عضوية جديدة</h2>
+                <p>انضم لخبراء السينما وابدأ رحلة بلا حدود</p>
+            </div>
+
+            <div class="photo-section">
+                <img id="photoPreview" src="@Url.Content(Model.ProfilePictureURL ?? "~/images/default-avatar.png")" class="current-photo" alt="Profile Preview">
+            </div>
+
+            <form id="register-form-actual" method="post" enctype="multipart/form-data" action="@Url.Action("Register")">
+                @Html.AntiForgeryToken()
+                <div style="display:none;">
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger", id = "validation-summary" })
+                </div>
+                <div id="register-form"></div>
+                <input type="file" name="ImageFile" id="imageInput" style="display:none;" accept="image/*">
+            </form>
+
+            <div class="back-link">
+                <a asp-action="Login">لديك حساب بالفعل؟ سجل دخولك من هنا</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- DevExpress Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn3.devexpress.com/jslib/23.2.5/js/dx.all.js"></script>
+
+    <script>
+        $(function() {
+            // Handle errors
+            var errors = $("#validation-summary li");
+            if (errors.length > 0) {
+                errors.each(function() {
+                    var txt = $(this).text();
+                    if (txt) DevExpress.ui.notify(txt, "error", 6000);
+                });
+            }
+
+            var roles = @Html.Raw(Json.Serialize(Model.AvailableRoles));
+            
+            var form = $("#register-form").dxForm({
+                formData: {
+                    FullName: "@Model.FullName",
+                    Email: "@Model.Email",
+                    Password: "",
+                    ConfirmPassword: "",
+                    SelectedRoles: @Html.Raw(Json.Serialize(Model.SelectedRoles))
+                },
+                labelLocation: "top",
+                rtlEnabled: true,
+                colCount: 2,
+                items: [{
+                    dataField: "FullName",
+                    label: { text: "الاسم الكامل" },
+                    editorOptions: {
+                        placeholder: "أدخل اسمك هنا",
+                        stylingMode: "outlined"
+                    },
+                    validationRules: [{ type: "required", message: "الاسم مطلوب" }]
+                }, {
+                    dataField: "Email",
+                    label: { text: "البريد الإلكتروني" },
+                    editorOptions: {
+                        mode: "email",
+                        placeholder: "john@example.com",
+                        stylingMode: "outlined"
+                    },
+                    validationRules: [{ type: "required", message: "البريد الإلكتروني مطلوب" }, { type: "email", message: "تنسيق البريد غير صحيح" }]
+                }, {
+                    dataField: "Password",
+                    label: { text: "كلمة المرور" },
+                    editorType: "dxTextBox",
+                    editorOptions: {
+                        mode: "password",
+                        placeholder: "أدخل كلمة سر قوية",
+                        stylingMode: "outlined"
+                    },
+                    validationRules: [{ type: "required", message: "كلمة المرور مطلوبة" }]
+                }, {
+                    dataField: "ConfirmPassword",
+                    label: { text: "تأكيد كلمة المرور" },
+                    editorType: "dxTextBox",
+                    editorOptions: {
+                        mode: "password",
+                        placeholder: "أعد كتابة كلمة السر",
+                        stylingMode: "outlined"
+                    },
+                    validationRules: [
+                        { type: "required", message: "يرجى تأكيد كلمة المرور" },
+                        {
+                            type: "compare",
+                            comparisonTarget: function() { return form.option("formData").Password; },
+                            message: "كلمات المرور لا تتطابق"
+                        }
+                    ]
+                }, {
+                    dataField: "SelectedRoles",
+                    label: { text: "تحديد الصلاحيات (Roles)" },
+                    editorType: "dxTagBox",
+                    editorOptions: {
+                        items: roles,
+                        placeholder: "اختر الصلاحيات المطلوبة...",
+                        stylingMode: "outlined",
+                        hideSelectedItems: true,
+                        searchEnabled: true,
+                        dropDownOptions: {
+                            wrapperAttr: { class: "dark-dropdown" }
+                        }
+                    },
+                    colSpan: 2
+                }, {
+                    itemType: "group",
+                    label: { text: "تحديث صورة البروفايل" },
+                    colSpan: 2,
+                    items: [{
+                        itemType: "simple",
+                        template: function(data, itemElement) {
+                            $("<div />").dxFileUploader({
+                                selectButtonText: "اختيار الصورة",
+                                labelText: "أو اسحبها هنا",
+                                accept: "image/*",
+                                uploadMode: "useForm",
+                                stylingMode: "outlined",
+                                onValueChanged: function(e) {
+                                    if (e.value && e.value[0]) {
+                                        var reader = new FileReader();
+                                        reader.onload = function(event) {
+                                            $("#photoPreview").attr("src", event.target.result);
+                                        };
+                                        reader.readAsDataURL(e.value[0]);
+                                        
+                                        const dataTransfer = new DataTransfer();
+                                        dataTransfer.items.add(e.value[0]);
+                                        document.getElementById('imageInput').files = dataTransfer.files;
+                                    }
+                                }
+                            }).appendTo(itemElement);
+                        }
+                    }]
+                }, {
+                    itemType: "button",
+                    horizontalAlignment: "center",
+                    colSpan: 2,
+                    buttonOptions: {
+                        text: "تأكيد الاشتراك",
+                        type: "default",
+                        width: "100%",
+                        onClick: function() {
+                            var result = form.validate();
+                            if (result.isValid) {
+                                var formData = form.option("formData");
+                                var $actualForm = $("#register-form-actual");
+                                
+                                $actualForm.find('input[type="hidden"]').not('[name="__RequestVerificationToken"]').remove();
+
+                                for (var key in formData) {
+                                    if (key === "SelectedRoles") {
+                                        formData[key].forEach(function(role) {
+                                            $("<input>").attr({ type: "hidden", name: "SelectedRoles", value: role }).appendTo($actualForm);
+                                        });
+                                    } else {
+                                        $("<input>").attr({ type: "hidden", name: key, value: formData[key] }).appendTo($actualForm);
+                                    }
+                                }
+                                
+                                $actualForm.submit();
+                            }
+                        }
+                    }
+                }]
+            }).dxForm("instance");
+        });
+    </script>
+</body>
+</html>
+

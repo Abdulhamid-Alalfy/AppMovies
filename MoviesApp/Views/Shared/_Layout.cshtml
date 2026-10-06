@@ -1,0 +1,369 @@
+@using Domin.Model
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> userManager
+@inject SignInManager<AppUser> signInManager
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema Pro - Professional Movie Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="~/Web/css/site.css" rel="stylesheet" />
+    <script>
+        // Prevent theme flash by applying the current theme before the page parses
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.classList.add('light-mode');
+            } else {
+                document.documentElement.classList.remove('light-mode');
+            }
+        })();
+    </script>
+    @await RenderSectionAsync("Style", required: false)
+</head>
+<body class="@(Context.Request.Cookies["theme"] == "light" ? "light-mode" : "")">
+    @await Html.PartialAsync("_Header")
+    @await Html.PartialAsync("_Sidebar")
+    @await Html.PartialAsync("_MobileMenu")
+
+    @RenderBody()
+    @await Html.PartialAsync("_Footer")
+    <script>
+        // كود JavaScript للوظائف التفاعلية
+                document.addEventListener('DOMContentLoaded', function () {
+            window.__cinemaLayoutScriptInitialized = true;
+            // --- Theme toggle (Simplified and Corrected) ---
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            const html = document.documentElement;
+
+            function setTheme(isLight) {
+                const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
+
+                if (isLight) {
+                    body.classList.add('light-mode');
+                    html.classList.add('light-mode');
+                    if (themeIcon) {
+                        themeIcon.classList.remove('fa-moon');
+                        themeIcon.classList.add('fa-sun');
+                        themeIcon.style.color = '#f39c12';
+                    }
+                } else {
+                    body.classList.remove('light-mode');
+                    html.classList.remove('light-mode');
+                    if (themeIcon) {
+                        themeIcon.classList.remove('fa-sun');
+                        themeIcon.classList.add('fa-moon');
+                        themeIcon.style.color = '';
+                    }
+                }
+
+                localStorage.setItem('theme', isLight ? 'light' : 'dark');
+                document.cookie = `theme=${isLight ? 'light' : 'dark'};path=/;max-age=31536000`;
+            }
+
+            // Get saved theme preference
+            const savedTheme = localStorage.getItem('theme') || (document.cookie.match(/theme=light/) ? 'light' : 'dark');
+            const isLightMode = savedTheme === 'light';
+
+            // Apply the initial theme
+            setTheme(isLightMode);
+
+            // Attach click handler
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const currentlyLight = body.classList.contains('light-mode');
+                    setTheme(!currentlyLight);
+                });
+            }
+
+            // --- Slider (safe checks) ---
+            const sliderContainer = document.getElementById('sliderContainer');
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            const prevBtn = document.getElementById('prevSlide');
+            const nextBtn = document.getElementById('nextSlide');
+            let currentSlide = 0;
+            let slideInterval;
+
+            function showSlide(n) {
+                if (!sliderContainer || slides.length === 0) return;
+
+                if (n >= slides.length) currentSlide = 0;
+                if (n < 0) currentSlide = slides.length - 1;
+
+                sliderContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+                if (dots && dots.length) {
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+                }
+            }
+
+            function nextSlide() {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+
+            function prevSlide() {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+
+            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+
+            if (dots && dots.length) {
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        currentSlide = index;
+                        showSlide(currentSlide);
+                        resetInterval();
+                    });
+                });
+            }
+
+            function startInterval() {
+                if (slides.length === 0) return;
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+
+            function resetInterval() {
+                if (slideInterval) clearInterval(slideInterval);
+                startInterval();
+            }
+
+            startInterval();
+
+            const slider = document.querySelector('.offers-slider');
+            if (slider) {
+                slider.addEventListener('mouseenter', () => {
+                    if (slideInterval) clearInterval(slideInterval);
+                });
+                slider.addEventListener('mouseleave', () => startInterval());
+            }
+
+            // --- Search boxes (safe) ---
+            const searchInputs = Array.from(document.querySelectorAll('.search-box input'));
+            const searchButtons = Array.from(document.querySelectorAll('.search-box button'));
+
+            if (searchButtons.length) {
+                searchButtons.forEach((button, index) => {
+                    button.addEventListener('click', function () {
+                        const input = searchInputs[index];
+                        if (input && input.value.trim() !== '') {
+                            // استبدل الـ alert بمنطق البحث الفعلي عند الحاجة
+                            alert(`سيتم البحث عن: ${input.value}`);
+                        }
+                    });
+                });
+            }
+
+            searchInputs.forEach((input, index) => {
+                input.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') {
+                        if (searchButtons[index]) searchButtons[index].click();
+                    }
+                });
+            });
+
+            // --- Mobile menu / hamburger (safe) ---
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileSearch = document.querySelector('.mobile-search');
+
+            if (hamburger && mobileMenu) {
+                hamburger.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('active');
+
+                    if (window.innerWidth <= 576 && mobileSearch) {
+                        mobileSearch.style.display = mobileMenu.classList.contains('active') ? 'flex' : 'none';
+                    }
+
+                    hamburger.innerHTML = mobileMenu.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                });
+            }
+
+            const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+            if (mobileLinks && hamburger && mobileSearch) {
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (mobileMenu) mobileMenu.classList.remove('active');
+                        if (hamburger) hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                        if (window.innerWidth <= 576 && mobileSearch) mobileSearch.style.display = 'none';
+                    });
+                });
+            }
+
+            // --- Smooth scroll for anchor links ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if (!targetId || targetId === '#') return;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // --- Fade-in intersection observer (safe) ---
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+            let observer = null;
+
+            const observedEls = document.querySelectorAll('.movie-card, .category-card, .user-card');
+            if (observedEls && observedEls.length) {
+                observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) entry.target.classList.add('visible');
+                    });
+                }, observerOptions);
+
+                observedEls.forEach(el => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    el.classList.add('fade-in');
+                    observer.observe(el);
+                });
+            }
+
+            // inject fade-in CSS
+            const style = document.createElement('style');
+            style.textContent = `.fade-in.visible { opacity: 1 !important; transform: translateY(0) !important; }`;
+            document.head.appendChild(style);
+
+            // --- Sidebar (safe) ---
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarClose = document.getElementById('sidebarClose');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+            if (sidebarToggle && sidebar && sidebarOverlay) {
+                sidebarToggle.addEventListener('click', function () {
+                    sidebar.classList.add('active');
+                    sidebarOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+
+            function closeSidebar() {
+                if (!sidebar || !sidebarOverlay) return;
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
+            if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
+
+            // close sidebar with Escape
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    if (sidebar && sidebar.classList.contains('active')) closeSidebar();
+                    // close user dropdown if open
+                    const ud = document.getElementById('userDropdown');
+                    if (ud && ud.classList.contains('active')) {
+                        ud.classList.remove('active');
+                        ud.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+
+            // --- User dropdown (improved) ---
+            // Expecting an element with id="userDropdown" wrapping the user avatar/name,
+            // and a child .user-dropdown-menu for the dropdown content.
+            const userDropdown = document.getElementById('userDropdown');
+            if (userDropdown) {
+                userDropdown.setAttribute('tabindex', '0');
+                userDropdown.setAttribute('role', 'button');
+                userDropdown.setAttribute('aria-haspopup', 'true');
+
+                // toggle function
+                function toggleUserDropdown(open) {
+                    const isOpen = userDropdown.classList.contains('active');
+                    const shouldOpen = typeof open === 'boolean' ? open : !isOpen;
+                    if (shouldOpen) {
+                        userDropdown.classList.add('active');
+                        userDropdown.setAttribute('aria-expanded', 'true');
+                    } else {
+                        userDropdown.classList.remove('active');
+                        userDropdown.setAttribute('aria-expanded', 'false');
+                    }
+                }
+
+                userDropdown.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    toggleUserDropdown();
+                });
+
+                // keyboard support (Enter / Space)
+                userDropdown.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleUserDropdown();
+                    }
+                });
+
+                // close when clicking outside
+                document.addEventListener('click', function () {
+                    if (userDropdown.classList.contains('active')) {
+                        toggleUserDropdown(false);
+                    }
+                });
+
+                // prevent clicks inside menu closing it
+                const innerMenu = userDropdown.querySelector('.user-dropdown-menu');
+                if (innerMenu) {
+                    innerMenu.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                    });
+                }
+            }
+
+            // Optional: attach small ARIA improvement to profile links if present
+            const profileLinks = document.querySelectorAll('.user-link');
+            profileLinks.forEach(link => {
+                link.setAttribute('aria-label', 'Open profile');
+            });
+
+             const notificationBell = document.getElementById('notificationBell');
+            const notificationDropdown = document.getElementById('notificationDropdown');
+
+            if (notificationBell && notificationDropdown) {
+                notificationBell.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    notificationDropdown.classList.toggle('show');
+
+                    // تحميل الإشعارات عند فتح القائمة
+                    if (notificationDropdown.classList.contains('show') && window.loadNotifications) {
+                        window.loadNotifications();
+                    }
+                });
+
+                // إغلاق القائمة عند النقر خارجها
+                document.addEventListener('click', function(e) {
+                    if (!notificationBell.contains(e.target) && !notificationDropdown.contains(e.target)) {
+                        notificationDropdown.classList.remove('show');
+                    }
+                });
+            }
+        });
+
+    </script>
+    <script src="~/js/signalr.js"></script>
+    <script src="~/Web/js/notifications.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

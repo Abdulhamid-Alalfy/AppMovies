@@ -1,0 +1,23 @@
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h2 class="sidebar-title fa-solid fa-users">إعدادات الحساب</h2>
+        <button class="sidebar-close" id="sidebarClose">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <div class="sidebar-categories">
+        <a asp-action="MyFavorites" asp-controller="Favorites" class="sidebar-category">
+            <i class="fa-solid fa-film sidebar-category-icon"></i>
+            <span>أفلامي المفضلة</span>
+        </a>
+        <a asp-action="MyWatchHistory" asp-controller="WatchHistory" class="sidebar-category">
+            <i class="fa-solid fa-clock-rotate-left sidebar-category-icon"></i>
+            <span>سجل المشاهدات</span>
+        </a>
+        <a asp-action="Details" asp-controller="Accounts" class="sidebar-category">
+            <i class="fa-solid fa-user-pen sidebar-category-icon"></i>
+            <span>تعديل الملف الشخصي</span>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,385 @@
+@using infrastructure.ViewModel
+@using Newtonsoft.Json
+@model AdminUsersIndexViewModel
+@{
+    ViewData["Title"] = "إدارة المستخدمين | Cinema Pro";
+    Layout = "_LayoutAdmin";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.5/css/dx.material.blue.dark.compact.css">
+
+    <style>
+        .dashboard-container {
+            padding: 20px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-panel {
+            background: rgba(13, 27, 42, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+        }
+
+        .header-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-section h2 i {
+            color: #2196F3;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.2), rgba(13, 27, 42, 0.6));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.08);
+            color: #2196F3;
+            font-size: 1.2rem;
+        }
+
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #9fb3c8;
+        }
+
+        .user-avatar-preview {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .role-tag {
+            background: rgba(33, 150, 243, 0.1);
+            color: #2196F3;
+            padding: 2px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: 2px;
+            display: inline-block;
+            border: 1px solid rgba(33, 150, 243, 0.2);
+        }
+
+        .role-admin {
+            background: rgba(244, 67, 54, 0.1);
+            color: #f44336;
+            border-color: rgba(244, 67, 54, 0.2);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .status-active {
+            background: rgba(76, 175, 80, 0.15);
+            color: #66bb6a;
+        }
+
+        .status-blocked {
+            background: rgba(244, 67, 54, 0.15);
+            color: #ef5350;
+        }
+
+        #usersGrid {
+            background: transparent !important;
+        }
+
+        .dx-datagrid {
+            background-color: transparent !important;
+            color: #fff !important;
+        }
+
+        .dx-datagrid-headers {
+            background-color: rgba(255, 255, 255, 0.03) !important;
+        }
+
+        .dx-datagrid-headers .dx-datagrid-text-content {
+            color: #2196F3 !important;
+            font-weight: 700 !important;
+        }
+
+        .action-container {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .action-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none !important;
+        }
+
+        .btn-edit { background: rgba(33, 150, 243, 0.1); color: #2196F3; }
+        .btn-edit:hover { background: #2196F3; color: #fff; }
+
+        .btn-block { background: rgba(255, 193, 7, 0.12); color: #ffc107; }
+        .btn-block:hover { background: #ffc107; color: #fff; }
+
+        .btn-unblock { background: rgba(76, 175, 80, 0.12); color: #66bb6a; }
+        .btn-unblock:hover { background: #66bb6a; color: #fff; }
+
+        .btn-delete { background: rgba(244, 67, 54, 0.1); color: #f44336; }
+        .btn-delete:hover { background: #f44336; color: #fff; }
+    </style>
+}
+
+<div class="dashboard-container">
+    <div class="glass-panel">
+        <div class="header-section">
+            <h2><i class="fas fa-users-cog"></i> إدارة حسابات المستخدمين</h2>
+            <a asp-action="Register" class="btn btn-primary" style="border-radius: 12px; padding: 10px 20px; display: flex; align-items: center; gap: 8px;">
+                <i class="fas fa-user-plus"></i>
+                إضافة مستخدم جديد
+            </a>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div>
+                    <div class="stat-value">@Model.TotalUsers</div>
+                    <div class="stat-label">إجمالي المستخدمين</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-user-check"></i></div>
+                <div>
+                    <div class="stat-value">@Model.ActiveUsers</div>
+                    <div class="stat-label">مستخدمون نشطون</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-user-shield"></i></div>
+                <div>
+                    <div class="stat-value">@Model.AdminUsers</div>
+                    <div class="stat-label">إداريو النظام</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-user-lock"></i></div>
+                <div>
+                    <div class="stat-value">@Model.BlockedUsers</div>
+                    <div class="stat-label">مستخدمون محظورون</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="usersGrid"></div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function() {
+            var usersData = @Html.Raw(JsonConvert.SerializeObject(Model.Users));
+
+            $("#usersGrid").dxDataGrid({
+                dataSource: usersData,
+                keyExpr: "UserId",
+                rtlEnabled: true,
+                showBorders: false,
+                columnAutoWidth: true,
+                searchPanel: {
+                    visible: true,
+                    width: 300,
+                    placeholder: "بحث عن مستخدم..."
+                },
+                paging: { pageSize: 12 },
+                pager: {
+                    showPageSizeSelector: true,
+                    allowedPageSizes: [12, 24, 48],
+                    showInfo: true
+                },
+                columns: [
+                    {
+                        dataField: "ProfilePictureURL",
+                        caption: "الصورة",
+                        width: 90,
+                        allowFiltering: false,
+                        allowSorting: false,
+                        cellTemplate: function(container, options) {
+                            $('<img class="user-avatar-preview">')
+                                .attr('src', options.value ? options.value.replace('~/', '/') : '/images/default-avatar.png')
+                                .appendTo(container);
+                        }
+                    },
+                    {
+                        dataField: "FullName",
+                        caption: "الاسم",
+                        width: 180
+                    },
+                    {
+                        dataField: "Email",
+                        caption: "البريد الإلكتروني",
+                        dataType: "string",
+                        sortOrder: "asc"
+                    },
+                    {
+                        dataField: "IsBlocked",
+                        caption: "الحالة",
+                        width: 120,
+                        cellTemplate: function(container, options) {
+                            var text = options.value ? "محظور" : "نشط";
+                            var cssClass = options.value ? "status-blocked" : "status-active";
+                            $('<span class="status-badge ' + cssClass + '">')
+                                .text(text)
+                                .appendTo(container);
+                        }
+                    },
+                    {
+                        dataField: "Roles",
+                        caption: "الأدوار / الصلاحيات",
+                        allowSorting: false,
+                        cellTemplate: function(container, options) {
+                            if (options.value && options.value.length > 0) {
+                                var $tags = $('<div/>');
+                                options.value.forEach(function(role) {
+                                    var isAdmin = role.toLowerCase().includes('admin');
+                                    $('<span class="role-tag">')
+                                        .addClass(isAdmin ? 'role-admin' : '')
+                                        .text(role)
+                                        .appendTo($tags);
+                                });
+                                $tags.appendTo(container);
+                            } else {
+                                $('<span class="text-muted small">بدون أدوار</span>').appendTo(container);
+                            }
+                        }
+                    },
+                    {
+                        caption: "الخيارات",
+                        width: 190,
+                        alignment: "center",
+                        cellTemplate: function(container, options) {
+                            var $actions = $('<div class="action-container">');
+
+                            var toggleTitle = options.data.IsBlocked ? "إلغاء الحظر" : "حظر";
+                            var toggleClass = options.data.IsBlocked ? "btn-unblock" : "btn-block";
+                            var toggleIcon = options.data.IsBlocked ? "fas fa-lock-open" : "fas fa-lock";
+
+                            $('<a class="action-btn ' + toggleClass + '" title="' + toggleTitle + '">')
+                                .append($('<i class="' + toggleIcon + '"></i>'))
+                                .attr('href', '#')
+                                .on('click', function(e) {
+                                    e.preventDefault();
+                                    confirmStatusChange(options.data.UserId, options.data.Email, options.data.IsBlocked);
+                                })
+                                .appendTo($actions);
+
+                            $('<a class="action-btn btn-edit" title="تعديل">')
+                                .append($('<i class="fas fa-user-edit"></i>'))
+                                .attr('href', '@Url.Action("Edit")/' + options.data.UserId)
+                                .appendTo($actions);
+
+                            $('<div class="action-btn btn-delete" title="حذف">')
+                                .append($('<i class="fas fa-trash-alt"></i>'))
+                                .on('click', function() {
+                                    confirmDelete(options.data.UserId, options.data.Email);
+                                })
+                                .appendTo($actions);
+
+                            $actions.appendTo(container);
+                        }
+                    }
+                ]
+            });
+
+            function confirmDelete(id, email) {
+                var result = DevExpress.ui.dialog.confirm(
+                    "هل أنت متأكد من حذف حساب '" + email + "'؟ لا يمكن التراجع عن هذا الإجراء.",
+                    "تأكيد حذف الحساب"
+                );
+
+                result.done(function(dialogResult) {
+                    if (dialogResult) {
+                        var $form = $('<form method="post" action="@Url.Action("Delete")/' + id + '">');
+                        $form.append($('@Html.AntiForgeryToken()'));
+                        $(document.body).append($form);
+                        $form.submit();
+                    }
+                });
+            }
+
+            function confirmStatusChange(id, email, isBlocked) {
+                var message = isBlocked
+                    ? "هل تريد إلغاء حظر الحساب '" + email + "'؟"
+                    : "هل تريد حظر الحساب '" + email + "'؟";
+
+                var result = DevExpress.ui.dialog.confirm(message, isBlocked ? "إلغاء الحظر" : "حظر المستخدم");
+
+                result.done(function(dialogResult) {
+                    if (dialogResult) {
+                        var action = isBlocked ? '@Url.Action("UnBlockUser")' : '@Url.Action("BlockUser")';
+                        window.location.href = action + '/' + id;
+                    }
+                });
+            }
+        });
+    </script>
+}

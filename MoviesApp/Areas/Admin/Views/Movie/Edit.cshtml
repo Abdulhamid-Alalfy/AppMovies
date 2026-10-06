@@ -1,0 +1,324 @@
+@using Domin.Enum
+@using infrastructure.ViewModel
+@using Newtonsoft.Json
+@model UpdateMovieModelView
+@{
+    ViewData["Title"] = "تعديل الفيلم | Cinema Pro";
+    Layout = "_LayoutAdmin";
+}
+
+@section Styles {
+    <!-- DevExpress Styles -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.5/css/dx.material.blue.dark.compact.css">
+
+    <style>
+        .form-card {
+            background: rgba(13, 27, 42, 0.4);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 35px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .form-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .form-header i { color: #FFC107; }
+
+        .dx-texteditor.dx-editor-outlined {
+            background: rgba(255, 255, 255, 0.03) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            border-radius: 12px !important;
+        }
+
+        .preview-pane {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .poster-prev {
+            width: 150px;
+            height: 220px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 3px solid #FFC107;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .footer-nav {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-nav a {
+            color: #FFC107;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .manual-field {
+            margin-bottom: 20px;
+        }
+
+        .manual-field label {
+            color: rgba(255, 255, 255, 0.7);
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .manual-field input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            padding: 10px 12px;
+        }
+    </style>
+}
+
+<div class="form-card">
+    <div class="form-header">
+        <h2><i class="fas fa-edit"></i> تعديل بيانات الفيلم</h2>
+        <p class="text-muted">قم بتحديث معلومات الفيلم أو تغيير طاقم العمل</p>
+    </div>
+
+    <div class="preview-pane">
+        <img id="posterPreview" src="@Url.Content(Model.Poster ?? "/images/placeholder.jpg")" alt="Poster Preview" class="poster-prev">
+    </div>
+
+    <form id="movie-edit-form-actual" method="post" enctype="multipart/form-data" action="@Url.Action("Edit")">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" name="Poster" value="@Model.Poster" />
+        
+        <div id="hidden-inputs"></div>
+
+        <div class="manual-field">
+            <label for="Year">سنة الإصدار</label>
+            <input type="number" name="Year" id="Year" min="1900" max="2099" required value="@Model.Year" />
+        </div>
+        
+        <div id="movie-edit-form-dx"></div>
+        
+        <!-- Hidden file inputs -->
+        <input type="file" name="PosterFile" id="realPosterInput" style="display:none;" accept="image/*">
+        
+        <div style="display:none;">
+            @Html.ValidationSummary(false, "", new { @class = "text-danger", id = "validation-summary" })
+        </div>
+    </form>
+
+    <div class="footer-nav">
+        <a asp-action="Index">
+            <i class="fas fa-chevron-right"></i> العودة لقائمة الأفلام
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function() {
+            // Data from Model
+            var genresList = @Html.Raw(JsonConvert.SerializeObject(Model.GenresList));
+            var producersList = @Html.Raw(JsonConvert.SerializeObject(Model.ProducersList));
+            var actorsList = @Html.Raw(JsonConvert.SerializeObject(Model.ActorsList));
+
+            var mapList = function(list) {
+                return list.map(item => ({ id: item.Value, name: item.Text }));
+            };
+
+            var dxGenres = mapList(genresList);
+            var dxProducers = mapList(producersList);
+            var dxActors = mapList(actorsList);
+
+            // Handle errors
+            var errors = $("#validation-summary li");
+            if (errors.length > 0) {
+                errors.each(function() {
+                    var txt = $(this).text();
+                    if (txt) DevExpress.ui.notify(txt, "error", 6000);
+                });
+            }
+
+            var form = $("#movie-edit-form-dx").dxForm({
+                formData: {
+                    Title: `@Html.Raw(Model.Title)`,
+                    Duration: "@Model.Duration",
+                    Description: `@Html.Raw(Model.Description)`,
+                    GenreId: "@Model.GenreId",
+                    ProducerId: "@Model.ProducerId",
+                    SelectedActorIds: @Html.Raw(JsonConvert.SerializeObject(Model.SelectedActorIds)),
+                    Language: `@Html.Raw(Model.Language)`,
+                    Country: `@Html.Raw(Model.Country)`,
+                    Rating: `@Html.Raw(Model.Rating)`,
+                    AgeRating: `@Html.Raw(Model.AgeRating)`
+                },
+                labelLocation: "top",
+                rtlEnabled: true,
+                colCount: 2,
+                items: [{
+                    itemType: "group",
+                    caption: "المعلومات الأساسية",
+                    colSpan: 2,
+                    colCount: 2,
+                    items: [{
+                        dataField: "Title",
+                        label: { text: "عنوان الفيلم" },
+                        editorOptions: { stylingMode: "outlined" },
+                        validationRules: [{ type: "required", message: "العنوان مطلوب" }]
+                    }, {
+                        dataField: "Duration",
+                        label: { text: "مدة الفيلم (بالدقايق)" },
+                        editorOptions: { placeholder: "أدخل المدة بالدقايق، مثال: 120", stylingMode: "outlined" },
+                        validationRules: [{ type: "required", message: "مدة الفيلم مطلوبة" }]
+                    }, {
+                        dataField: "Description",
+                        colSpan: 2,
+                        label: { text: "قصة الفيلم" },
+                        editorType: "dxTextArea",
+                        editorOptions: { height: 100, stylingMode: "outlined" }
+                    }]
+                }, {
+                    itemType: "group",
+                    caption: "التصنيف والإنتاج",
+                    items: [{
+                        dataField: "GenreId",
+                        label: { text: "نوع الفيلم" },
+                        editorType: "dxSelectBox",
+                        editorOptions: {
+                            dataSource: dxGenres,
+                            displayExpr: "name",
+                            valueExpr: "id",
+                            searchEnabled: true,
+                            stylingMode: "outlined"
+                        }
+                    }, {
+                        dataField: "ProducerId",
+                        label: { text: "المنتج" },
+                        editorType: "dxSelectBox",
+                        editorOptions: {
+                            dataSource: dxProducers,
+                            displayExpr: "name",
+                            valueExpr: "id",
+                            searchEnabled: true,
+                            stylingMode: "outlined"
+                        }
+                    }]
+                }, {
+                    itemType: "group",
+                    caption: "طاقم العمل والوسائط",
+                    items: [{
+                        dataField: "SelectedActorIds",
+                        label: { text: "الممثلون" },
+                        editorType: "dxTagBox",
+                        editorOptions: {
+                            dataSource: dxActors,
+                            displayExpr: "name",
+                            valueExpr: "id",
+                            searchEnabled: true,
+                            stylingMode: "outlined"
+                        }
+                    }, {
+                        itemType: "simple",
+                        label: { text: "تغيير البوستر (اختياري)" },
+                        template: function(data, itemElement) {
+                            $("<div />").dxFileUploader({
+                                selectButtonText: "رفع بوستر جديد",
+                                accept: "image/*",
+                                uploadMode: "useForm",
+                                stylingMode: "outlined",
+                                onValueChanged: function(e) {
+                                    if (e.value && e.value[0]) {
+                                        var reader = new FileReader();
+                                        reader.onload = function(ev) {
+                                            $("#posterPreview").attr("src", ev.target.result);
+                                        };
+                                        reader.readAsDataURL(e.value[0]);
+                                        
+                                        const dt = new DataTransfer();
+                                        dt.items.add(e.value[0]);
+                                        document.getElementById('realPosterInput').files = dt.files;
+                                    }
+                                }
+                            }).appendTo(itemElement);
+                        }
+                    }]
+                }, {
+                    itemType: "group",
+                    caption: "تفاصيل فنية",
+                    colSpan: 2,
+                    colCount: 4,
+                    items: [
+                        { dataField: "Language", label: { text: "اللغة" }, editorOptions: { stylingMode: "outlined" } },
+                        { dataField: "Country", label: { text: "الدولة" }, editorOptions: { placeholder: "مثال: مصر", stylingMode: "outlined" }, validationRules: [{ type: "required", message: "الدولة مطلوبة" }] },
+                        { dataField: "Rating", label: { text: "IMDB" }, editorOptions: { stylingMode: "outlined" } },
+                        { dataField: "AgeRating", label: { text: "العمر" }, editorOptions: { stylingMode: "outlined" } }
+                    ]
+                }, {
+                    itemType: "button",
+                    colSpan: 2,
+                    horizontalAlignment: "center",
+                    buttonOptions: {
+                        text: "حفظ التغييرات",
+                        type: "default",
+                        width: "100%",
+                        stylingMode: "contained",
+                        onClick: function() {
+                            var res = form.validate();
+                            if (res.isValid) {
+                                var data = form.option("formData");
+                                var $actual = $("#movie-edit-form-actual");
+                                var $hid = $("#hidden-inputs");
+                                
+                                $hid.empty();
+                                Object.keys(data).forEach(function(key) {
+                                    if (key === "SelectedActorIds") {
+                                        if (data[key]) {
+                                            data[key].forEach((val, idx) => {
+                                                $("<input>").attr({ type: "hidden", name: "SelectedActorIds[" + idx + "]", value: val }).appendTo($hid);
+                                            });
+                                        }
+                                    } else {
+                                        $("<input>").attr({ type: "hidden", name: key, value: data[key] }).appendTo($hid);
+                                    }
+                                });
+
+                                DevExpress.ui.notify("جاري حفظ التغييرات...", "info", 2000);
+                                setTimeout(() => $actual.submit(), 500);
+                            }
+                        }
+                    }
+                }]
+            }).dxForm("instance");
+        });
+    </script>
+}

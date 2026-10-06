@@ -1,0 +1,420 @@
+2026-08-05 01:52:11.922 -07:00 [INF] User profile is available. Using 'C:\Users\codeb\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-05 01:52:35.106 -07:00 [INF] Executed DbCommand (2,029ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-05 01:52:36.301 -07:00 [INF] Executed DbCommand (55ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-05 01:52:36.429 -07:00 [INF] Executed DbCommand (36ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-08-05 01:52:39.429 -07:00 [INF] Now listening on: https://localhost:7284
+2026-08-05 01:52:39.455 -07:00 [INF] Now listening on: http://localhost:5250
+2026-08-05 01:52:39.933 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-05 01:52:39.992 -07:00 [INF] Hosting environment: Development
+2026-08-05 01:52:39.998 -07:00 [INF] Content root path: E:\MyPerson\ASP.Net\AppMovies-main\MoviesApp
+2026-08-05 01:52:43.608 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/ - null null
+2026-08-05 01:52:47.284 -07:00 [INF] Executing endpoint 'MoviesApp.Controllers.MovieController.Index (MoviesApp)'
+2026-08-05 01:52:47.502 -07:00 [INF] Route matched with {action = "Index", controller = "Movie", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String) on controller MoviesApp.Controllers.MovieController (MoviesApp).
+2026-08-05 01:52:49.481 -07:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-08-05 01:52:50.076 -07:00 [INF] Executed DbCommand (222ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year], [p].[Id], [p].[Bio], [p].[Image], [p].[Name], [g].[Id], [g].[Description], [g].[Icon], [g].[Name], [g].[NameAr], [m0].[Id], [m0].[Bitrate], [m0].[Codec], [m0].[CreatedAt], [m0].[FileSize], [m0].[IsAvailable], [m0].[MovieId], [m0].[QualityType], [m0].[VideoUrl], [m0].[ViewCount], [s].[ActorId], [s].[MovieId], [s].[Id], [s].[Bio], [s].[Image], [s].[Name]
+FROM [Movies] AS [m]
+INNER JOIN [Producers] AS [p] ON [m].[ProducerId] = [p].[Id]
+INNER JOIN [Genres] AS [g] ON [m].[GenreId] = [g].[Id]
+LEFT JOIN [MovieQualities] AS [m0] ON [m].[Id] = [m0].[MovieId]
+LEFT JOIN (
+    SELECT [a].[ActorId], [a].[MovieId], [a0].[Id], [a0].[Bio], [a0].[Image], [a0].[Name]
+    FROM [ActorMovies] AS [a]
+    INNER JOIN [Actors] AS [a0] ON [a].[ActorId] = [a0].[Id]
+) AS [s] ON [m].[Id] = [s].[MovieId]
+ORDER BY [m].[Id], [p].[Id], [g].[Id], [m0].[Id], [s].[ActorId], [s].[MovieId]
+2026-08-05 01:52:51.099 -07:00 [INF] Executing ViewResult, running view Index.
+2026-08-05 01:52:52.878 -07:00 [INF] Executed ViewResult - view Index executed in 1375.0916ms.
+2026-08-05 01:52:52.878 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Web/css/site.css - null null
+2026-08-05 01:52:53.043 -07:00 [INF] Executed action MoviesApp.Controllers.MovieController.Index (MoviesApp) in 5485.5117ms
+2026-08-05 01:52:53.440 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Images/88b1d827-ae7d-432f-a4eb-2964efa8eb24_robert162574544.jpg - null null
+2026-08-05 01:52:53.479 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Images/7180f334-12ae-4736-b1e5-479bf54f333b_nicolas-cage-darker-web-rg-1366x768.jpg - null null
+2026-08-05 01:52:53.546 -07:00 [INF] Executed endpoint 'MoviesApp.Controllers.MovieController.Index (MoviesApp)'
+2026-08-05 01:52:53.571 -07:00 [INF] The file /Web/css/site.css was not modified
+2026-08-05 01:52:53.591 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Images/88b1d827-ae7d-432f-a4eb-2964efa8eb24_robert162574544.jpg - 404 0 null 148.7078ms
+2026-08-05 01:52:53.595 -07:00 [INF] The file /Images/7180f334-12ae-4736-b1e5-479bf54f333b_nicolas-cage-darker-web-rg-1366x768.jpg was not modified
+2026-08-05 01:52:53.610 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Web/css/site.css - 304 null text/css 732.0382ms
+2026-08-05 01:52:53.656 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/ - 200 null text/html; charset=utf-8 10139.8435ms
+2026-08-05 01:52:53.660 -07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7284/Images/88b1d827-ae7d-432f-a4eb-2964efa8eb24_robert162574544.jpg, Response status code: 404
+2026-08-05 01:52:53.664 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Images/7180f334-12ae-4736-b1e5-479bf54f333b_nicolas-cage-darker-web-rg-1366x768.jpg - 304 null image/jpeg 184.2846ms
+2026-08-05 01:52:53.944 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-05 01:52:54.374 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-08-05 01:52:54.378 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Web/images/hero-bg.png - null null
+2026-08-05 01:52:54.567 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 622.3479ms
+2026-08-05 01:52:54.628 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Web/images/hero-bg.png - 404 0 null 249.5233ms
+2026-08-05 01:52:54.871 -07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7284/Web/images/hero-bg.png, Response status code: 404
+2026-08-05 01:52:55.630 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 1256.7774ms
+2026-08-05 01:52:56.070 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/favicon.ico - null null
+2026-08-05 01:52:56.619 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/favicon.ico - 404 0 null 548.8888ms
+2026-08-05 01:52:57.541 -07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7284/favicon.ico, Response status code: 404
+2026-08-05 01:54:40.266 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin - null null
+2026-08-05 01:54:40.382 -07:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-08-05 01:54:40.451 -07:00 [INF] Route matched with {area = "Admin", action = "Login", controller = "Accounts"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-08-05 01:54:40.520 -07:00 [INF] Executing ViewResult, running view Login.
+2026-08-05 01:54:40.615 -07:00 [INF] Executed ViewResult - view Login executed in 100.7384ms.
+2026-08-05 01:54:40.791 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-05 01:54:40.794 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-08-05 01:54:42.137 -07:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp) in 1643.975ms
+2026-08-05 01:54:42.158 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 1366.7423ms
+2026-08-05 01:54:42.275 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 1481.4325ms
+2026-08-05 01:54:42.629 -07:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-08-05 01:54:42.801 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin - 200 null text/html; charset=utf-8 2535.6154ms
+2026-08-05 01:54:49.006 -07:00 [INF] Request starting HTTP/2 POST https://localhost:7284/Admin - application/x-www-form-urlencoded 243
+2026-08-05 01:54:49.407 -07:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-08-05 01:54:49.600 -07:00 [INF] Route matched with {area = "Admin", action = "Login", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(infrastructure.ViewModel.LoginViewModel) on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-08-05 01:54:50.289 -07:00 [INF] Executed DbCommand (154ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2026-08-05 01:54:52.395 -07:00 [INF] Executed DbCommand (35ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2026-08-05 01:54:52.888 -07:00 [INF] Executed DbCommand (165ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-08-05 01:54:53.073 -07:00 [INF] Executed DbCommand (124ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-05 01:54:53.207 -07:00 [INF] Executed DbCommand (43ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2026-08-05 01:54:53.334 -07:00 [INF] Executed DbCommand (11ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-05 01:54:53.368 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2026-08-05 01:54:53.451 -07:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2026-08-05 01:54:53.590 -07:00 [INF] Executed DbCommand (85ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-08-05 01:54:53.669 -07:00 [INF] Executed DbCommand (47ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-08-05 01:54:53.872 -07:00 [INF] Executing RedirectResult, redirecting to /Admin/Accounts/Index.
+2026-08-05 01:54:53.884 -07:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp) in 4262.8045ms
+2026-08-05 01:54:53.923 -07:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-08-05 01:54:53.991 -07:00 [INF] Request finished HTTP/2 POST https://localhost:7284/Admin - 302 0 null 4982.6617ms
+2026-08-05 01:54:54.105 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin/Accounts/Index - null null
+2026-08-05 01:54:54.342 -07:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Index (MoviesApp)'
+2026-08-05 01:54:54.387 -07:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-08-05 01:54:55.223 -07:00 [INF] Executed DbCommand (168ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[FullName], [a].[Email], [a].[ProfilePictureURL], CASE
+    WHEN [a].[LockoutEnd] IS NOT NULL AND [a].[LockoutEnd] > CAST(SYSUTCDATETIME() AS datetimeoffset) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END AS [IsBlocked], [a1].[Name] AS [RoleName]
+FROM [AspNetUsers] AS [a]
+LEFT JOIN [AspNetUserRoles] AS [a0] ON [a].[Id] = [a0].[UserId]
+LEFT JOIN [AspNetRoles] AS [a1] ON [a0].[RoleId] = [a1].[Id]
+2026-08-05 01:54:55.293 -07:00 [INF] Executing ViewResult, running view Index.
+2026-08-05 01:54:56.000 -07:00 [INF] Executed DbCommand (48ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-08-05 01:54:59.999 -07:00 [INF] Executed ViewResult - view Index executed in 4710.7864ms.
+2026-08-05 01:55:00.001 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Images/a9501d3f-9f6a-40f9-8b40-ac0cc90fbca0_daredevil-season-2-oj-1366x768.jpg - null null
+2026-08-05 01:55:00.367 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-05 01:55:00.367 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-08-05 01:55:01.635 -07:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.AccountsController.Index (MoviesApp) in 7227.6715ms
+2026-08-05 01:55:01.652 -07:00 [INF] The file /Images/a9501d3f-9f6a-40f9-8b40-ac0cc90fbca0_daredevil-season-2-oj-1366x768.jpg was not modified
+2026-08-05 01:55:01.723 -07:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Index (MoviesApp)'
+2026-08-05 01:55:01.663 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 1296.6923ms
+2026-08-05 01:55:01.790 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 1422.6735ms
+2026-08-05 01:55:01.822 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Images/a9501d3f-9f6a-40f9-8b40-ac0cc90fbca0_daredevil-season-2-oj-1366x768.jpg - 304 null image/jpeg 1820.9509ms
+2026-08-05 01:55:01.910 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin/Accounts/Index - 200 null text/html; charset=utf-8 7805.1262ms
+2026-08-05 01:55:03.555 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/images/default-avatar.png - null null
+2026-08-05 01:55:03.555 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Images/7e4fa94b-ba2e-4efd-9fdc-4dc4564d9bfd_nicolas-cage-is-spiderman-noir-2026-xx-1366x768.jpg - null null
+2026-08-05 01:55:03.870 -07:00 [INF] The file /Images/7e4fa94b-ba2e-4efd-9fdc-4dc4564d9bfd_nicolas-cage-is-spiderman-noir-2026-xx-1366x768.jpg was not modified
+2026-08-05 01:55:03.787 -07:00 [INF] The file /images/default-avatar.png was not modified
+2026-08-05 01:55:03.555 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Images/09343c47-b386-4735-a087-51831ebbc626_daredevil-season-2-oj-1366x768.jpg - null null
+2026-08-05 01:55:04.400 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Images/7e4fa94b-ba2e-4efd-9fdc-4dc4564d9bfd_nicolas-cage-is-spiderman-noir-2026-xx-1366x768.jpg - 304 null image/jpeg 844.8828ms
+2026-08-05 01:55:04.422 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/images/default-avatar.png - 304 null image/png 866.8981ms
+2026-08-05 01:55:04.467 -07:00 [INF] The file /Images/09343c47-b386-4735-a087-51831ebbc626_daredevil-season-2-oj-1366x768.jpg was not modified
+2026-08-05 01:55:04.700 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Images/09343c47-b386-4735-a087-51831ebbc626_daredevil-season-2-oj-1366x768.jpg - 304 null image/jpeg 1144.6549ms
+2026-08-05 02:12:33.954 -07:00 [INF] User profile is available. Using 'C:\Users\codeb\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-05 02:12:43.356 -07:00 [INF] Executed DbCommand (384ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-05 02:12:43.879 -07:00 [INF] Executed DbCommand (9ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-05 02:12:43.977 -07:00 [INF] Executed DbCommand (20ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-08-05 02:12:45.471 -07:00 [INF] Now listening on: https://localhost:7284
+2026-08-05 02:12:45.480 -07:00 [INF] Now listening on: http://localhost:5250
+2026-08-05 02:12:45.902 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-05 02:12:46.046 -07:00 [INF] Hosting environment: Development
+2026-08-05 02:12:46.155 -07:00 [INF] Content root path: E:\MyPerson\ASP.Net\AppMovies-main\MoviesApp
+2026-08-05 02:12:47.973 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/ - null null
+2026-08-05 02:12:50.690 -07:00 [INF] Executing endpoint 'MoviesApp.Controllers.MovieController.Index (MoviesApp)'
+2026-08-05 02:12:50.840 -07:00 [INF] Route matched with {action = "Index", controller = "Movie", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String) on controller MoviesApp.Controllers.MovieController (MoviesApp).
+2026-08-05 02:12:52.654 -07:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-08-05 02:12:53.068 -07:00 [INF] Executed DbCommand (146ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year], [p].[Id], [p].[Bio], [p].[Image], [p].[Name], [g].[Id], [g].[Description], [g].[Icon], [g].[Name], [g].[NameAr], [m0].[Id], [m0].[Bitrate], [m0].[Codec], [m0].[CreatedAt], [m0].[FileSize], [m0].[IsAvailable], [m0].[MovieId], [m0].[QualityType], [m0].[VideoUrl], [m0].[ViewCount], [s].[ActorId], [s].[MovieId], [s].[Id], [s].[Bio], [s].[Image], [s].[Name]
+FROM [Movies] AS [m]
+INNER JOIN [Producers] AS [p] ON [m].[ProducerId] = [p].[Id]
+INNER JOIN [Genres] AS [g] ON [m].[GenreId] = [g].[Id]
+LEFT JOIN [MovieQualities] AS [m0] ON [m].[Id] = [m0].[MovieId]
+LEFT JOIN (
+    SELECT [a].[ActorId], [a].[MovieId], [a0].[Id], [a0].[Bio], [a0].[Image], [a0].[Name]
+    FROM [ActorMovies] AS [a]
+    INNER JOIN [Actors] AS [a0] ON [a].[ActorId] = [a0].[Id]
+) AS [s] ON [m].[Id] = [s].[MovieId]
+ORDER BY [m].[Id], [p].[Id], [g].[Id], [m0].[Id], [s].[ActorId], [s].[MovieId]
+2026-08-05 02:12:53.972 -07:00 [INF] Executing ViewResult, running view Index.
+2026-08-05 02:12:54.947 -07:00 [INF] Executed ViewResult - view Index executed in 984.4106ms.
+2026-08-05 02:12:55.077 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-05 02:12:55.093 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Images/88b1d827-ae7d-432f-a4eb-2964efa8eb24_robert162574544.jpg - null null
+2026-08-05 02:12:55.095 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-08-05 02:12:55.280 -07:00 [INF] Executed action MoviesApp.Controllers.MovieController.Index (MoviesApp) in 4402.1748ms
+2026-08-05 02:12:55.371 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Web/images/hero-bg.png - null null
+2026-08-05 02:12:55.373 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 294.2998ms
+2026-08-05 02:12:55.373 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Images/88b1d827-ae7d-432f-a4eb-2964efa8eb24_robert162574544.jpg - 404 0 null 278.152ms
+2026-08-05 02:12:55.467 -07:00 [INF] Executed endpoint 'MoviesApp.Controllers.MovieController.Index (MoviesApp)'
+2026-08-05 02:12:55.507 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Web/images/hero-bg.png - 404 0 null 136.1875ms
+2026-08-05 02:12:55.659 -07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7284/Images/88b1d827-ae7d-432f-a4eb-2964efa8eb24_robert162574544.jpg, Response status code: 404
+2026-08-05 02:12:55.764 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/ - 200 null text/html; charset=utf-8 7939.6056ms
+2026-08-05 02:12:55.827 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 732.8971ms
+2026-08-05 02:12:55.846 -07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7284/Web/images/hero-bg.png, Response status code: 404
+2026-08-05 02:12:56.843 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/favicon.ico - null null
+2026-08-05 02:12:58.232 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/favicon.ico - 404 0 null 1388.183ms
+2026-08-05 02:12:58.306 -07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7284/favicon.ico, Response status code: 404
+2026-08-05 02:13:03.474 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin - null null
+2026-08-05 02:13:03.717 -07:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-08-05 02:13:03.742 -07:00 [INF] Route matched with {area = "Admin", action = "Login", controller = "Accounts"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-08-05 02:13:03.790 -07:00 [INF] Executing ViewResult, running view Login.
+2026-08-05 02:13:03.903 -07:00 [INF] Executed ViewResult - view Login executed in 123.6102ms.
+2026-08-05 02:13:03.910 -07:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp) in 155.5962ms
+2026-08-05 02:13:03.916 -07:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-08-05 02:13:03.925 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin - 200 null text/html; charset=utf-8 451.8071ms
+2026-08-05 02:13:04.025 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-05 02:13:04.025 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-08-05 02:13:05.204 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 1179.4073ms
+2026-08-05 02:13:05.475 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 1449.7239ms
+2026-08-05 02:13:08.166 -07:00 [INF] Request starting HTTP/2 POST https://localhost:7284/Admin - application/x-www-form-urlencoded 243
+2026-08-05 02:13:08.701 -07:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-08-05 02:13:08.980 -07:00 [INF] Route matched with {area = "Admin", action = "Login", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(infrastructure.ViewModel.LoginViewModel) on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-08-05 02:13:09.625 -07:00 [INF] Executed DbCommand (31ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2026-08-05 02:13:11.338 -07:00 [INF] Executed DbCommand (54ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2026-08-05 02:13:11.714 -07:00 [INF] Executed DbCommand (92ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-08-05 02:13:11.777 -07:00 [INF] Executed DbCommand (41ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-05 02:13:11.958 -07:00 [INF] Executed DbCommand (37ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2026-08-05 02:13:12.011 -07:00 [INF] Executed DbCommand (18ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-05 02:13:12.112 -07:00 [INF] Executed DbCommand (41ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2026-08-05 02:13:12.225 -07:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2026-08-05 02:13:12.282 -07:00 [INF] Executed DbCommand (35ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-08-05 02:13:12.429 -07:00 [INF] Executed DbCommand (84ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-08-05 02:13:12.462 -07:00 [INF] Executing RedirectResult, redirecting to /Admin/Accounts/Index.
+2026-08-05 02:13:12.478 -07:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp) in 3466.7872ms
+2026-08-05 02:13:12.493 -07:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-08-05 02:13:12.508 -07:00 [INF] Request finished HTTP/2 POST https://localhost:7284/Admin - 302 0 null 4341.6468ms
+2026-08-05 02:13:12.541 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin/Accounts/Index - null null
+2026-08-05 02:13:12.810 -07:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Index (MoviesApp)'
+2026-08-05 02:13:12.943 -07:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-08-05 02:13:13.657 -07:00 [INF] Executed DbCommand (130ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[FullName], [a].[Email], [a].[ProfilePictureURL], CASE
+    WHEN [a].[LockoutEnd] IS NOT NULL AND [a].[LockoutEnd] > CAST(SYSUTCDATETIME() AS datetimeoffset) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END AS [IsBlocked], [a1].[Name] AS [RoleName]
+FROM [AspNetUsers] AS [a]
+LEFT JOIN [AspNetUserRoles] AS [a0] ON [a].[Id] = [a0].[UserId]
+LEFT JOIN [AspNetRoles] AS [a1] ON [a0].[RoleId] = [a1].[Id]
+2026-08-05 02:13:13.734 -07:00 [INF] Executing ViewResult, running view Index.
+2026-08-05 02:13:14.412 -07:00 [INF] Executed DbCommand (86ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-08-05 02:13:15.824 -07:00 [INF] Executed ViewResult - view Index executed in 2097.0551ms.
+2026-08-05 02:13:16.016 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-05 02:13:16.018 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-08-05 02:13:17.221 -07:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.AccountsController.Index (MoviesApp) in 4257.9329ms
+2026-08-05 02:13:17.290 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 1273.5464ms
+2026-08-05 02:13:17.558 -07:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Index (MoviesApp)'
+2026-08-05 02:13:17.678 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 1659.2297ms
+2026-08-05 02:13:17.728 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin/Accounts/Index - 200 null text/html; charset=utf-8 5187.5443ms
+2026-08-05 02:47:39.834 -07:00 [INF] User profile is available. Using 'C:\Users\codeb\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-05 02:47:53.220 -07:00 [INF] Executed DbCommand (483ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-05 02:47:53.943 -07:00 [INF] Executed DbCommand (28ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-05 02:47:54.070 -07:00 [INF] Executed DbCommand (30ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-08-05 02:47:55.926 -07:00 [INF] Now listening on: https://localhost:7284
+2026-08-05 02:47:55.932 -07:00 [INF] Now listening on: http://localhost:5250
+2026-08-05 02:47:56.491 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-05 02:47:59.757 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/ - null null
+2026-08-05 02:48:00.736 -07:00 [INF] Hosting environment: Development
+2026-08-05 02:48:01.492 -07:00 [INF] Content root path: E:\MyPerson\ASP.Net\AppMovies-main\MoviesApp
+2026-08-05 02:48:02.814 -07:00 [INF] Executing endpoint 'MoviesApp.Controllers.MovieController.Index (MoviesApp)'
+2026-08-05 02:48:03.020 -07:00 [INF] Route matched with {action = "Index", controller = "Movie", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String) on controller MoviesApp.Controllers.MovieController (MoviesApp).
+2026-08-05 02:48:04.988 -07:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-08-05 02:48:05.557 -07:00 [INF] Executed DbCommand (236ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[AgeRating], [m].[Country], [m].[Description], [m].[Duration], [m].[GenreId], [m].[Language], [m].[Poster], [m].[ProducerId], [m].[Rating], [m].[Title], [m].[VideoPath], [m].[Year], [p].[Id], [p].[Bio], [p].[Image], [p].[Name], [g].[Id], [g].[Description], [g].[Icon], [g].[Name], [g].[NameAr], [m0].[Id], [m0].[Bitrate], [m0].[Codec], [m0].[CreatedAt], [m0].[FileSize], [m0].[IsAvailable], [m0].[MovieId], [m0].[QualityType], [m0].[VideoUrl], [m0].[ViewCount], [s].[ActorId], [s].[MovieId], [s].[Id], [s].[Bio], [s].[Image], [s].[Name]
+FROM [Movies] AS [m]
+INNER JOIN [Producers] AS [p] ON [m].[ProducerId] = [p].[Id]
+INNER JOIN [Genres] AS [g] ON [m].[GenreId] = [g].[Id]
+LEFT JOIN [MovieQualities] AS [m0] ON [m].[Id] = [m0].[MovieId]
+LEFT JOIN (
+    SELECT [a].[ActorId], [a].[MovieId], [a0].[Id], [a0].[Bio], [a0].[Image], [a0].[Name]
+    FROM [ActorMovies] AS [a]
+    INNER JOIN [Actors] AS [a0] ON [a].[ActorId] = [a0].[Id]
+) AS [s] ON [m].[Id] = [s].[MovieId]
+ORDER BY [m].[Id], [p].[Id], [g].[Id], [m0].[Id], [s].[ActorId], [s].[MovieId]
+2026-08-05 02:48:06.904 -07:00 [INF] Executing ViewResult, running view Index.
+2026-08-05 02:48:08.130 -07:00 [INF] Executed ViewResult - view Index executed in 1239.2721ms.
+2026-08-05 02:48:08.497 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Images/88b1d827-ae7d-432f-a4eb-2964efa8eb24_robert162574544.jpg - null null
+2026-08-05 02:48:08.526 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-08-05 02:48:08.530 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Web/images/hero-bg.png - null null
+2026-08-05 02:48:08.611 -07:00 [INF] Executed action MoviesApp.Controllers.MovieController.Index (MoviesApp) in 5286.8852ms
+2026-08-05 02:48:08.634 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Images/88b1d827-ae7d-432f-a4eb-2964efa8eb24_robert162574544.jpg - 404 0 null 134.2242ms
+2026-08-05 02:48:09.304 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-05 02:48:09.563 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 1037.7421ms
+2026-08-05 02:48:09.604 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Web/images/hero-bg.png - 404 0 null 1074.7318ms
+2026-08-05 02:48:10.352 -07:00 [INF] Executed endpoint 'MoviesApp.Controllers.MovieController.Index (MoviesApp)'
+2026-08-05 02:48:10.397 -07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7284/Images/88b1d827-ae7d-432f-a4eb-2964efa8eb24_robert162574544.jpg, Response status code: 404
+2026-08-05 02:48:10.697 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 1392.5425ms
+2026-08-05 02:48:10.943 -07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7284/Web/images/hero-bg.png, Response status code: 404
+2026-08-05 02:48:11.020 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/ - 200 null text/html; charset=utf-8 11331.8706ms
+2026-08-05 02:48:21.557 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/favicon.ico - null null
+2026-08-05 02:48:21.870 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/favicon.ico - 404 0 null 312.4873ms
+2026-08-05 02:48:21.907 -07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7284/favicon.ico, Response status code: 404
+2026-08-05 02:51:52.808 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin - null null
+2026-08-05 02:51:53.331 -07:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-08-05 02:51:53.366 -07:00 [INF] Route matched with {area = "Admin", action = "Login", controller = "Accounts"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-08-05 02:51:53.556 -07:00 [INF] Executing ViewResult, running view Login.
+2026-08-05 02:51:53.691 -07:00 [INF] Executed ViewResult - view Login executed in 146.4195ms.
+2026-08-05 02:51:55.348 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-05 02:51:55.464 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-08-05 02:51:56.063 -07:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp) in 2549.7337ms
+2026-08-05 02:51:56.161 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 813.9289ms
+2026-08-05 02:51:56.194 -07:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-08-05 02:51:56.282 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 817.7376ms
+2026-08-05 02:51:56.568 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin - 200 null text/html; charset=utf-8 3760.419ms
+2026-08-05 02:52:41.164 -07:00 [INF] Request starting HTTP/2 POST https://localhost:7284/Admin - application/x-www-form-urlencoded 243
+2026-08-05 02:52:45.006 -07:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-08-05 02:52:45.663 -07:00 [INF] Route matched with {area = "Admin", action = "Login", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(infrastructure.ViewModel.LoginViewModel) on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-08-05 02:52:48.940 -07:00 [INF] Executed DbCommand (2,094ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2026-08-05 02:53:02.362 -07:00 [INF] Executed DbCommand (4,198ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2026-08-05 02:53:05.031 -07:00 [INF] Executed DbCommand (649ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-08-05 02:53:05.331 -07:00 [INF] Executed DbCommand (225ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-05 02:53:09.760 -07:00 [INF] Executed DbCommand (1,702ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2026-08-05 02:53:11.213 -07:00 [INF] Executed DbCommand (273ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-08-05 02:53:14.027 -07:00 [INF] Executed DbCommand (999ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2026-08-05 02:53:17.374 -07:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2026-08-05 02:53:17.577 -07:00 [INF] Executed DbCommand (151ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-08-05 02:53:17.693 -07:00 [INF] Executed DbCommand (67ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-08-05 02:53:18.130 -07:00 [INF] Executing RedirectResult, redirecting to /Admin/Accounts/Index.
+2026-08-05 02:53:18.145 -07:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp) in 32117.4025ms
+2026-08-05 02:53:18.161 -07:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Login (MoviesApp)'
+2026-08-05 02:53:18.180 -07:00 [INF] Request finished HTTP/2 POST https://localhost:7284/Admin - 302 0 null 37015.9786ms
+2026-08-05 02:53:18.238 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/Admin/Accounts/Index - null null
+2026-08-05 02:53:18.642 -07:00 [INF] Executing endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Index (MoviesApp)'
+2026-08-05 02:53:18.706 -07:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller MoviesApp.Areas.Admin.Controllers.AccountsController (MoviesApp).
+2026-08-05 02:53:20.295 -07:00 [INF] Executed DbCommand (201ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[FullName], [a].[Email], [a].[ProfilePictureURL], CASE
+    WHEN [a].[LockoutEnd] IS NOT NULL AND [a].[LockoutEnd] > CAST(SYSUTCDATETIME() AS datetimeoffset) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END AS [IsBlocked], [a1].[Name] AS [RoleName]
+FROM [AspNetUsers] AS [a]
+LEFT JOIN [AspNetUserRoles] AS [a0] ON [a].[Id] = [a0].[UserId]
+LEFT JOIN [AspNetRoles] AS [a1] ON [a0].[RoleId] = [a1].[Id]
+2026-08-05 02:53:21.428 -07:00 [INF] Executing ViewResult, running view Index.
+2026-08-05 02:53:22.410 -07:00 [INF] Executed DbCommand (55ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FullName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePictureURL], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-08-05 02:53:24.093 -07:00 [INF] Executed ViewResult - view Index executed in 2697.0783ms.
+2026-08-05 02:53:24.478 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_vs/browserLink - null null
+2026-08-05 02:53:24.429 -07:00 [INF] Request starting HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-05 02:53:26.027 -07:00 [INF] Executed action MoviesApp.Areas.Admin.Controllers.AccountsController.Index (MoviesApp) in 6568.9134ms
+2026-08-05 02:53:26.107 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_vs/browserLink - 200 null text/javascript; charset=UTF-8 1629.1051ms
+2026-08-05 02:53:26.245 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/_framework/aspnetcore-browser-refresh.js - 200 16503 application/javascript; charset=utf-8 1816.3233ms
+2026-08-05 02:53:26.305 -07:00 [INF] Executed endpoint 'MoviesApp.Areas.Admin.Controllers.AccountsController.Index (MoviesApp)'
+2026-08-05 02:53:26.529 -07:00 [INF] Request finished HTTP/2 GET https://localhost:7284/Admin/Accounts/Index - 200 null text/html; charset=utf-8 8290.6441ms

@@ -1,0 +1,155 @@
+@model List<infrastructure.ViewModel.GenreListViewModel>
+@{
+    ViewData["Title"] = "تصنيفات الأفلام";
+    Layout = "_Layout";
+}
+
+@section Style
+{
+    <style>
+        .genre-page-header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, rgba(220, 53, 69, 0.1), transparent);
+            border-radius: 0 0 50% 50% / 20%;
+            margin-bottom: 50px;
+        }
+
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .genre-glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none !important;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .genre-glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transform: translateX(-100%);
+            transition: 0.6s;
+        }
+
+        .genre-glass-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .genre-glass-card:hover {
+            transform: translateY(-12px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary-red);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .genre-icon-wrapper {
+            width: 100px;
+            height: 100px;
+            background: rgba(220, 53, 69, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(220, 53, 69, 0.2);
+        }
+
+        .genre-glass-card:hover .genre-icon-wrapper {
+            background: var(--primary-red);
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 0 30px rgba(220, 53, 69, 0.4);
+        }
+
+        .genre-glass-card:hover .genre-icon-wrapper i {
+            color: white !important;
+        }
+
+        .genre-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .genre-count {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ccc;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .genre-glass-card:hover .genre-count {
+            background: rgba(220, 53, 69, 0.2);
+            color: white;
+        }
+    </style>
+}
+
+<div class="genre-page-header">
+    <div class="container">
+        <h1 class="display-4 fw-bold text-white mb-3">
+            <i class="fas fa-th-large text-danger me-2"></i>
+            تصنيفات الأفلام
+        </h1>
+        <p class="lead text-muted mx-auto" style="max-width: 700px;">
+            استكشف عالم السينما من خلال تصنيفاتنا المتنوعة. من الأكشن المثير إلى الدراما العميقة، لدينا كل ما تفضله.
+        </p>
+    </div>
+</div>
+
+<div class="container mb-5">
+    @if (Model != null && Model.Any())
+    {
+        <div class="genre-grid">
+            @foreach (var genre in Model)
+            {
+                <a asp-controller="Movie" asp-action="ByGenre" asp-route-genreId="@genre.Id" class="genre-glass-card">
+                    <div class="genre-icon-wrapper">
+                        <i class="fas @(string.IsNullOrEmpty(genre.Icon) ? "fa-film" : genre.Icon) fa-3x text-danger opacity-75"></i>
+                    </div>
+                    <h3 class="genre-title">
+                        @(string.IsNullOrEmpty(genre.NameAr) ? genre.Name : genre.NameAr)
+                    </h3>
+                    <div class="genre-count">
+                        <i class="fas fa-video me-1"></i>
+                        @genre.MovieCount فيلم متوفر
+                    </div>
+                </a>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5">
+            <div class="mb-4">
+                <i class="fas fa-folder-open fa-5x text-muted opacity-25"></i>
+            </div>
+            <h2 class="text-white">لا توجد تصنيفات متاحة حالياً</h2>
+            <p class="text-muted">نحن نعمل على تنظيم المكتبة لتسهيل وصولك للأفلام</p>
+            <a asp-action="Index" asp-controller="Home" class="btn btn-outline-danger mt-3">
+                العودة للرئيسية
+            </a>
+        </div>
+    }
+</div>

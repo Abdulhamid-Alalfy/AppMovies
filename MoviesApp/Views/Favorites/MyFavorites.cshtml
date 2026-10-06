@@ -1,0 +1,551 @@
+@model List<Domin.Model.UserFavorite>
+@{
+    ViewData["Title"] = "أفلامي المفضلة";
+    Layout = "_Layout";
+}
+
+@section Style
+{
+    <style>
+        .fav-page {
+            padding: 100px 0 60px;
+            min-height: 100vh;
+        }
+
+        .fav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .fav-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 36px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+
+        .fav-header-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--primary-red, #d32f2f), var(--dark-red, #b71c1c));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #fff;
+            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(211,47,47,.35);
+        }
+
+        .fav-header-text h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 0 0 4px;
+            color: var(--white, #fff);
+        }
+
+        .fav-header-text p {
+            margin: 0;
+            color: rgba(255,255,255,.5);
+            font-size: .92rem;
+        }
+
+        .fav-header-count {
+            margin-right: auto;
+            background: rgba(211,47,47,.12);
+            border: 1px solid rgba(211,47,47,.25);
+            color: #ef9a9a;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: .85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .fav-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+
+        .fav-search {
+            position: relative;
+            flex: 1;
+            min-width: 240px;
+        }
+
+        .fav-search input {
+            width: 100%;
+            padding: 12px 42px 12px 16px;
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: .9rem;
+            outline: none;
+            transition: all .25s;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .fav-search input:focus {
+            border-color: var(--primary-red, #d32f2f);
+            background: rgba(211,47,47,.06);
+            box-shadow: 0 0 0 3px rgba(211,47,47,.15);
+        }
+
+        .fav-search input::placeholder { color: rgba(255,255,255,.35); }
+
+        .fav-search i {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,.35);
+            font-size: .85rem;
+            pointer-events: none;
+        }
+
+        .fav-sort-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .fav-sort-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,.1);
+            background: rgba(255,255,255,.04);
+            color: rgba(255,255,255,.55);
+            font-size: .85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .fav-sort-btn:hover,
+        .fav-sort-btn.active {
+            background: var(--primary-red, #d32f2f);
+            border-color: var(--primary-red, #d32f2f);
+            color: #fff;
+        }
+
+        .fav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .fav-item {
+            display: flex;
+            gap: 20px;
+            background: rgba(255,255,255,.03);
+            border: 1px solid rgba(255,255,255,.06);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all .3s ease;
+            padding: 16px;
+            align-items: stretch;
+        }
+
+        .fav-item:hover {
+            background: rgba(255,255,255,.06);
+            border-color: rgba(211,47,47,.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,.3);
+            transform: translateX(-4px);
+        }
+
+        .fav-item-poster {
+            width: 120px;
+            min-width: 120px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .fav-item-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 2/3;
+            transition: transform .4s ease;
+        }
+
+        .fav-item:hover .fav-item-poster img {
+            transform: scale(1.05);
+        }
+
+        .fav-item-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: rgba(211,47,47,.9);
+            color: #fff;
+            font-size: .7rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        .fav-item-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
+        }
+
+        .fav-item-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .fav-item-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 16px;
+            color: rgba(255,255,255,.5);
+            font-size: .85rem;
+        }
+
+        .fav-item-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .fav-item-meta .fav-rating {
+            color: #f59e0b;
+        }
+
+        .fav-item-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .fav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: .82rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all .2s;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .fav-btn-play {
+            background: var(--primary-red, #d32f2f);
+            color: #fff;
+        }
+
+        .fav-btn-play:hover {
+            background: #e53935;
+            color: #fff;
+        }
+
+        .fav-btn-details {
+            background: rgba(255,255,255,.08);
+            color: rgba(255,255,255,.85);
+            border: 1px solid rgba(255,255,255,.12);
+        }
+
+        .fav-btn-details:hover {
+            background: rgba(255,255,255,.14);
+            color: #fff;
+        }
+
+        .fav-btn-remove {
+            background: rgba(220,38,38,.12);
+            color: #fca5a5;
+            border: 1px solid rgba(220,38,38,.25);
+        }
+
+        .fav-btn-remove:hover {
+            background: rgba(220,38,38,.22);
+            color: #fff;
+        }
+
+        .fav-empty {
+            text-align: center;
+            padding: 72px 24px;
+        }
+
+        .fav-empty-icon {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            background: rgba(211,47,47,.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: var(--primary-red, #d32f2f);
+            margin-bottom: 20px;
+        }
+
+        .fav-empty h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .fav-empty p {
+            color: rgba(255,255,255,.5);
+            max-width: 420px;
+            margin: 0 auto 24px;
+            line-height: 1.7;
+        }
+
+        .fav-browse-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
+            color: #fff;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all .22s;
+        }
+
+        .fav-browse-btn:hover {
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(211,47,47,.4);
+        }
+
+        @@media (max-width: 640px) {
+            .fav-header {
+                flex-wrap: wrap;
+            }
+
+            .fav-header-count {
+                margin-right: 0;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .fav-item {
+                flex-direction: column;
+            }
+
+            .fav-item-poster {
+                width: 100%;
+                max-width: 180px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+}
+
+<div class="fav-page">
+    <div class="fav-container">
+
+        <div class="fav-header">
+            <div class="fav-header-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+            <div class="fav-header-text">
+                <h1>أفلامي المفضلة</h1>
+                <p>مجموعتك الشخصية من الأفلام المختارة بعناية</p>
+            </div>
+            <div class="fav-header-count">
+                <i class="fas fa-film"></i>
+                <span id="total-count">@Model.Count()</span> فيلم
+            </div>
+        </div>
+
+        @if (Model.Any())
+        {
+            <div class="fav-toolbar">
+                <div class="fav-search">
+                    <input type="text"
+                           id="fav-search"
+                           placeholder="ابحث في مفضلاتك..."
+                           autocomplete="off" />
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="fav-sort-group">
+                    <button type="button" class="fav-sort-btn active" id="sort-newest">
+                        <i class="fas fa-calendar-alt"></i> الأحدث
+                    </button>
+                    <button type="button" class="fav-sort-btn" id="sort-rating">
+                        <i class="fas fa-star"></i> التقييم
+                    </button>
+                </div>
+            </div>
+
+            <div class="fav-list" id="fav-grid">
+                @foreach (var fav in Model)
+                {
+                    <div class="fav-card-item"
+                         data-title="@fav.Movies.Title.ToLower()"
+                         data-year="@fav.Movies.Year"
+                         data-rating="@fav.Movies.Rating">
+
+                        <div class="fav-item">
+                            <div class="fav-item-poster">
+                                <img src="@Url.Content(fav.Movies.Poster)"
+                                     alt="@fav.Movies.Title"
+                                     loading="lazy" />
+                                <span class="fav-item-badge">
+                                    <i class="fas fa-heart"></i> مفضلة
+                                </span>
+                            </div>
+
+                            <div class="fav-item-body">
+                                <h3 class="fav-item-title" title="@fav.Movies.Title">
+                                    @fav.Movies.Title
+                                </h3>
+
+                                <div class="fav-item-meta">
+                                    <span><i class="fas fa-calendar-alt"></i> @fav.Movies.Year</span>
+                                    <span><i class="fas fa-clock"></i> @fav.Movies.Duration د</span>
+                                    <span class="fav-rating">
+                                        <i class="fas fa-star"></i> @fav.Movies.Rating
+                                    </span>
+                                </div>
+
+                                <div class="fav-item-actions">
+                                    <a asp-action="Details"
+                                       asp-controller="Movie"
+                                       asp-route-id="@fav.MovieId"
+                                       class="fav-btn fav-btn-play">
+                                        <i class="fas fa-play"></i> شاهد الآن
+                                    </a>
+                                    <a asp-action="Details"
+                                       asp-controller="Movie"
+                                       asp-route-id="@fav.MovieId"
+                                       class="fav-btn fav-btn-details">
+                                        <i class="fas fa-info-circle"></i> التفاصيل
+                                    </a>
+                                    <a asp-action="RemoveFromFavorite"
+                                       asp-controller="Favorites"
+                                       asp-route-favoriteId="@fav.Id"
+                                       class="fav-btn fav-btn-remove"
+                                       onclick="return confirm('هل تريد حذف هذا الفيلم من المفضلة؟')">
+                                        <i class="fas fa-trash-alt"></i> إزالة
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div id="no-results" style="display:none;" class="fav-empty">
+                <div class="fav-empty-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h2>لا توجد نتائج مطابقة</h2>
+                <p>لم يتم العثور على أفلام تطابق بحثك.</p>
+            </div>
+        }
+        else
+        {
+            <div class="fav-empty">
+                <div class="fav-empty-icon">
+                    <i class="fas fa-heart-broken"></i>
+                </div>
+                <h2>لا توجد أفلام مفضلة حالياً</h2>
+                <p>
+                    لم تقم بإضافة أي أفلام إلى قائمة مفضلاتك بعد.
+                    ادخل على أي فيلم واضغط زر المفضلة لإضافته هنا.
+                </p>
+                <a asp-action="Index" asp-controller="Movie" class="fav-browse-btn">
+                    <i class="fas fa-compass"></i> استعرض الأفلام
+                </a>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        (function () {
+            'use strict';
+
+            const grid = document.getElementById('fav-grid');
+            const searchInput = document.getElementById('fav-search');
+            const noResults = document.getElementById('no-results');
+            const totalEl = document.getElementById('total-count');
+            const sortNewest = document.getElementById('sort-newest');
+            const sortRating = document.getElementById('sort-rating');
+
+            if (!grid) return;
+
+            const allItems = () => Array.from(grid.querySelectorAll('.fav-card-item'));
+
+            if (searchInput) {
+                searchInput.addEventListener('input', applyFilters);
+            }
+
+            if (sortNewest) {
+                sortNewest.addEventListener('click', function () {
+                    sortRating.classList.remove('active');
+                    this.classList.add('active');
+                    sortItems('year');
+                });
+            }
+
+            if (sortRating) {
+                sortRating.addEventListener('click', function () {
+                    sortNewest.classList.remove('active');
+                    this.classList.add('active');
+                    sortItems('rating');
+                });
+            }
+
+            function applyFilters() {
+                const term = searchInput ? searchInput.value.trim().toLowerCase() : '';
+                let visible = 0;
+
+                allItems().forEach(item => {
+                    const title = item.dataset.title || '';
+                    const match = !term || title.includes(term);
+                    item.style.display = match ? '' : 'none';
+                    if (match) visible++;
+                });
+
+                if (totalEl) totalEl.textContent = visible;
+                if (noResults) noResults.style.display = (visible === 0) ? 'block' : 'none';
+            }
+
+            function sortItems(by) {
+                const items = allItems();
+                items.sort((a, b) => {
+                    if (by === 'rating') {
+                        return parseFloat(b.dataset.rating || 0) - parseFloat(a.dataset.rating || 0);
+                    }
+                    return parseInt(b.dataset.year || 0) - parseInt(a.dataset.year || 0);
+                });
+                items.forEach(item => grid.appendChild(item));
+            }
+        }());
+    </script>
+}

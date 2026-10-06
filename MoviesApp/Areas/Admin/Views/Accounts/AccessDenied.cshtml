@@ -1,0 +1,436 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚫 وصول مرفوض | Access Denied</title>
+
+    <!-- DevExpress Styles (Dark Theme) -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.5/css/dx.material.blue.dark.compact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Tajawal', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background shapes */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .bg-shapes .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bg-shapes .shape:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            background: #e94560;
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .bg-shapes .shape:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            background: #ff6b6b;
+            bottom: -150px;
+            left: -100px;
+            animation-delay: 5s;
+        }
+
+        .bg-shapes .shape:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            background: #c44569;
+            top: 50%;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        @@keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* DevExpress Card Container */
+        .access-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @@keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dx-card {
+            background: rgba(30, 30, 46, 0.95);
+            border: 1px solid rgba(233, 69, 96, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 100px rgba(233, 69, 96, 0.1);
+        }
+
+        /* Header with Lock Animation */
+        .card-header {
+            background: linear-gradient(135deg, rgba(233, 69, 96, 0.2), rgba(233, 69, 96, 0.05));
+            padding: 40px;
+            text-align: center;
+            border-bottom: 1px solid rgba(233, 69, 96, 0.2);
+        }
+
+        .lock-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+        }
+
+        .lock-icon-container {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #e94560, #c44569);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(233, 69, 96, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @@keyframes pulse {
+            0%, 100% { box-shadow: 0 10px 40px rgba(233, 69, 96, 0.4); }
+            50% { box-shadow: 0 10px 60px rgba(233, 69, 96, 0.6); }
+        }
+
+        .lock-icon-container i {
+            font-size: 50px;
+            color: white;
+        }
+
+        .shake-animation {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @@keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        .card-header h1 {
+            color: #e94560;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+        }
+
+        /* Body Content */
+        .card-body {
+            padding: 30px 40px;
+        }
+
+        .error-message {
+            background: rgba(233, 69, 96, 0.1);
+            border-right: 4px solid #e94560;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .error-message h3 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .error-message h3 i {
+            color: #e94560;
+        }
+
+        .error-message p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .error-details {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .error-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .error-item i {
+            color: #e94560;
+            width: 20px;
+            text-align: center;
+        }
+
+        .error-code-badge {
+            display: inline-block;
+            background: rgba(233, 69, 96, 0.2);
+            color: #e94560;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-family: monospace;
+            font-size: 1rem;
+            margin-top: 15px;
+            border: 1px solid rgba(233, 69, 96, 0.3);
+        }
+
+        /* DevExpress Buttons Container */
+        .dx-button-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        /* Custom DevExpress Button Styles */
+        .dx-button-mode-contained.dx-button-danger {
+            background: linear-gradient(135deg, #e94560, #c44569) !important;
+            border: none !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+        }
+
+        .dx-button-mode-outlined.dx-button-danger {
+            border-color: #e94560 !important;
+            color: #e94560 !important;
+            border-radius: 12px !important;
+        }
+
+        .dx-button-mode-outlined.dx-button-danger:hover {
+            background: rgba(233, 69, 96, 0.1) !important;
+        }
+
+        /* Footer */
+        .card-footer {
+            padding: 20px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .card-footer p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        .card-footer a {
+            color: #e94560;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @@media (max-width: 768px) {
+            .access-container {
+                padding: 15px;
+            }
+
+            .card-header {
+                padding: 30px 20px;
+            }
+
+            .card-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .card-body {
+                padding: 25px 20px;
+            }
+
+            .dx-button-container {
+                flex-direction: column;
+            }
+
+            .lock-wrapper,
+            .lock-icon-container {
+                width: 100px;
+                height: 100px;
+            }
+
+            .lock-icon-container i {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body class="dx-viewport">
+    <!-- Animated Background -->
+    <div class="bg-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="access-container">
+        <div class="dx-card">
+            <!-- Card Header -->
+            <div class="card-header">
+                <div class="lock-wrapper" id="lockWrapper">
+                    <div class="lock-icon-container">
+                        <i class="fas fa-lock" id="lockIcon"></i>
+                    </div>
+                </div>
+                <h1>وصول مرفوض</h1>
+                <p>Access Denied - ليس لديك صلاحية للوصول لهذه الصفحة</p>
+            </div>
+
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="error-message">
+                    <h3><i class="fas fa-exclamation-circle"></i> ما المشكلة؟</h3>
+                    <p>الصفحة التي تحاول الوصول إليها محمية ولا تملك الصلاحيات اللازمة. يمكن أن يكون السبب:</p>
+                    <div class="error-details">
+                        <div class="error-item">
+                            <i class="fas fa-user-shield"></i>
+                            <span>مستوى الصلاحيات غير كافٍ</span>
+                        </div>
+                        <div class="error-item">
+                            <i class="fas fa-clock"></i>
+                            <span>انتهت صلاحية الجلسة</span>
+                        </div>
+                        <div class="error-item">
+                            <i class="fas fa-folder-open"></i>
+                            <span>المحتوى غير متاح حالياً</span>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <span class="error-code-badge">Error 403 - Forbidden</span>
+                    </div>
+                </div>
+
+                <!-- DevExpress Buttons -->
+                <div id="buttonsContainer" class="dx-button-container"></div>
+            </div>
+
+            <!-- Card Footer -->
+            <div class="card-footer">
+                <p>
+                    <i class="fas fa-info-circle"></i>
+                    إذا كنت تعتقد أن هذا خطأ، يرجى <a href="#">الاتصال بالدعم الفني</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DevExpress Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn3.devexpress.com/jslib/23.2.5/js/dx.all.js"></script>
+
+    <script>
+        $(function() {
+            // Initialize DevExpress Buttons
+            $("#buttonsContainer").dxButtonGroup({
+                items: [
+                    {
+                        text: "العودة للرئيسية",
+                        icon: "home",
+                        type: "danger",
+                        stylingMode: "contained",
+                        onClick: function() {
+                            window.location.href = '@Url.Action("Index", "Home", new { area = "" })';
+                        }
+                    },
+                    {
+                        text: "تسجيل الدخول",
+                        icon: "user",
+                        type: "danger",
+                        stylingMode: "outlined",
+                        onClick: function() {
+                            window.location.href = '@Url.Action("Login", "Accounts", new { area = "Admin" })';
+                        }
+                    }
+                ],
+                keyExpr: "text",
+                stylingMode: "outlined",
+                selectionMode: "none"
+            });
+
+            // Make buttons display horizontally with proper styling
+            $("#buttonsContainer .dx-buttongroup-wrapper").css({
+                "display": "flex",
+                "gap": "15px",
+                "flex-wrap": "wrap",
+                "justify-content": "center"
+            });
+
+            // Lock click interaction
+            const lockWrapper = document.getElementById('lockWrapper');
+            const lockIcon = document.getElementById('lockIcon');
+
+            lockWrapper.addEventListener('click', function() {
+                lockWrapper.classList.add('shake-animation');
+                lockIcon.classList.remove('fa-lock');
+                lockIcon.classList.add('fa-lock-open');
+
+                setTimeout(() => {
+                    lockWrapper.classList.remove('shake-animation');
+                    lockIcon.classList.remove('fa-lock-open');
+                    lockIcon.classList.add('fa-lock');
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>
